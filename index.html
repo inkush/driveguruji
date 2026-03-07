@@ -161,6 +161,112 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .suggestion-pill{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;padding:7px 14px;background:rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.08);border-radius:20px;color:var(--smoke);cursor:none;transition:all .2s;white-space:nowrap}
 .suggestion-pill:hover{background:rgba(184,134,11,.1);border-color:rgba(184,134,11,.3);color:var(--gold)}
 
+/* ── MODALS ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:600;display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.modal-overlay.open{display:flex}
+.modal-content{background:var(--ink);border-radius:16px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);position:relative;animation:modalIn .3s cubic-bezier(.4,0,.2,1)}
+@keyframes modalIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+
+/* Close button */
+.modal-close{position:sticky;top:0;right:0;width:40px;height:40px;background:rgba(0,0,0,.04);border:none;border-radius:50%;font-size:22px;color:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;margin:16px;transition:background .2s;z-index:10}
+.modal-close:hover{background:rgba(0,0,0,.08)}
+
+/* CAR DETAIL MODAL */
+.car-detail-modal .modal-content{max-width:800px}
+.car-modal-hero{width:100%;height:400px;object-fit:cover;display:block}
+.car-modal-header{padding:40px;background:var(--ink2)}
+.car-modal-name{font-family:var(--font-serif);font-size:42px;font-weight:400;margin-bottom:8px;line-height:1.1}
+.car-modal-brand{font-family:var(--font-mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--mist);margin-bottom:16px}
+.car-modal-price{font-family:var(--font-serif);font-size:28px;font-weight:400;color:var(--gold);margin-bottom:20px}
+.car-modal-specs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.car-spec-item{background:var(--ink3);border:1px solid rgba(0,0,0,.05);border-radius:8px;padding:16px}
+.car-spec-label{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);margin-bottom:6px;display:block}
+.car-spec-value{font-family:var(--font-serif);font-size:16px;font-weight:400;color:var(--paper)}
+.car-modal-section{padding:40px}
+.car-modal-section h3{font-family:var(--font-serif);font-size:20px;font-weight:400;margin-bottom:16px;border-bottom:1px solid rgba(0,0,0,.05);padding-bottom:12px}
+.car-pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.car-verdict-text{font-size:15px;line-height:1.8;color:var(--paper);font-style:italic;padding:20px;background:rgba(184,134,11,.05);border-left:3px solid var(--gold);border-radius:4px;margin-top:16px}
+.car-modal-actions{padding:40px;background:var(--ink2);display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.car-modal-btn{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;font-weight:400}
+.car-modal-btn.primary{background:var(--gold);color:var(--ink)}
+.car-modal-btn.primary:hover{background:var(--gold2);transform:translateY(-2px)}
+.car-modal-btn.secondary{border:1px solid rgba(184,134,11,.4);color:var(--gold);background:transparent}
+.car-modal-btn.secondary:hover{background:rgba(184,134,11,.1)}
+
+/* SEARCH OVERLAY */
+.search-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:700;display:none;align-items:flex-start;justify-content:center;padding-top:100px;animation:fadeIn .2s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.search-overlay.open{display:flex}
+.search-container{background:var(--ink);width:90%;max-width:600px;border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.search-input-wrap{padding:20px;border-bottom:1px solid rgba(0,0,0,.08);display:flex;align-items:center;gap:12px}
+.search-icon{color:var(--mist);font-size:18px}
+.search-input{flex:1;background:transparent;border:none;font-family:var(--font-sans);font-size:16px;color:var(--paper);outline:none}
+.search-input::placeholder{color:var(--mist)}
+.search-results{max-height:500px;overflow-y:auto;scrollbar-width:thin}
+.search-result-item{padding:16px 20px;border-bottom:1px solid rgba(0,0,0,.04);cursor:pointer;transition:background .2s;display:flex;align-items:center;gap:12px}
+.search-result-item:hover{background:rgba(184,134,11,.05)}
+.search-result-img{width:48px;height:32px;object-fit:cover;border-radius:4px;background:rgba(0,0,0,.04)}
+.search-result-info{flex:1}
+.search-result-name{font-family:var(--font-serif);font-size:14px;font-weight:400;color:var(--paper);margin-bottom:2px}
+.search-result-meta{font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.05em}
+.search-no-results{padding:40px 20px;text-align:center;color:var(--mist);font-family:var(--font-serif);font-style:italic}
+
+/* FILTER OVERLAY */
+.filter-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:650;display:none;align-items:flex-start;justify-content:center;padding-top:80px;overflow-y:auto;animation:fadeIn .2s}
+.filter-overlay.open{display:flex}
+.filter-modal{background:var(--ink);width:90%;max-width:1000px;border-radius:12px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.filter-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.filter-header h2{font-family:var(--font-serif);font-size:32px;font-weight:400}
+.filter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:3px;margin-top:24px}
+.filter-card{background:var(--ink3);border:1px solid rgba(0,0,0,.05);border-radius:10px;overflow:hidden;cursor:pointer;transition:all .25s;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.filter-card:hover{border-color:rgba(184,134,11,.25);transform:translateY(-4px);box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.filter-card-img{width:100%;height:140px;object-fit:cover;display:block}
+.filter-card-body{padding:16px}
+.filter-card-name{font-family:var(--font-serif);font-size:16px;font-weight:400;margin-bottom:6px;color:var(--paper)}
+.filter-card-info{font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.05em;margin-bottom:8px}
+.filter-card-specs{display:flex;gap:6px;flex-wrap:wrap}
+
+/* CARS LISTING PAGE */
+.cars-listing-modal .modal-content{max-width:1200px}
+.cars-listing-layout{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:40px}
+.cars-listing-sidebar{background:var(--ink2);padding:20px;border-radius:8px}
+.filter-group{margin-bottom:28px}
+.filter-group-title{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:block}
+.filter-option{display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer;font-size:14px;color:var(--smoke)}
+.filter-option input[type="checkbox"]{cursor:pointer;accent-color:var(--gold)}
+.filter-option:hover{color:var(--paper)}
+.cars-listing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:3px}
+
+/* COMPARE SECTION ENHANCEMENTS */
+.compare-dropdown{display:block;width:100%;padding:16px;background:rgba(0,0,0,.03);border:1px solid rgba(0,0,0,.08);border-radius:8px;font-family:var(--font-sans);font-size:14px;color:var(--paper);cursor:pointer;margin-bottom:16px;transition:border-color .2s}
+.compare-dropdown:hover{border-color:rgba(184,134,11,.35)}
+.compare-dropdown:focus{outline:none;border-color:var(--gold);background:rgba(184,134,11,.02)}
+.compare-swap{font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;background:rgba(184,134,11,.08);border:1px solid rgba(184,134,11,.2);border-radius:6px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.compare-swap:hover{background:rgba(184,134,11,.15);border-color:var(--gold)}
+
+/* TABLES */
+.spec-table{width:100%;border-collapse:collapse;margin:20px 0}
+.spec-table tr{border-bottom:1px solid rgba(0,0,0,.04)}
+.spec-table tr:hover{background:rgba(184,134,11,.02);cursor:pointer;transition:background .2s}
+.spec-table td{padding:12px;font-family:var(--font-mono);font-size:11px}
+.spec-table td:first-child{color:var(--mist);text-transform:uppercase;letter-spacing:.05em}
+.spec-table td:not(:first-child){color:var(--paper);font-weight:400}
+.spec-table-better{color:#4ade80!important}
+.spec-table-worse{color:#f87171!important}
+
+/* UTILITY CLASSES */
+.t-spec-tag{font-family:var(--font-mono);font-size:9px;padding:4px 10px;background:rgba(0,0,0,.04);color:var(--smoke);border-radius:4px;display:inline-block;letter-spacing:.05em;text-transform:uppercase}
+
+@media(max-width:768px){
+  .cars-listing-layout{grid-template-columns:1fr}
+  .cars-listing-sidebar{display:none}
+  .car-modal-specs-grid{grid-template-columns:1fr}
+  .car-pros-cons{grid-template-columns:1fr}
+  .search-container{width:95%}
+  .filter-modal{width:95%;padding:20px}
+  .modal-content{max-height:100vh;border-radius:12px}
+}
+
 /* ── QUICK STATS BAR ── */
 .stats-bar{display:flex;justify-content:center;gap:0;margin-top:32px;position:relative;z-index:2}
 .stat-item{padding:16px 32px;display:flex;flex-direction:column;align-items:center;gap:4px;border-right:1px solid rgba(0,0,0,.06)}
@@ -401,6 +507,83 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 
 <div class="cur" id="cur"></div>
 <div class="cur-ring" id="curRing"></div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="carDetailModal">
+  <div class="modal-content car-detail-modal">
+    <button class="modal-close" onclick="closeModal('carDetailModal')">✕</button>
+    <img class="car-modal-hero" id="carModalImg" src="" alt="">
+    <div class="car-modal-header">
+      <div class="car-modal-brand" id="carModalBrand"></div>
+      <div class="car-modal-name" id="carModalName"></div>
+      <div class="car-modal-price" id="carModalPrice"></div>
+      <div class="car-modal-specs-grid" id="carModalSpecs"></div>
+    </div>
+    <div class="car-modal-section">
+      <h3>Specifications</h3>
+      <table class="spec-table" id="carModalSpecTable"></table>
+    </div>
+    <div class="car-modal-section">
+      <h3>Pros & Cons</h3>
+      <div class="car-pros-cons">
+        <div>
+          <div style="color:var(--gold);font-weight:500;margin-bottom:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em">PROS</div>
+          <div id="carModalPros" style="font-size:13px;line-height:1.8;color:var(--paper)"></div>
+        </div>
+        <div>
+          <div style="color:#f87171;font-weight:500;margin-bottom:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em">CONS</div>
+          <div id="carModalCons" style="font-size:13px;line-height:1.8;color:var(--paper)"></div>
+        </div>
+      </div>
+      <div class="car-verdict-text" id="carModalVerdict"></div>
+    </div>
+    <div class="car-modal-actions">
+      <button class="car-modal-btn primary" onclick="scrollToEMI()">Calculate EMI</button>
+      <button class="car-modal-btn secondary" onclick="setCompareCarFromModal()">Compare With...</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="searchOverlay">
+  <div class="search-container" onclick="event.stopPropagation()">
+    <div class="search-input-wrap">
+      <div class="search-icon">🔍</div>
+      <input type="text" class="search-input" id="searchInput" placeholder="Search cars and bikes...">
+      <button onclick="closeModal('searchOverlay')" style="background:none;border:none;font-size:18px;cursor:pointer">✕</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="filterOverlay">
+  <div class="filter-modal" onclick="event.stopPropagation()">
+    <div class="filter-header">
+      <h2 id="filterTitle">Browse Cars</h2>
+      <button onclick="closeModal('filterOverlay')" style="background:none;border:none;font-size:22px;cursor:pointer">✕</button>
+    </div>
+    <div class="filter-grid" id="filterGrid"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="carsListingModal">
+  <div class="modal-content cars-listing-modal">
+    <button class="modal-close" onclick="closeModal('carsListingModal')">✕</button>
+    <div style="padding:40px">
+      <h2 style="font-family:var(--font-serif);font-size:32px;font-weight:400;margin-bottom:24px">All Cars</h2>
+      <div class="cars-listing-layout">
+        <div class="cars-listing-sidebar">
+          <label class="filter-group-title">Brand</label>
+          <div id="brandFilterList"></div>
+          <label class="filter-group-title" style="margin-top:24px">Body Type</label>
+          <div id="typeFilterList"></div>
+          <label class="filter-group-title" style="margin-top:24px">Fuel</label>
+          <div id="fuelFilterList"></div>
+        </div>
+        <div class="cars-listing-grid" id="carsListingGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════════ NAV ══════════════════════ -->
 <nav>
@@ -1284,6 +1467,40 @@ function calcEMI(){
 ['emiPrice','emiDown','emiTenure','emiRate'].forEach(id=>document.getElementById(id).addEventListener('input',calcEMI));
 calcEMI();
 
+// ── COMPREHENSIVE CAR DATABASE ──
+const allCarsDB=[
+  {id:'alto-k10',name:'Alto K10',brand:'Maruti Suzuki',price:3.99,priceRange:'₹3.99–5.96L',type:'Hatchback',fuel:'Petrol',engine:'1.0L Petrol (67 PS)',power:'67 PS',mileage:'24.39 km/l',transmission:'5MT / AGS',safety:'Dual Airbags, ABS',pros:'Best mileage in segment, city-friendly, affordable, CNG option',cons:'Basic safety, poor highway comfort, feels tinny',verdict:'First car or city runabout – unbeatable in segment',img:'https://images.unsplash.com/photo-1590362891990-f8ddb41d3fcb?w=400&q=80',launched:2008,bodyType:'Hatchback'},
+  {id:'swift',name:'Swift',brand:'Maruti Suzuki',price:6.49,priceRange:'₹6.49–9.64L',type:'Hatchback',fuel:'Petrol',engine:'1.2L Petrol (90 PS)',power:'90 PS',mileage:'24.8 km/l',transmission:'5MT / AMT',safety:'6 Airbags, ESP, Hill Hold',pros:'Best-in-class mileage, peppy engine, legendary resale (~70%)',cons:'No diesel anymore, AMT jerky in traffic, tight rear seat',verdict:'India\'s most reliable hatchback – Swift is still king',img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=80',launched:2005,bodyType:'Hatchback'},
+  {id:'wagonr',name:'WagonR',brand:'Maruti Suzuki',price:5.54,priceRange:'₹5.54–8.00L',type:'Hatchback',fuel:'Petrol',engine:'1.0L / 1.2L Petrol',power:'68-90 PS',mileage:'23 km/l',transmission:'5MT / AMT',safety:'6 Airbags, ABS',pros:'Spacious interior, tallboy design, great value',cons:'No diesel, dull styling, average dynamics',verdict:'Family hatchback with space – good everyday car',img:'https://images.unsplash.com/photo-1606573224684-ee41c882f4bc?w=400&q=80',launched:2000,bodyType:'Hatchback'},
+  {id:'baleno',name:'Baleno',brand:'Maruti Suzuki',price:6.61,priceRange:'₹6.61–10.88L',type:'Hatchback',fuel:'Petrol',engine:'1.2L Petrol (83 PS)',power:'83 PS',mileage:'23.26 km/l',transmission:'5MT / CVT',safety:'6 Airbags, ESP',pros:'Premium interior, great space, dual-tone options, CVT smooth',cons:'No diesel, limited tech, AMT variant only in base',verdict:'Premium hatchback feel at great price',img:'https://images.unsplash.com/photo-1554744512-d2c803f67d37?w=400&q=80',launched:2015,bodyType:'Hatchback'},
+  {id:'i20',name:'i20',brand:'Hyundai',price:7.04,priceRange:'₹7.04–10.50L',type:'Hatchback',fuel:'Petrol',engine:'1.2L Petrol (83 PS)',power:'83 PS',mileage:'23.25 km/l',transmission:'5MT / iVT / 6AT',safety:'6 Airbags, ADAS',pros:'Premium cabin, ADAS in top, Hyundai service network, stylish',cons:'Overpriced vs Baleno, heavy at 1170kg, ADAS only in top',verdict:'Stylish hatchback with features – good all-rounder',img:'https://images.unsplash.com/photo-1490274814147-30e41cc3b65f?w=400&q=80',launched:2008,bodyType:'Hatchback'},
+  {id:'punch',name:'Punch',brand:'Tata Motors',price:6.13,priceRange:'₹6.13–10.20L',type:'Micro SUV',fuel:'Petrol',engine:'1.2L Petrol (86 PS)',power:'86 PS',mileage:'20.09 km/l',transmission:'5MT / AMT',safety:'5-star GNCAP, 6 Airbags',pros:'Safest in segment (5 stars!), high ground clearance, tough build',cons:'Underpowered engine, slow AMT, tight boot (366L)',verdict:'Safety champion – if roads are broken, Punch wins',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2021,bodyType:'Micro SUV'},
+  {id:'nexon',name:'Nexon',brand:'Tata Motors',price:8.10,priceRange:'₹8.10–15.50L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.2T Petrol (120PS) / 1.5D (115PS)',power:'120 PS / 115 PS',mileage:'17.4 km/l (P) / 23.2 km/l (D)',transmission:'6MT / AMT / 6AT',safety:'5-star GNCAP, 6 Airbags, ESP',pros:'5-star safety, solid build, diesel excellent, competitive',cons:'Outdated AMT, infotainment lags, rear seat cramped',verdict:'Best value compact SUV if safety is priority',img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&q=80',launched:2015,bodyType:'Compact SUV'},
+  {id:'nexon-ev',name:'Nexon EV',brand:'Tata Motors',price:14.49,priceRange:'₹14.49–19.29L',type:'Electric SUV',fuel:'Electric',engine:'Electric Motor (143 PS)',power:'143 PS',mileage:'453 km ARAI / ~300km real',transmission:'Single-speed automatic',safety:'5-star GNCAP, ESP, Hill Assist',pros:'Most affordable EV SUV, Tata service network, good range',cons:'Real range ~300km (not 453), limited fast charging',verdict:'India\'s most practical entry-level EV',img:'https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=400&q=80',launched:2019,bodyType:'Electric SUV'},
+  {id:'brezza',name:'Brezza',brand:'Maruti Suzuki',price:8.34,priceRange:'₹8.34–14.26L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.5L Petrol / Diesel',power:'103-113 PS',mileage:'18 km/l (P) / 23 km/l (D)',transmission:'5MT / 6AT / 4AT',safety:'6 Airbags, ADAS in newer',pros:'Best seller, reliable, good resale, diesel available',cons:'Older platform, basic interior vs Nexon, cramped rear',verdict:'India\'s bestselling compact SUV – safe choice',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=400&q=80',launched:2012,bodyType:'Compact SUV'},
+  {id:'fronx',name:'Fronx',brand:'Maruti Suzuki',price:7.52,priceRange:'₹7.52–13.68L',type:'Compact SUV',fuel:'Petrol',engine:'1.2L Petrol (90 PS)',power:'90 PS',mileage:'21 km/l',transmission:'5MT / 6AT',safety:'6 Airbags, ADAS L2 in top',pros:'Modern design, Maruti reliability, ADAS in top, good features',cons:'Only petrol, 90PS underpowered for highway, newer (unproven)',verdict:'Fresh design with tech – good for young buyers',img:'https://images.unsplash.com/photo-1606573224684-ee41c882f4bc?w=400&q=80',launched:2022,bodyType:'Compact SUV'},
+  {id:'creta',name:'Creta',brand:'Hyundai',price:11.11,priceRange:'₹11.11–20.15L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.5L Pet/Die/Turbo (110-170PS)',power:'110-170 PS',mileage:'16.8 km/l (P) / 21.8 km/l (D)',transmission:'6MT / IVT / 7DCT / 6AT',safety:'6 Airbags, ADAS L2, 360° camera',pros:'Feature-loaded, smooth diesel, premium cabin, strong resale',cons:'Top variants expensive (₹20L+), turbo DCT jerky at low speeds',verdict:'India\'s SUV benchmark – all features included',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=400&q=80',launched:2015,bodyType:'Compact SUV'},
+  {id:'creta-ev',name:'Creta EV',brand:'Hyundai',price:17.99,priceRange:'₹17.99–23.50L',type:'Electric SUV',fuel:'Electric',engine:'150 kW Electric Motor (204 PS)',power:'204 PS',mileage:'473 km ARAI / ~380km real',transmission:'Single-speed automatic',safety:'6 Airbags, ADAS L2, 360° camera',pros:'Best real EV range, Creta brand trust, V2L, fast charging 10-80% 58min',cons:'Heavy (1880kg), no AWD, charging infra patchy outside metros',verdict:'India\'s most important EV right now',img:'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=400&q=80',launched:2024,bodyType:'Electric SUV'},
+  {id:'seltos',name:'Seltos',brand:'Kia',price:10.90,priceRange:'₹10.90–20.35L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.5L Pet/Die/Turbo',power:'115-170 PS',mileage:'16.8 km/l (P) / 20.7 km/l (D)',transmission:'6MT / IVT / 7DCT / 6AT',safety:'6 Airbags, ADAS, 360° camera',pros:'Premium interior, Bose sound, ADAS, excellent highway cruiser',cons:'Identical to Creta mechanically, lower resale, turbo same issue',verdict:'Creta\'s sophisticated brother – same platform, different vibe',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=400&q=80',launched:2019,bodyType:'Compact SUV'},
+  {id:'sonet',name:'Sonet',brand:'Kia',price:7.99,priceRange:'₹7.99–15.52L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.2L Petrol / 1.0T / 1.5D',power:'83-150 PS',mileage:'17 km/l (P) / 22 km/l (D)',transmission:'5MT / 6AT / 7DCT',safety:'6 Airbags, ADAS, ESC',pros:'Affordable compact SUV, 1.0T turbo option, premium feel',cons:'New engine = reliability unproven, 1.0T not as powerful as 1.2T',verdict:'Kia\'s smart compact SUV – good value play',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2020,bodyType:'Compact SUV'},
+  {id:'syros',name:'Syros',brand:'Kia',price:8.99,priceRange:'₹8.99–18.99L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.0T Petrol / 1.5D',power:'120-115 PS',mileage:'~18 km/l (P) / ~22 km/l (D)',transmission:'6MT / 7DCT / 6AT',safety:'6 Airbags, ADAS, panoramic roof',pros:'Panoramic sky roof, best rear headroom, bold design, Kia quality',cons:'New model – no resale data, 1.0T strained on highways with load',verdict:'Kia\'s boldest move – different from typical compact SUVs',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2024,bodyType:'Compact SUV'},
+  {id:'venue',name:'Venue',brand:'Hyundai',price:7.10,priceRange:'₹7.10–12.02L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.2L Pet / 1.2D',power:'83-86 PS',mileage:'19.4 km/l (P) / 23.2 km/l (D)',transmission:'5MT / 6AT / 6AT',safety:'6 Airbags, ADAS, ESC',pros:'Feature-loaded for segment, good interior, decent resale',cons:'Cramped rear, weak 1.2D, AMT option older generation',verdict:'Segment leader – balanced compact SUV',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=400&q=80',launched:2019,bodyType:'Compact SUV'},
+  {id:'harrier',name:'Harrier',brand:'Tata Motors',price:15.49,priceRange:'₹15.49–23.20L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'1.8L Petrol (170PS) / 2.0D (170PS)',power:'170 PS',mileage:'16 km/l (P) / 16.4 km/l (D)',transmission:'6MT / 6AT',safety:'5-star GNCAP, 6 Airbags, ADAS L2',pros:'5-star safety, body-on-frame, premium cabin, great handling',cons:'Diesel thirsty, no 7-seater option, expensive vs Japanese SUVs',verdict:'India\'s modern midsize SUV – premium option',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2019,bodyType:'Midsize SUV'},
+  {id:'safari',name:'Safari',brand:'Tata Motors',price:21.48,priceRange:'₹21.48–28.13L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'1.8L Petrol (170PS) / 2.0D (170PS)',power:'170 PS',mileage:'15 km/l (P) / 15.8 km/l (D)',transmission:'6MT / 6AT',safety:'5-star GNCAP, 6 Airbags, ADAS L2',pros:'5-star safety, 7-seater, premium interior, excellent warranty',cons:'Expensive, diesel fuel consumption, body roll in corners',verdict:'Premium 7-seater SUV – best in segment safety-wise',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2020,bodyType:'Midsize SUV'},
+  {id:'xuv700',name:'XUV700',brand:'Mahindra',price:13.93,priceRange:'₹13.93–26.07L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'2.0L Pet (200PS) / 2.2D (185PS)',power:'185-200 PS',mileage:'14 km/l (P) / 17.3 km/l (D)',transmission:'6AT / 8AT',safety:'ADAS Level 2, 6 Airbags, 360° camera',pros:'Tech-loaded, 7-seater, great warranty, strong performance',cons:'ARAI cycle biased, expensive maintenance, interior rattle issues',verdict:'Tech enthusiast\'s choice – great features, reliability TBD',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2021,bodyType:'Midsize SUV'},
+  {id:'xev-9e',name:'XEV 9e',brand:'Mahindra',price:21.90,priceRange:'₹21.90–30.50L',type:'Electric SUV',fuel:'Electric',engine:'231 PS Electric Motor',power:'231 PS',mileage:'682 km MIDC / ~450-500km real',transmission:'Single-speed automatic',safety:'Level 2 ADAS, 7 Airbags, 360° camera',pros:'World-class platform (INGLO), longest range in India, stunning design',cons:'Brand new – reliability unknown, Mahindra EV service network limited, 2208kg heavy',verdict:'India\'s most ambitious EV – design and range world-class',img:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&q=80',launched:2025,bodyType:'Electric SUV'},
+  {id:'thar',name:'Mahindra Thar',brand:'Mahindra',price:12.77,priceRange:'₹12.77–17.60L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'2.0L Petrol (150PS) / 2.2D (130PS)',power:'130-150 PS',mileage:'13 km/l (P) / 15.2 km/l (D)',transmission:'6MT / 6AT',safety:'6 Airbags, ADAS, 4x4 capability',pros:'Iconic design, go-anywhere capability, premium cabin, 4WD',cons:'Poor fuel economy, body roll on roads, no automatic diesel',verdict:'Jeep lover\'s dream – lifestyle vehicle, not practical daily driver',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2020,bodyType:'Compact SUV'},
+  {id:'scorpio-n',name:'Scorpio-N',brand:'Mahindra',price:12.49,priceRange:'₹12.49–17.95L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'2.0L Petrol (160PS) / 2.2D (160PS)',power:'160 PS',mileage:'14 km/l (P) / 18.2 km/l (D)',transmission:'6MT / 6AT',safety:'6 Airbags, ADAS, 4x4 option',pros:'Butch design, powerful engine, 4x4 available, good warranty',cons:'Diesel heavy on fuel, no hybrid, body roll on highways',verdict:'Modern butch SUV – good power, poor efficiency',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2022,bodyType:'Midsize SUV'},
+  {id:'city',name:'City',brand:'Honda',price:11.82,priceRange:'₹11.82–16.35L',type:'Sedan',fuel:'Petrol',engine:'1.5L Petrol (121 PS)',power:'121 PS',mileage:'18.4 km/l',transmission:'6MT / CVT',safety:'6 Airbags, VSA, Hill Start',pros:'Best driving dynamics, refined engine, spacious rear, Honda reliability',cons:'No diesel, CVT rubber-band feel, limited tech for price',verdict:'Sedan lovers\' last hope – driving feel unmatched',img:'https://images.unsplash.com/photo-1517524206127-48bbd363fc3f?w=400&q=80',launched:2020,bodyType:'Sedan'},
+  {id:'verna',name:'Verna',brand:'Hyundai',price:9.30,priceRange:'₹9.30–15.49L',type:'Sedan',fuel:'Petrol/Diesel',engine:'1.2L Pet (90PS) / 1.2D (75PS)',power:'75-90 PS',mileage:'18.6 km/l (P) / 23.4 km/l (D)',transmission:'5MT / 6AT / CVT',safety:'6 Airbags, ADAS, ESC',pros:'Good value, diesel option, spacious, Hyundai warranty',cons:'Weak diesel, outdated platform, AMT not smooth',verdict:'Budget sedan – practical but aging platform',img:'https://images.unsplash.com/photo-1517524206127-48bbd363fc3f?w=400&q=80',launched:2006,bodyType:'Sedan'},
+  {id:'fortuner',name:'Fortuner',brand:'Toyota',price:33.43,priceRange:'₹33.43–51.44L',type:'Fullsize SUV',fuel:'Petrol/Diesel',engine:'2.8L Diesel (204PS) / 2.7L Petrol (166PS)',power:'166-204 PS',mileage:'10-12 km/l real',transmission:'6MT / 6AT',safety:'7 Airbags, VSC, Hill Assist',pros:'Bulletproof reliability, legendary resale (~85% after 3yr), body-on-frame',cons:'Diesel thirsty, bouncy ride unladen, interior dated',verdict:'India\'s asli SUV – resale value unmatched',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2009,bodyType:'Fullsize SUV'},
+  {id:'bmw-3',name:'BMW 3 Series',brand:'BMW',price:48.90,priceRange:'₹48.90–62.90L',type:'Luxury Sedan',fuel:'Petrol/Diesel',engine:'2.0L Turbo Petrol (258PS) / 2.0D (190PS)',power:'190-258 PS',mileage:'22.7 km/l (D claimed)',transmission:'8-speed Automatic',safety:'6 Airbags, ADAS, 360° camera',pros:'Best driving dynamics, 258PS petrol is rocket, BMW brand',cons:'Rear seat tight, options expensive, high maintenance costs',verdict:'Driving enthusiast\'s sedan – C-Class more comfortable',img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&q=80',launched:2021,bodyType:'Luxury Sedan'},
+  {id:'classic-350',name:'Royal Enfield Classic 350',brand:'Royal Enfield',price:1.93,priceRange:'₹1.93–2.34L',type:'Cruiser Motorcycle',fuel:'Petrol',engine:'349cc Single (20.2 PS)',power:'20.2 PS',mileage:'35-38 km/l',transmission:'5-speed',safety:'Dual-channel ABS',pros:'The thump, iconic design, comfy long rides, massive community',cons:'Heavy (195kg), slow, vibrations above 90 km/h, not sporty',verdict:'Feel ride – but speed seekers should skip',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',launched:2009,bodyType:'Motorcycle'},
+  {id:'pulsar-ns200',name:'Bajaj Pulsar NS200',brand:'Bajaj',price:1.48,priceRange:'₹1.48–1.58L',type:'Sport Naked',fuel:'Petrol',engine:'199.5cc Single (24.5 PS)',power:'24.5 PS',mileage:'35-40 km/l',transmission:'6-speed',safety:'Single-channel ABS',pros:'Best value performance, peppy engine, liquid cooling, perimeter frame',cons:'Vibey above 8000 rpm, single-channel ABS only, finish could be better',verdict:'Best performance bike under ₹1.5L – no contest',img:'https://images.unsplash.com/photo-1558980394-4c7c9299fe96?w=400&q=80',launched:2012,bodyType:'Motorcycle'},
+  {id:'guerrilla-450',name:'Royal Enfield Guerrilla 450',brand:'Royal Enfield',price:2.39,priceRange:'₹2.39–2.49L',type:'Scrambler',fuel:'Petrol',engine:'452cc Single (40 PS)',power:'40 PS',mileage:'30-33 km/l',transmission:'6-speed',safety:'Dual-channel ABS',pros:'Lightest RE ever (185kg), Himalayan 450 engine, scrambler styling',cons:'New model – reliability unproven, limited dealers, no wind protection',verdict:'RE finally made what enthusiasts wanted – gem under ₹2.5L',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',launched:2024,bodyType:'Motorcycle'},
+  {id:'splendor',name:'Hero Splendor Plus',brand:'Hero MotoCorp',price:0.76,priceRange:'₹0.76–0.83L',type:'Commuter',fuel:'Petrol',engine:'97.2cc Single (8.02 PS)',power:'8.02 PS',mileage:'65-70 km/l',transmission:'4-speed',safety:'CBS (Combi Brake System)',pros:'India\'s best-selling vehicle, unmatched mileage, ultra-reliable, cheap maintenance',cons:'No excitement, basic features, drum brakes, feels dated',verdict:'India\'s backbone – 4L units/month sold for good reason',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',launched:1994,bodyType:'Motorcycle'},
+];
+
 // ── AI CHATBOT — Smart Knowledge Engine ──
 const msgs=document.getElementById('chatMessages');
 const chatInput=document.getElementById('chatInput');
@@ -1528,6 +1745,426 @@ chatInput.addEventListener('keydown',e=>{
 chatInput.addEventListener('input',function(){
   this.style.height='auto';
   this.style.height=Math.min(this.scrollHeight,120)+'px';
+});
+
+// ════════════════════════════════════════════════════════════════
+// ── MODAL & INTERACTION FUNCTIONS ──
+// ════════════════════════════════════════════════════════════════
+
+function closeModal(modalId){
+  document.getElementById(modalId).classList.remove('open');
+}
+
+function openModal(modalId){
+  document.getElementById(modalId).classList.add('open');
+  document.getElementById(modalId).addEventListener('click',function(e){
+    if(e.target===this)closeModal(modalId);
+  });
+}
+
+// ── CAR DETAIL MODAL ──
+function openCarDetail(carId){
+  const car=allCarsDB.find(c=>c.id===carId);
+  if(!car)return;
+
+  document.getElementById('carModalImg').src=car.img;
+  document.getElementById('carModalBrand').textContent=car.brand;
+  document.getElementById('carModalName').textContent=car.name;
+  document.getElementById('carModalPrice').textContent=car.priceRange;
+
+  // Specs grid
+  const specsHtml=`
+    <div class="car-spec-item"><span class="car-spec-label">Engine</span><span class="car-spec-value">${car.engine}</span></div>
+    <div class="car-spec-item"><span class="car-spec-label">Power</span><span class="car-spec-value">${car.power}</span></div>
+    <div class="car-spec-item"><span class="car-spec-label">Mileage</span><span class="car-spec-value">${car.mileage}</span></div>
+    <div class="car-spec-item"><span class="car-spec-label">Transmission</span><span class="car-spec-value">${car.transmission}</span></div>
+    <div class="car-spec-item"><span class="car-spec-label">Type</span><span class="car-spec-value">${car.type}</span></div>
+    <div class="car-spec-item"><span class="car-spec-label">Safety</span><span class="car-spec-value">${car.safety}</span></div>
+  `;
+  document.getElementById('carModalSpecs').innerHTML=specsHtml;
+
+  // Spec table
+  const specTableHtml=`
+    <tr><td>Engine</td><td>${car.engine}</td></tr>
+    <tr><td>Power</td><td>${car.power}</td></tr>
+    <tr><td>Mileage</td><td>${car.mileage}</td></tr>
+    <tr><td>Transmission</td><td>${car.transmission}</td></tr>
+    <tr><td>Fuel Type</td><td>${car.fuel}</td></tr>
+    <tr><td>Body Type</td><td>${car.bodyType}</td></tr>
+    <tr><td>Safety Rating</td><td>${car.safety}</td></tr>
+  `;
+  document.getElementById('carModalSpecTable').innerHTML=specTableHtml;
+
+  document.getElementById('carModalPros').innerHTML=car.pros.split(',').map(p=>'• '+p.trim()).join('<br>');
+  document.getElementById('carModalCons').innerHTML=car.cons.split(',').map(c=>'• '+c.trim()).join('<br>');
+  document.getElementById('carModalVerdict').textContent=car.verdict;
+
+  // Store for compare
+  window.currentModalCar=car;
+
+  openModal('carDetailModal');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── SEARCH ──
+function setupSearch(){
+  const searchInput=document.getElementById('searchInput');
+  const searchResults=document.getElementById('searchResults');
+
+  searchInput.addEventListener('input',()=>{
+    const query=searchInput.value.toLowerCase();
+    if(!query){
+      searchResults.innerHTML='';
+      return;
+    }
+
+    const results=allCarsDB.filter(car=>
+      car.name.toLowerCase().includes(query)||
+      car.brand.toLowerCase().includes(query)||
+      car.type.toLowerCase().includes(query)
+    ).slice(0,8);
+
+    if(results.length===0){
+      searchResults.innerHTML='<div class="search-no-results">No cars found. Try "Swift", "Creta", "EV"...</div>';
+      return;
+    }
+
+    searchResults.innerHTML=results.map(car=>`
+      <div class="search-result-item" onclick="openCarDetail('${car.id}'); closeModal('searchOverlay')">
+        <img src="${car.img}" alt="${car.name}" class="search-result-img">
+        <div class="search-result-info">
+          <div class="search-result-name">${car.name}</div>
+          <div class="search-result-meta">${car.brand} • ${car.priceRange}</div>
+        </div>
+      </div>
+    `).join('');
+  });
+
+  // Ctrl+K to open search
+  document.addEventListener('keydown',e=>{
+    if((e.ctrlKey||e.metaKey)&&e.key==='k'){
+      e.preventDefault();
+      openModal('searchOverlay');
+      searchInput.focus();
+    }
+  });
+
+  // Close on ESC
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape')closeModal('searchOverlay');
+  });
+}
+
+// ── FILTER OVERLAYS ──
+function openBrandFilter(brand){
+  const filtered=allCarsDB.filter(c=>c.brand===brand);
+  showFilterResults(filtered,`${brand} Cars`);
+}
+
+function openTypeFilter(type){
+  const filtered=allCarsDB.filter(c=>c.bodyType===type);
+  showFilterResults(filtered,`${type} Cars`);
+}
+
+function openPriceFilter(min,max){
+  const filtered=allCarsDB.filter(c=>c.price>=min&&c.price<=max);
+  showFilterResults(filtered,`Cars ₹${min}L–${max}L`);
+}
+
+function showFilterResults(cars,title){
+  document.getElementById('filterTitle').textContent=title;
+  document.getElementById('filterGrid').innerHTML=cars.map(car=>`
+    <div class="filter-card" onclick="openCarDetail('${car.id}'); closeModal('filterOverlay')">
+      <img src="${car.img}" alt="${car.name}" class="filter-card-img">
+      <div class="filter-card-body">
+        <div class="filter-card-name">${car.name}</div>
+        <div class="filter-card-info">${car.brand} • ${car.priceRange}</div>
+        <div class="filter-card-specs">
+          <span class="t-spec-tag">${car.type}</span>
+          <span class="t-spec-tag">${car.fuel}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  openModal('filterOverlay');
+}
+
+// ── TRENDING CARDS CLICKABLE ──
+function setupTrendingCards(){
+  document.querySelectorAll('.t-card').forEach(card=>{
+    card.style.cursor='pointer';
+    card.addEventListener('click',()=>{
+      const name=card.querySelector('.t-name').textContent;
+      const car=allCarsDB.find(c=>c.name===name);
+      if(car)openCarDetail(car.id);
+    });
+  });
+}
+
+// ── BUDGET RESULTS CLICKABLE ──
+function makeCardsClickable(){
+  const observer=new MutationObserver(()=>{
+    document.querySelectorAll('.bcard').forEach(card=>{
+      if(!card.hasListener){
+        card.style.cursor='pointer';
+        card.addEventListener('click',()=>{
+          const name=card.querySelector('.bcard-name').textContent;
+          const car=allCarsDB.find(c=>c.name===name);
+          if(car)openCarDetail(car.id);
+        });
+        card.hasListener=true;
+      }
+    });
+  });
+  observer.observe(document.getElementById('bResults'),{childList:true});
+}
+
+// ── LAUNCHES CLICKABLE ──
+function setupLaunchCards(){
+  document.querySelectorAll('.lcard').forEach(card=>{
+    const link=card.querySelector('.lcard-link');
+    if(link){
+      link.onclick=(e)=>{
+        e.preventDefault();
+        const name=card.querySelector('.lcard-name').textContent;
+        const car=allCarsDB.find(c=>c.name===name);
+        if(car)openCarDetail(car.id);
+      };
+    }
+  });
+}
+
+// ── COMPARE TOOL SETUP ──
+function setupCompareDropdowns(){
+  const compareSection=document.querySelector('.compare-section');
+  if(!compareSection)return;
+
+  const cols=compareSection.querySelectorAll('.compare-col');
+  if(cols.length<2)return;
+
+  const car1Slot=cols[0].querySelector('.compare-car-slot');
+  const car2Slot=cols[2].querySelector('.compare-car-slot');
+
+  if(car1Slot&&car2Slot){
+    car1Slot.innerHTML=`<select class="compare-dropdown" id="compare1" onchange="updateCompare()"><option>Select Car 1</option>${allCarsDB.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select>`;
+    car2Slot.innerHTML=`<select class="compare-dropdown" id="compare2" onchange="updateCompare()"><option>Select Car 2</option>${allCarsDB.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select>`;
+  }
+}
+
+function updateCompare(){
+  const id1=document.getElementById('compare1')?.value;
+  const id2=document.getElementById('compare2')?.value;
+  if(!id1||!id2)return;
+
+  const car1=allCarsDB.find(c=>c.id===id1);
+  const car2=allCarsDB.find(c=>c.id===id2);
+
+  const compareSection=document.querySelector('.compare-section');
+  const cols=compareSection.querySelectorAll('.compare-col');
+
+  // Update car1 slot
+  const car1SlotName=cols[0].querySelector('.slot-name');
+  if(car1SlotName)car1SlotName.textContent=car1.name;
+
+  // Update car2 slot
+  const car2SlotName=cols[2].querySelector('.slot-name');
+  if(car2SlotName)car2SlotName.textContent=car2.name;
+
+  // Update specs
+  const specRows=compareSection.querySelectorAll('.compare-spec-row');
+  const specs=['Engine','Power','Mileage','Transmission','Fuel Type'];
+  const specValues={
+    'Engine':[car1.engine,car2.engine],
+    'Power':[car1.power,car2.power],
+    'Mileage':[car1.mileage,car2.mileage],
+    'Transmission':[car1.transmission,car2.transmission],
+    'Fuel Type':[car1.fuel,car2.fuel]
+  };
+
+  specRows.forEach(row=>{
+    const key=row.querySelector('.spec-key')?.textContent;
+    const values=row.querySelectorAll('.spec-value');
+    if(specValues[key]&&values.length>=2){
+      values[0].textContent=specValues[key][0];
+      values[1].textContent=specValues[key][1];
+      values[0].classList.remove('better','worse');
+      values[1].classList.remove('better','worse');
+    }
+  });
+}
+
+function setCompareCarFromModal(){
+  if(!window.currentModalCar)return;
+  const car=window.currentModalCar;
+  document.getElementById('compare1').value=car.id;
+  closeModal('carDetailModal');
+  document.querySelector('.compare-section').scrollIntoView({behavior:'smooth'});
+  updateCompare();
+}
+
+// ── NAV LINKS ──
+function setupNavigation(){
+  // Cars link
+  document.querySelectorAll('a').forEach(link=>{
+    const text=link.textContent.toLowerCase();
+    if(text.includes('cars')){
+      link.onclick=(e)=>{
+        e.preventDefault();
+        openCarsListing();
+      };
+    }
+    if(text.includes('bikes')){
+      link.onclick=(e)=>{
+        e.preventDefault();
+        showFilterResults(allCarsDB.filter(c=>['Cruiser Motorcycle','Sport Naked','Scrambler','Commuter'].includes(c.type)),'All Bikes');
+      };
+    }
+    if(text.includes('electric')){
+      link.onclick=(e)=>{
+        e.preventDefault();
+        showFilterResults(allCarsDB.filter(c=>c.fuel==='Electric'),'Electric Vehicles');
+      };
+    }
+    if(text.includes('compare')){
+      link.onclick=(e)=>{
+        e.preventDefault();
+        document.querySelector('.compare-section').scrollIntoView({behavior:'smooth'});
+      };
+    }
+    if(text.includes('articles')){
+      link.onclick=(e)=>{
+        e.preventDefault();
+        document.querySelector('.articles-section').scrollIntoView({behavior:'smooth'});
+      };
+    }
+  });
+
+  // Ask Guruji badge
+  document.querySelector('.nav-badge').addEventListener('click',()=>{
+    openModal('searchOverlay');
+    document.getElementById('searchInput').focus();
+  });
+}
+
+// ── CARS LISTING ──
+function openCarsListing(){
+  const allBrands=[...new Set(allCarsDB.map(c=>c.brand))].sort();
+  const allTypes=[...new Set(allCarsDB.map(c=>c.bodyType))].sort();
+  const allFuels=[...new Set(allCarsDB.map(c=>c.fuel))].sort();
+
+  // Brand filter
+  document.getElementById('brandFilterList').innerHTML=allBrands.map(b=>`
+    <label class="filter-option"><input type="checkbox" onchange="filterAndShowCars()"> ${b}</label>
+  `).join('');
+
+  // Type filter
+  document.getElementById('typeFilterList').innerHTML=allTypes.map(t=>`
+    <label class="filter-option"><input type="checkbox" onchange="filterAndShowCars()"> ${t}</label>
+  `).join('');
+
+  // Fuel filter
+  document.getElementById('fuelFilterList').innerHTML=allFuels.map(f=>`
+    <label class="filter-option"><input type="checkbox" onchange="filterAndShowCars()"> ${f}</label>
+  `).join('');
+
+  filterAndShowCars();
+  openModal('carsListingModal');
+}
+
+function filterAndShowCars(){
+  const brandChecks=document.querySelectorAll('#brandFilterList input:checked');
+  const typeChecks=document.querySelectorAll('#typeFilterList input:checked');
+  const fuelChecks=document.querySelectorAll('#fuelFilterList input:checked');
+
+  const brands=Array.from(brandChecks).map(c=>c.nextElementSibling.textContent.trim());
+  const types=Array.from(typeChecks).map(c=>c.nextElementSibling.textContent.trim());
+  const fuels=Array.from(fuelChecks).map(c=>c.nextElementSibling.textContent.trim());
+
+  let filtered=allCarsDB;
+  if(brands.length>0)filtered=filtered.filter(c=>brands.includes(c.brand));
+  if(types.length>0)filtered=filtered.filter(c=>types.includes(c.bodyType));
+  if(fuels.length>0)filtered=filtered.filter(c=>fuels.includes(c.fuel));
+
+  document.getElementById('carsListingGrid').innerHTML=filtered.map(car=>`
+    <div class="filter-card" onclick="openCarDetail('${car.id}')">
+      <img src="${car.img}" alt="${car.name}" class="filter-card-img">
+      <div class="filter-card-body">
+        <div class="filter-card-name">${car.name}</div>
+        <div class="filter-card-info">${car.brand} • ${car.priceRange}</div>
+        <div class="filter-card-specs">
+          <span class="t-spec-tag">${car.type}</span>
+          <span class="t-spec-tag">${car.fuel}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── SCROLL HELPERS ──
+function scrollToEMI(){
+  closeModal('carDetailModal');
+  document.querySelector('.emi-section').scrollIntoView({behavior:'smooth'});
+}
+
+// ── INIT ──
+setupSearch();
+setupTrendingCards();
+makeCardsClickable();
+setupLaunchCards();
+setupCompareDropdowns();
+setupNavigation();
+
+// Add click to budget tier cards
+document.querySelectorAll('.budget-tiers-grid > div').forEach((tier,idx)=>{
+  tier.style.cursor='pointer';
+  tier.addEventListener('click',()=>{
+    const ranges=[
+      {min:0,max:5},
+      {min:5,max:10},
+      {min:10,max:20},
+      {min:20,max:200}
+    ];
+    const range=ranges[idx];
+    const filtered=allCarsDB.filter(c=>c.price>=range.min&&c.price<=range.max);
+    showFilterResults(filtered,`Cars ₹${range.min}L${range.min===20?'+':'-'+range.max+'L'}`);
+  });
+});
+
+// "All Cars" link
+document.querySelectorAll('.see-all').forEach(link=>{
+  if(link.textContent.includes('All Cars')){
+    link.onclick=(e)=>{
+      e.preventDefault();
+      openCarsListing();
+    };
+  }
+  if(link.textContent.includes('All Launches')){
+    link.onclick=(e)=>{
+      e.preventDefault();
+      document.querySelector('.launches-section').scrollIntoView({behavior:'smooth'});
+    };
+  }
+  if(link.textContent.includes('All Articles')){
+    link.onclick=(e)=>{
+      e.preventDefault();
+      document.querySelector('.articles-section').scrollIntoView({behavior:'smooth'});
+    };
+  }
+});
+
+// Trending "+ Compare" buttons
+document.querySelectorAll('.t-compare').forEach(btn=>{
+  btn.onclick=(e)=>{
+    e.preventDefault();
+    const card=btn.closest('.t-card');
+    const name=card.querySelector('.t-name').textContent;
+    const car=allCarsDB.find(c=>c.name===name);
+    if(car){
+      document.getElementById('compare1').value=car.id;
+      updateCompare();
+      document.querySelector('.compare-section').scrollIntoView({behavior:'smooth'});
+    }
+  };
 });
 </script>
 </body>
