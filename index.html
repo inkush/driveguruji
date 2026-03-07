@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DriveGuruji — Gaadi ka har sawaal, Guruji ke paas</title>
+<meta name="description" content="India's smartest AI car & bike advisor. Ask anything about prices, mileage, comparisons, EMI, hidden costs — in Hindi or English. No forms, no filters, just ask DriveGuruji.">
+<meta name="keywords" content="car prices India, bike prices India, EMI calculator, car comparison, best SUV India, best bike India, DriveGuruji">
+<meta property="og:title" content="DriveGuruji — India's Smartest Car & Bike Advisor">
+<meta property="og:description" content="Ask anything about any car or bike in India. Prices, mileage, comparisons, EMI — in plain Hindi or English.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://driveguruji.vercel.app">
+<meta property="og:image" content="https://driveguruji.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DriveGuruji — India's Smartest Car & Bike Advisor">
+<meta name="twitter:description" content="Ask anything about any car or bike in India. Prices, mileage, comparisons, EMI.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -52,6 +63,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .nav-links a{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mist);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--paper)}
 .nav-badge{background:rgba(212,168,67,.12);border:1px solid rgba(212,168,67,.25);border-radius:20px;padding:5px 14px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+
+/* hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--paper);transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(9,9,11,.97);z-index:499;flex-direction:column;align-items:center;justify-content:center;gap:32px;backdrop-filter:blur(20px)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--font-serif);font-size:28px;color:var(--paper);text-decoration:none;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-close{position:absolute;top:24px;right:24px;font-size:28px;color:var(--paper);background:none;border:none;cursor:pointer;font-family:var(--font-sans)}
+
+/* AI disclaimer */
+.ai-disclaimer{text-align:center;margin-top:16px;padding:10px 20px;font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;color:var(--mist);line-height:1.6;position:relative;z-index:2}
+.ai-disclaimer a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(212,168,67,.3);transition:border-color .2s}
+.ai-disclaimer a:hover{border-color:var(--gold)}
+
+/* on-road estimate */
+.onroad-section{margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06)}
+.onroad-row{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;padding:6px 0}
+.onroad-row .k{color:var(--mist)}
+.onroad-row .v{color:var(--paper2)}
+.onroad-row.total{border-top:1px solid rgba(212,168,67,.2);padding-top:10px;margin-top:6px}
+.onroad-row.total .k{color:var(--gold);font-weight:500}
+.onroad-row.total .v{color:var(--gold);font-weight:500}
 
 /* ── HERO / CHATBOT ── */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 24px 60px;position:relative;overflow:hidden}
@@ -329,6 +363,7 @@ footer{background:var(--ink2);padding:72px 48px 36px;border-top:1px solid rgba(2
 @media(max-width:900px){
   nav{padding:18px 24px}
   .nav-links{display:none}
+  .hamburger{display:flex}
   .section,.budget-section,.compare-section,.emi-section,.brands-section,.articles-section{padding:72px 24px}
   .article-feature{grid-template-columns:1fr}
   .article-feature-img{height:300px}
@@ -372,8 +407,19 @@ footer{background:var(--ink2);padding:72px 48px 36px;border-top:1px solid rgba(2
   </ul>
   <div class="nav-r">
     <span class="nav-badge">Ask Guruji</span>
+    <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="this.parentElement.classList.remove('open')">✕</button>
+  <a href="#" onclick="this.parentElement.classList.remove('open')">Cars</a>
+  <a href="#" onclick="this.parentElement.classList.remove('open')">Bikes</a>
+  <a href="#" onclick="this.parentElement.classList.remove('open')">Electric</a>
+  <a href="#" onclick="this.parentElement.classList.remove('open')">Compare</a>
+  <a href="#" onclick="this.parentElement.classList.remove('open')">Articles</a>
+</div>
 
 <!-- ══════════════════════ HERO — AI CHATBOT ══════════════════════ -->
 <div class="hero">
@@ -424,9 +470,13 @@ footer{background:var(--ink2);padding:72px 48px 36px;border-top:1px solid rgba(2
     </div>
   </div>
 
+  <div class="ai-disclaimer fi">
+    DriveGuruji is AI-powered and can make mistakes. Always double-check prices and specs with the official dealer. <a href="mailto:sendtokushagra@gmail.com">Give us feedback</a>
+  </div>
+
   <div class="stats-bar fi">
-    <div class="stat-item"><span class="stat-num">300+</span><span class="stat-label">Brands Covered</span></div>
-    <div class="stat-item"><span class="stat-num">5,000+</span><span class="stat-label">Cars & Bikes</span></div>
+    <div class="stat-item"><span class="stat-num">30+</span><span class="stat-label">Brands Covered</span></div>
+    <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Cars & Bikes</span></div>
     <div class="stat-item"><span class="stat-num">Hindi + English</span><span class="stat-label">Both Languages</span></div>
     <div class="stat-item"><span class="stat-num">Zero</span><span class="stat-label">Forms to Fill</span></div>
   </div>
@@ -687,7 +737,15 @@ footer{background:var(--ink2);padding:72px 48px 36px;border-top:1px solid rgba(2
         <div class="emi-row"><span class="k">Total Interest</span><span class="v" id="emiInt">₹2,76,720</span></div>
         <div class="emi-row"><span class="k">Total Amount</span><span class="v" id="emiTotal">₹14,76,720</span></div>
       </div>
-      <p style="margin-top:20px;font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.08em;line-height:1.6">Rates indicative. Actual rates vary by bank & credit score.</p>
+      <div class="onroad-section" id="onroadSection">
+        <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mist);margin-bottom:10px">Estimated On-Road Price</div>
+        <div class="onroad-row"><span class="k">Ex-Showroom</span><span class="v" id="orExshow">₹15L</span></div>
+        <div class="onroad-row"><span class="k">RTO + Registration (~8%)</span><span class="v" id="orRto">₹1.2L</span></div>
+        <div class="onroad-row"><span class="k">Insurance (1st yr ~4%)</span><span class="v" id="orIns">₹0.6L</span></div>
+        <div class="onroad-row"><span class="k">TCS (if >₹10L, 1%)</span><span class="v" id="orTcs">₹0.15L</span></div>
+        <div class="onroad-row total"><span class="k">Est. On-Road</span><span class="v" id="orTotal">₹16.95L</span></div>
+      </div>
+      <p style="margin-top:16px;font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.08em;line-height:1.6">Rates indicative. On-road varies by state. Actual rates vary by bank & credit score.</p>
     </div>
   </div>
 </section>
@@ -921,7 +979,7 @@ footer{background:var(--ink2);padding:72px 48px 36px;border-top:1px solid rgba(2
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© 2025 DriveGuruji · driveguruji.com · All prices ex-showroom Delhi</span>
+    <span>© 2025–2026 DriveGuruji · driveguruji.com · All prices ex-showroom Delhi unless stated</span>
     <span style="color:var(--gold)">Gaadi ka har sawaal →</span>
   </div>
 </footer>
@@ -953,43 +1011,54 @@ const slFill=document.getElementById('slFill');
 const bResults=document.getElementById('bResults');
 
 const cars=[
-  {n:'Maruti Alto K10',p:3.99,min:2,max:5,img:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=160&q=50'},
-  {n:'Maruti Swift',p:6.49,min:5,max:10,img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=160&q=50'},
-  {n:'Tata Punch',p:6.13,min:5,max:10,img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=160&q=50'},
-  {n:'Hyundai Venue',p:7.94,min:7,max:14,img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=160&q=50'},
-  {n:'Tata Nexon',p:8.10,min:7,max:15,img:'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=160&q=50'},
-  {n:'Hyundai Creta',p:11.11,min:9,max:20,img:'https://images.unsplash.com/photo-1617531653332-bd46c16f4d68?w=160&q=50'},
-  {n:'Kia Seltos',p:10.90,min:9,max:20,img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=160&q=50'},
-  {n:'Hyundai Creta EV',p:17.99,min:16,max:28,img:'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=160&q=50'},
-  {n:'Mahindra XEV 9e',p:21.90,min:19,max:35,img:'https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=160&q=50'},
-  {n:'BMW 3 Series',p:48.90,min:40,max:70,img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=160&q=50'},
+  {n:'Maruti Alto K10',p:3.99,min:2,max:5,cat:'hatch',img:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=160&q=50'},
+  {n:'Maruti Swift',p:6.49,min:5,max:10,cat:'hatch',img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=160&q=50'},
+  {n:'Tata Punch',p:6.13,min:5,max:10,cat:'suv',img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=160&q=50'},
+  {n:'Honda City',p:11.82,min:10,max:18,cat:'sedan',img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=160&q=50'},
+  {n:'Tata Nexon',p:8.10,min:7,max:15,cat:'suv',img:'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=160&q=50'},
+  {n:'Hyundai Creta',p:11.11,min:9,max:20,cat:'suv',img:'https://images.unsplash.com/photo-1617531653332-bd46c16f4d68?w=160&q=50'},
+  {n:'Kia Seltos',p:10.90,min:9,max:20,cat:'suv',img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=160&q=50'},
+  {n:'Hyundai Creta EV',p:17.99,min:16,max:28,cat:'ev',img:'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=160&q=50'},
+  {n:'Tata Nexon EV',p:14.49,min:12,max:24,cat:'ev',img:'https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=160&q=50'},
+  {n:'RE Classic 350',p:1.93,min:1,max:3,cat:'bike',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=160&q=50'},
+  {n:'Bajaj Pulsar NS200',p:1.48,min:1,max:2,cat:'bike',img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=160&q=50'},
+  {n:'BMW 3 Series',p:48.90,min:40,max:70,cat:'sedan',img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=160&q=50'},
 ];
 
+let activeFilter='all';
 function updateBudget(){
   const v=parseInt(bSlider.value);
   const pct=(v-2)/98*100;
   slFill.style.width=pct+'%';
   if(v>=100){bv.textContent='1';blbl.textContent='Crore+'}
   else{bv.textContent=v;blbl.textContent='Lakh'}
-  const matched=cars.filter(c=>v>=c.min&&v<=c.max+6).slice(0,4);
-  if(!matched.length){bResults.innerHTML=`<p style="font-family:var(--font-serif);font-style:italic;color:var(--mist);font-size:18px">Adjust slider to see matches</p>`;return}
+  let matched=cars.filter(c=>v>=c.min&&v<=c.max+6);
+  if(activeFilter!=='all') matched=matched.filter(c=>c.cat===activeFilter);
+  matched=matched.slice(0,4);
+  if(!matched.length){bResults.innerHTML=`<p style="font-family:var(--font-serif);font-style:italic;color:var(--mist);font-size:18px">No matches — try adjusting budget or filter</p>`;return}
   bResults.innerHTML=matched.map(c=>`
     <div class="bcard">
-      <img src="${c.img}" class="" style="width:72px;height:44px;object-fit:cover;border-radius:6px;filter:brightness(.75)" alt="${c.n}" onerror="this.style.display='none'">
+      <img src="${c.img}" style="width:72px;height:44px;object-fit:cover;border-radius:6px;filter:brightness(.75)" alt="${c.n}" onerror="this.style.display='none'">
       <div><div class="bcard-name">${c.n}</div><div class="bcard-price">₹${c.p}L onwards</div></div>
     </div>`).join('');
 }
 bSlider.addEventListener('input',updateBudget);
 updateBudget();
 
-function setChip(el,cat){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));el.classList.add('on')}
+function setChip(el,cat){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');activeFilter=cat;updateBudget()}
 
 // ── EMI CALCULATOR ──
 function calcEMI(){
   const price=parseInt(document.getElementById('emiPrice').value);
-  const down=parseInt(document.getElementById('emiDown').value);
+  let down=parseInt(document.getElementById('emiDown').value);
   const tenure=parseInt(document.getElementById('emiTenure').value);
   const rate=parseFloat(document.getElementById('emiRate').value);
+
+  // Validate: down payment can't exceed 80% of price
+  const maxDown=Math.floor(price*0.8);
+  if(down>maxDown){down=maxDown;document.getElementById('emiDown').value=down}
+  if(down>=price){down=price-1;document.getElementById('emiDown').value=down}
+
   document.getElementById('emiPriceDisp').textContent=price;
   document.getElementById('emiDownDisp').textContent=down;
   document.getElementById('emiTenureDisp').textContent=tenure;
@@ -1005,9 +1074,21 @@ function calcEMI(){
   const totalAmt=emi*months;
   const totalInt=totalAmt-loanAmt;
   document.getElementById('emiResult').textContent=Math.round(emi).toLocaleString('en-IN');
-  document.getElementById('emiLoan').textContent='₹'+Math.round(loanAmt/100000*100)/100+'L';
-  document.getElementById('emiInt').textContent='₹'+Math.round(totalInt/100000*100)/100+'L';
-  document.getElementById('emiTotal').textContent='₹'+Math.round(totalAmt/100000*100)/100+'L';
+  document.getElementById('emiLoan').textContent='₹'+(loanAmt/100000).toFixed(2)+'L';
+  document.getElementById('emiInt').textContent='₹'+(totalInt/100000).toFixed(2)+'L';
+  document.getElementById('emiTotal').textContent='₹'+(totalAmt/100000).toFixed(2)+'L';
+
+  // On-road price estimate
+  const exShow=price*100000;
+  const rto=Math.round(exShow*0.08);
+  const ins=Math.round(exShow*0.04);
+  const tcs=price>10?Math.round(exShow*0.01):0;
+  const onroad=exShow+rto+ins+tcs;
+  document.getElementById('orExshow').textContent='₹'+(exShow/100000).toFixed(1)+'L';
+  document.getElementById('orRto').textContent='₹'+(rto/100000).toFixed(2)+'L';
+  document.getElementById('orIns').textContent='₹'+(ins/100000).toFixed(2)+'L';
+  document.getElementById('orTcs').textContent=tcs>0?'₹'+(tcs/100000).toFixed(2)+'L':'₹0';
+  document.getElementById('orTotal').textContent='₹'+(onroad/100000).toFixed(2)+'L';
 }
 ['emiPrice','emiDown','emiTenure','emiRate'].forEach(id=>document.getElementById(id).addEventListener('input',calcEMI));
 calcEMI();
@@ -1015,6 +1096,7 @@ calcEMI();
 // ── AI CHATBOT ──
 const msgs=document.getElementById('chatMessages');
 const chatInput=document.getElementById('chatInput');
+const chatHistory=[]; // conversation memory
 
 function addMsg(text,role){
   const div=document.createElement('div');
@@ -1047,6 +1129,9 @@ async function sendMessage(){
 
   const typingEl=showTyping();
 
+  // Add user message to history
+  chatHistory.push({role:'user',parts:[{text:q}]});
+
   const GEMINI_KEY='AIzaSyDW7gp0aw9tQHhjCM8GHfCuixzNGWIeSZY';
   const SYSTEM_PROMPT=`You are DriveGuruji — India's most trusted car and bike advisor. You know every vehicle sold in India: specs, ex-showroom prices (Delhi default), variants, real-world mileage, EV range, pros/cons, comparisons, hidden costs, EMI, resale value, and upcoming launches.
 
@@ -1076,7 +1161,7 @@ Format rules:
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         system_instruction:{parts:[{text:SYSTEM_PROMPT}]},
-        contents:[{role:'user',parts:[{text:q}]}],
+        contents:chatHistory.slice(-10), // keep last 10 messages for context
         generationConfig:{maxOutputTokens:800,temperature:0.7}
       })
     });
@@ -1085,6 +1170,8 @@ Format rules:
 
     if(data.candidates&&data.candidates[0]){
       const raw=data.candidates[0].content.parts[0].text;
+      // Save AI response to history
+      chatHistory.push({role:'model',parts:[{text:raw}]});
       const html=raw
         .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
         .replace(/\n\n/g,'</p><p style="margin-top:8px">')
@@ -1092,14 +1179,14 @@ Format rules:
         .replace(/\n\* /g,'<br>• ')
         .replace(/\n/g,'<br>');
       addMsg('<p>'+html+'</p>','ai');
-    }else if(data.error){
-      console.error('Gemini error:', JSON.stringify(data.error));
-      addMsg(`API Error: ${data.error.message || 'Unknown error'}. Check console for details.`,'ai');
+    }else{
+      console.error('API error:', JSON.stringify(data));
+      addMsg('Guruji thoda busy hai abhi. 🙏 Please try again in a moment — high traffic right now!','ai');
     }
   }catch(err){
     typingEl.remove();
     console.error('Fetch error:', err);
-    addMsg(`Network error: ${err.message}. Check browser console (F12) for details.`,'ai');
+    addMsg('Connection issue — please check your internet and try again. Guruji is always here for you!','ai');
   }
 }
 
