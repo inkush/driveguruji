@@ -1093,15 +1093,172 @@ function calcEMI(){
 ['emiPrice','emiDown','emiTenure','emiRate'].forEach(id=>document.getElementById(id).addEventListener('input',calcEMI));
 calcEMI();
 
-// ── AI CHATBOT ──
+// ── AI CHATBOT — Smart Knowledge Engine ──
 const msgs=document.getElementById('chatMessages');
 const chatInput=document.getElementById('chatInput');
-const chatHistory=[]; // conversation memory
+const chatHistory=[];
+
+// ── Comprehensive Indian Car/Bike Knowledge Base ──
+const carDB={
+  'swift':{name:'Maruti Swift',brand:'Maruti Suzuki',price:'₹6.49–9.64 Lakh',type:'Hatchback',engine:'1.2L Petrol (90 PS)',mileage:'24.8 km/l (claimed), ~18-20 km/l city real',trans:'5MT / AMT',fuel:'Petrol',safety:'6 Airbags, ESP, Hill Hold',pros:'Best-in-class mileage, peppy engine, light steering, unbeatable resale value (~70% after 3 years)',cons:'No diesel option anymore, AMT feels jerky in traffic, rear seat space is tight for 3 adults',verdict:'India ka sabse reliable hatchback. If mileage and resale matter most — Swift is still king.'},
+  'punch':{name:'Tata Punch',brand:'Tata Motors',price:'₹6.13–10.20 Lakh',type:'Micro SUV',engine:'1.2L Petrol (86 PS)',mileage:'20.09 km/l (claimed), ~16-18 km/l real',trans:'5MT / AMT',fuel:'Petrol / CNG',safety:'5-star GNCAP, 6 Airbags, ESP',pros:'Safest car in segment (5 stars!), high ground clearance (187mm), tough build, great for bad roads',cons:'Engine feels underpowered on highways, AMT is slow to respond, boot space just 366L',verdict:'Safety champion of India. If you drive on broken roads and want peace of mind — Punch beats everything under ₹10L.'},
+  'creta':{name:'Hyundai Creta',brand:'Hyundai',price:'₹11.11–20.15 Lakh',type:'Compact SUV',engine:'1.5L Petrol / 1.5L Diesel / 1.5L Turbo Petrol',mileage:'Petrol: 16.8 km/l, Diesel: 21.8 km/l (claimed)',trans:'6MT / IVT / 7DCT / 6AT',fuel:'Petrol / Diesel / Turbo',safety:'6 Airbags, ADAS Level 2, 360° camera',pros:'Feature-loaded (ventilated seats, panoramic sunroof, ADAS), smooth diesel, premium cabin, strong resale',cons:'Top variants are expensive (₹20L+ for a compact SUV), turbo DCT can be jerky at low speeds',verdict:'India ka SUV benchmark. Har feature mil jaata hai — but top variant pe budget dekh lena, on-road ₹22L+ ho jaata hai.'},
+  'creta ev':{name:'Hyundai Creta EV',brand:'Hyundai',price:'₹17.99–23.50 Lakh',type:'Electric SUV',engine:'150 kW Electric Motor (204 PS)',mileage:'473 km ARAI range, ~350-380 km real city',trans:'Single-speed automatic',fuel:'Electric',safety:'6 Airbags, ADAS Level 2, 360° camera',pros:'Best real-world EV range in segment, Creta brand trust, V2L (power appliances from car), fast charging 10-80% in 58 min',cons:'Heavy (1,880 kg), no AWD option, charging infra still patchy outside metros',verdict:'India ka most important EV right now. Range anxiety kam, brand value zyada. But only makes sense if you have home charging.'},
+  'nexon':{name:'Tata Nexon',brand:'Tata Motors',price:'₹8.10–15.50 Lakh',type:'Compact SUV',engine:'1.2L Turbo Petrol (120 PS) / 1.5L Diesel (115 PS)',mileage:'Petrol: 17.4 km/l, Diesel: 23.2 km/l (claimed)',trans:'6MT / AMT / 6AT (petrol)',fuel:'Petrol / Diesel',safety:'5-star GNCAP, 6 Airbags, ESP',pros:'5-star safety, solid build, diesel is excellent for highways, competitive pricing, good ground clearance',cons:'AMT is outdated, infotainment lags sometimes, rear seat slightly cramped vs Creta',verdict:'Best value compact SUV if safety is priority. Diesel MT is the sweet spot — ₹12L on-road mein solid deal.'},
+  'nexon ev':{name:'Tata Nexon EV',brand:'Tata Motors',price:'₹14.49–19.29 Lakh',type:'Electric Compact SUV',engine:'Electric Motor (143 PS)',mileage:'453 km ARAI range, ~300-330 km real city',trans:'Single-speed automatic',fuel:'Electric',safety:'5-star GNCAP, ESP, Hill Assist',pros:'Most affordable EV SUV, Tata service network is widest, connected car features, adequate range for city',cons:'Real range ~300 km (not 453), fast charging network limited, 3.3 kW home charger is slow',verdict:'India ka most practical entry-level EV. City commute ke liye perfect. But highway trips need planning.'},
+  'seltos':{name:'Kia Seltos',brand:'Kia',price:'₹10.90–20.35 Lakh',type:'Compact SUV',engine:'1.5L Petrol / 1.5L Diesel / 1.5L Turbo',mileage:'Petrol: 16.8 km/l, Diesel: 20.7 km/l',trans:'6MT / IVT / 7DCT / 6AT',fuel:'Petrol / Diesel / Turbo',safety:'6 Airbags, ADAS, 360° camera',pros:'Premium interior, great sound system (Bose), ADAS in top trim, excellent highway cruiser',cons:'Almost identical to Creta mechanically (same platform) but slightly less resale, turbo DCT same issue',verdict:'Creta ka bhai — same platform, slightly different styling. Pick based on which design you prefer. Feature-for-feature almost identical.'},
+  'syros':{name:'Kia Syros',brand:'Kia',price:'₹8.99–18.99 Lakh',type:'Compact SUV',engine:'1.0L Turbo Petrol / 1.5L Diesel',mileage:'Turbo: ~18 km/l, Diesel: ~22 km/l (expected)',trans:'6MT / 7DCT / 6AT',fuel:'Petrol / Diesel',safety:'6 Airbags, ADAS, panoramic sunroof',pros:'Panoramic sky roof, best rear headroom in segment, bold design, Kia build quality',cons:'New model so no resale data yet, 1.0T engine may feel strained on highway with full load',verdict:'Kia ka boldest move. Sonet se bigger, Seltos se sasta. If you want something different — Syros stands out.'},
+  'xev 9e':{name:'Mahindra XEV 9e',brand:'Mahindra',price:'₹21.90–30.50 Lakh',type:'Electric Coupe SUV',engine:'Electric Motor (231 PS)',mileage:'682 km MIDC range, ~450-500 km real',trans:'Single-speed automatic',fuel:'Electric',safety:'Level 2 ADAS, 7 Airbags',pros:'INGLO platform (world-class), longest range EV in India, stunning design, 175 kW fast charging',cons:'Brand new platform — reliability unknown, Mahindra EV service network still building, heavy at 2,208 kg',verdict:'India ka most ambitious EV. Design, range, tech — sab world-class. But early adopter risk hai.'},
+  'city':{name:'Honda City',brand:'Honda',price:'₹11.82–16.35 Lakh',type:'Sedan',engine:'1.5L Petrol (121 PS)',mileage:'18.4 km/l (claimed), ~14-16 km/l real city',trans:'6MT / CVT',fuel:'Petrol',safety:'6 Airbags, VSA, Hill Start',pros:'Best driving dynamics in segment, refined engine, spacious rear seat, Honda reliability',cons:'No diesel, CVT feels rubber-band-y, feature list behind Creta at similar price',verdict:'Sedan lovers ki last hope. Driving feel is unmatched — but SUV craze mein Honda City ko compete karna mushkil hai.'},
+  'alto':{name:'Maruti Alto K10',brand:'Maruti Suzuki',price:'₹3.99–5.96 Lakh',type:'Hatchback',engine:'1.0L Petrol (67 PS)',mileage:'24.39 km/l (claimed), ~20-22 km/l real',trans:'5MT / AGS',fuel:'Petrol / CNG',safety:'Dual Airbags, ABS, EBD',pros:'Cheapest car with decent features, incredible fuel economy, tiny turning radius, CNG option available',cons:'Basic safety (only 2 airbags), feels tinny, highway stability is poor above 80 km/h',verdict:'First car ya city runabout ke liye perfect. Don\'t expect highway comfort — yeh city ka raja hai.'},
+  'classic 350':{name:'Royal Enfield Classic 350',brand:'Royal Enfield',price:'₹1.93–2.34 Lakh',type:'Cruiser Motorcycle',engine:'349cc Single (20.2 PS)',mileage:'35-38 km/l real',trans:'5-speed',fuel:'Petrol',safety:'Dual-channel ABS',pros:'The thump. Iconic design, comfortable for long rides, massive community, excellent touring bike',cons:'Heavy (195 kg), slow (0-60 in 5.5s), vibrations above 90 km/h, not sporty at all',verdict:'Dil se ride karna ho toh Classic. But speed chahiye toh galat choice hai — yeh feel ki bike hai, performance ki nahi.'},
+  'pulsar':{name:'Bajaj Pulsar NS200',brand:'Bajaj',price:'₹1.48–1.58 Lakh',type:'Sport Naked',engine:'199.5cc Single (24.5 PS)',mileage:'35-40 km/l real',trans:'6-speed',fuel:'Petrol',safety:'Single-channel ABS',pros:'Excellent value for money, peppy engine, perimeter frame, liquid cooling — all under ₹1.6L',cons:'Vibey above 8000 rpm, single-channel ABS only, fit-finish could be better',verdict:'Best performance bike under ₹1.5L, no contest. Yamaha MT-15 is smoother but ₹15K more.'},
+  'guerrilla 450':{name:'Royal Enfield Guerrilla 450',brand:'Royal Enfield',price:'₹2.39–2.49 Lakh',type:'Scrambler',engine:'452cc Single (40 PS)',mileage:'30-33 km/l (expected)',trans:'6-speed',fuel:'Petrol',safety:'Dual-channel ABS',pros:'Lightest RE ever (185 kg), Himalayan 450 engine, scrambler styling, most exciting RE in years',cons:'New model so reliability unproven, limited dealer availability initially, no wind protection',verdict:'RE ne finally woh bike banayi jo enthusiasts chahte the. Under ₹2.5L mein yeh gem hai.'},
+  'splendor':{name:'Hero Splendor Plus',brand:'Hero MotoCorp',price:'₹76,000–83,000',type:'Commuter',engine:'97.2cc Single (8.02 PS)',mileage:'65-70 km/l real',trans:'4-speed',fuel:'Petrol',safety:'CBS (Combi Brake System)',pros:'India\'s best-selling vehicle. Unmatched mileage, dead-reliable, cheapest maintenance, available everywhere',cons:'No excitement, basic features, drum brakes, feels dated',verdict:'India ki backbone. 4 lakh units/month bikte hain for a reason — reliability aur mileage mein koi competition nahi.'},
+  'bmw 3':{name:'BMW 3 Series',brand:'BMW',price:'₹48.90–62.90 Lakh',type:'Luxury Sedan',engine:'2.0L Turbo Petrol (258 PS) / 2.0L Diesel (190 PS)',mileage:'Diesel: 22.7 km/l (claimed)',trans:'8-speed Automatic',fuel:'Petrol / Diesel',safety:'6 Airbags, ADAS, 360° camera',pros:'Best driving dynamics in segment, sharp steering, 258 PS petrol is a rocket, BMW brand value',cons:'Rear seat space is tight vs C-Class, options list is expensive, maintenance costs are real',verdict:'Driving enthusiast ka sedan. C-Class zyada comfortable hai — but 3 Series zyada fun hai. Driver ki car vs passenger ki car.'},
+  'fortuner':{name:'Toyota Fortuner',brand:'Toyota',price:'₹33.43–51.44 Lakh',type:'Full-size SUV',engine:'2.8L Diesel (204 PS) / 2.7L Petrol (166 PS)',mileage:'Diesel: 10-12 km/l real',trans:'6MT / 6AT',fuel:'Petrol / Diesel',safety:'7 Airbags, VSC, Hill Assist',pros:'Bulletproof reliability, incredible resale (85% after 3 years!), proper body-on-frame, go-anywhere SUV',cons:'Diesel thirsty, ride is bouncy unladen, interior dated vs newer rivals',verdict:'India ka asli SUV — baki sab crossover hain. Resale value legendary hai. Buy with eyes closed if budget allows.'},
+};
+
+// Smart keyword matching
+function findCarMatch(query){
+  const q=query.toLowerCase().replace(/[?!.,]/g,'');
+  // Direct car name match
+  for(const[key,car]of Object.entries(carDB)){
+    if(q.includes(key)) return car;
+  }
+  // Brand match
+  const brands={'maruti':['swift','alto'],'hyundai':['creta','creta ev'],'tata':['punch','nexon','nexon ev'],'kia':['seltos','syros'],'mahindra':['xev 9e'],'honda':['city'],'bmw':['bmw 3'],'royal enfield':['classic 350','guerrilla 450'],'re ':['classic 350','guerrilla 450'],'bajaj':['pulsar'],'hero':['splendor'],'toyota':['fortuner']};
+  for(const[brand,models]of Object.entries(brands)){
+    if(q.includes(brand)) return carDB[models[0]];
+  }
+  return null;
+}
+
+// Detect query intent
+function getIntent(q){
+  q=q.toLowerCase();
+  if(q.includes(' vs ')||q.includes('compare')||q.includes('better')||q.includes('kaunsa')||q.includes('kaun')) return 'compare';
+  if(q.includes('emi')||q.includes('loan')||q.includes('finance')||q.includes('monthly')) return 'emi';
+  if(q.includes('price')||q.includes('cost')||q.includes('kitna')||q.includes('kimat')||q.includes('on road')||q.includes('on-road')) return 'price';
+  if(q.includes('mileage')||q.includes('average')||q.includes('km/l')||q.includes('range')||q.includes('kitna deti')) return 'mileage';
+  if(q.includes('best')||q.includes('top')||q.includes('suggest')||q.includes('recommend')||q.includes('under')||q.includes('budget')) return 'recommend';
+  if(q.includes('safe')||q.includes('ncap')||q.includes('airbag')) return 'safety';
+  if(q.includes('problem')||q.includes('issue')||q.includes('kharabi')||q.includes('complaint')) return 'issues';
+  return 'general';
+}
+
+// Generate smart offline response
+function getOfflineResponse(query){
+  const q=query.toLowerCase();
+  const intent=getIntent(q);
+  const car=findCarMatch(q);
+
+  // ── COMPARISON ──
+  if(intent==='compare'){
+    const vsMatch=q.match(/(.+?)\s+(?:vs|versus|ya|or|compare)\s+(.+)/i);
+    if(vsMatch){
+      const car1=findCarMatch(vsMatch[1]);
+      const car2=findCarMatch(vsMatch[2]);
+      if(car1&&car2){
+        return `<strong>${car1.name} vs ${car2.name}</strong> — let me break this down:\n\n<strong>${car1.name}</strong> (${car1.price})\n• ${car1.type} · ${car1.engine}\n• Mileage: ${car1.mileage}\n• Pros: ${car1.pros.split(',').slice(0,2).join(',')}\n\n<strong>${car2.name}</strong> (${car2.price})\n• ${car2.type} · ${car2.engine}\n• Mileage: ${car2.mileage}\n• Pros: ${car2.pros.split(',').slice(0,2).join(',')}\n\nMeri salah: ${car1.verdict}`;
+      }
+    }
+    if(car) return `<strong>${car.name}</strong> ke baare mein:\n\nPrice: ${car.price}\nEngine: ${car.engine}\nMileage: ${car.mileage}\n\nPros: ${car.pros}\nCons: ${car.cons}\n\n${car.verdict}\n\nKiss se compare karna hai? Naam batao, detail mein breakdown dunga.`;
+  }
+
+  // ── EMI CALCULATION ──
+  if(intent==='emi'){
+    const priceMatch=q.match(/(\d+)\s*(lakh|l\b|lac)/i);
+    if(priceMatch){
+      const lakh=parseInt(priceMatch[1]);
+      const loan=lakh*0.8*100000;
+      const r=8.5/(12*100);
+      const n=60;
+      const emi=Math.round(loan*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1));
+      const total=emi*n;
+      const interest=total-loan;
+      return `<strong>₹${lakh} Lakh car ka EMI breakdown:</strong>\n\nDown payment (20%): <strong>₹${(lakh*0.2).toFixed(1)}L</strong>\nLoan amount: ₹${(lakh*0.8).toFixed(1)}L\nRate: 8.5% p.a. (avg bank rate)\nTenure: 5 years\n\n<strong>Monthly EMI: ₹${emi.toLocaleString('en-IN')}</strong>\nTotal interest: ₹${(interest/100000).toFixed(2)}L\nTotal payment: ₹${(total/100000).toFixed(2)}L\n\nOn-road estimate: ~₹${(lakh*1.15).toFixed(1)}L (ex-showroom + 15% for RTO, insurance, etc.)\n\nTip: SBI/HDFC usually offer 8.3-8.7% for salaried. Pre-owned rates are higher (~10-11%).`;
+    }
+    if(car){
+      const p=parseFloat(car.price.match(/[\d.]+/)[0]);
+      const loan=p*0.8*100000;
+      const r=8.5/(12*100);
+      const n=60;
+      const emi=Math.round(loan*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1));
+      return `<strong>${car.name} EMI:</strong>\n\nEx-showroom: ${car.price}\nDown payment (20%): ~₹${(p*0.2).toFixed(1)}L\nLoan: ~₹${(p*0.8).toFixed(1)}L @ 8.5%\n\n<strong>Monthly EMI (5yr): ~₹${emi.toLocaleString('en-IN')}</strong>\n\nOn-road price: ~₹${(p*1.15).toFixed(1)}L (Delhi)`;
+    }
+  }
+
+  // ── PRICE ──
+  if(intent==='price'&&car){
+    const p=parseFloat(car.price.match(/[\d.]+/)[0]);
+    return `<strong>${car.name}</strong>\n\nEx-showroom (Delhi): ${car.price}\nEstimated on-road: ~₹${(p*1.15).toFixed(1)}–${(p*1.20).toFixed(1)}L\n\nBreakdown:\n• RTO + Registration: ~₹${(p*0.08).toFixed(2)}L\n• Insurance (1st yr): ~₹${(p*0.04).toFixed(2)}L\n• TCS (if applicable): ${p>10?'~₹'+(p*0.01).toFixed(2)+'L':'N/A'}\n\nNote: On-road varies by state. Mumbai/Bangalore usually ₹50K-1L more than Delhi.`;
+  }
+
+  // ── MILEAGE ──
+  if(intent==='mileage'&&car){
+    return `<strong>${car.name} Real-World Mileage:</strong>\n\n${car.mileage}\n\nEngine: ${car.engine}\nFuel: ${car.fuel}\n\nTip: Claimed figures are ARAI lab numbers — real world is always 15-25% lower. AC on + city traffic drops it further.`;
+  }
+
+  // ── BUDGET RECOMMENDATIONS ──
+  if(intent==='recommend'){
+    const budgetMatch=q.match(/(\d+)\s*(lakh|l\b|lac|k\b)/i);
+    if(budgetMatch){
+      let budget=parseInt(budgetMatch[1]);
+      if(budgetMatch[2].toLowerCase()==='k') budget=budget/100;
+      const isBike=q.includes('bike')||q.includes('motorcycle')||q.includes('two wheeler');
+      const isSUV=q.includes('suv');
+      const isEV=q.includes('ev')||q.includes('electric');
+      const isSedan=q.includes('sedan');
+      let matches=Object.values(carDB).filter(c=>{
+        const p=parseFloat(c.price.match(/[\d.]+/)[0]);
+        if(p>budget) return false;
+        if(isBike&&!['Cruiser Motorcycle','Sport Naked','Scrambler','Commuter'].includes(c.type)) return false;
+        if(!isBike&&['Cruiser Motorcycle','Sport Naked','Scrambler','Commuter'].includes(c.type)) return false;
+        if(isSUV&&!c.type.includes('SUV')) return false;
+        if(isEV&&c.fuel!=='Electric') return false;
+        if(isSedan&&c.type!=='Sedan') return false;
+        return true;
+      });
+      matches.sort((a,b)=>parseFloat(b.price.match(/[\d.]+/)[0])-parseFloat(a.price.match(/[\d.]+/)[0]));
+      matches=matches.slice(0,4);
+      if(matches.length){
+        let resp=`<strong>Best options under ₹${budget}L${isBike?' (bikes)':isSUV?' (SUVs)':isEV?' (EVs)':''}:</strong>\n\n`;
+        matches.forEach((c,i)=>{resp+=`${i+1}. <strong>${c.name}</strong> — ${c.price}\n   ${c.type} · ${c.engine}\n   Why: ${c.pros.split(',').slice(0,2).join(',').trim()}\n\n`});
+        resp+=`Meri salah: <strong>${matches[0].name}</strong> — ${matches[0].verdict}`;
+        return resp;
+      }
+      return `₹${budget}L budget mein abhi mere database mein exact match nahi hai. But general guidance:\n\n${budget<=5?'• Under ₹5L: Alto K10, Renault Kwid, S-Presso':budget<=10?'• ₹5-10L: Swift, Punch, i20, Baleno, Nexon base':'• ₹10-20L: Creta, Seltos, Nexon top, City, Verna'}\n\nKoi specific requirement ho (SUV/sedan/automatic/diesel) toh batao, narrow down karunga.`;
+    }
+  }
+
+  // ── SAFETY ──
+  if(intent==='safety'){
+    if(car) return `<strong>${car.name} Safety:</strong>\n\n${car.safety}\n\nFor reference, 5-star GNCAP cars in India: Tata Punch, Nexon, Harrier, Safari, Mahindra XUV400.\n\nNote: GNCAP tests are at 64 km/h frontal offset. Real crashes vary. Airbags + ESP + seatbelts = life savers.`;
+    return `<strong>Safest cars in India (5-star GNCAP):</strong>\n\n1. <strong>Tata Punch</strong> — ₹6.13L, 5 stars\n2. <strong>Tata Nexon</strong> — ₹8.10L, 5 stars\n3. <strong>Mahindra XUV400</strong> — ₹15.49L, 5 stars\n4. <strong>Tata Harrier</strong> — ₹15.49L, 5 stars\n\nTata is dominating safety in India. No Maruti/Hyundai has 5 stars yet in GNCAP.\n\nMinimum insist on: 6 airbags + ESP + 3-point seatbelts for all.`;
+  }
+
+  // ── GENERAL CAR INFO ──
+  if(car){
+    return `<strong>${car.name}</strong> (${car.brand})\n\nPrice: ${car.price}\nType: ${car.type}\nEngine: ${car.engine}\nMileage: ${car.mileage}\nTransmission: ${car.trans}\nSafety: ${car.safety}\n\n<strong>Pros:</strong> ${car.pros}\n<strong>Cons:</strong> ${car.cons}\n\n${car.verdict}`;
+  }
+
+  // ── OFF-TOPIC CHECK ──
+  const autoKeywords=['car','bike','suv','ev','electric','petrol','diesel','mileage','emi','loan','price','vehicle','scooter','motorcycle','hatchback','sedan','scooty','gaadi','gadi'];
+  const isAuto=autoKeywords.some(k=>q.includes(k))||findCarMatch(q);
+  if(!isAuto&&q.length>5){
+    return 'Main sirf gaadi aur bike ke sawaalon ka jawab de sakta hoon! 🚗\n\nKoi bhi car, bike, scooter, EV ke baare mein poochho — price, mileage, comparison, EMI, on-road cost, hidden charges — sab bataunga.';
+  }
+
+  // ── FALLBACK ──
+  return `Interesting sawaal! 🤔\n\nMere paas abhi is specific query ka detailed answer nahi hai, but yeh try karo:\n\n• Koi specific car/bike ka naam batao — full breakdown dunga\n• "Swift vs Punch" jaise comparison poochho\n• "Best SUV under ₹15 lakh" jaise budget query karo\n• "₹12 lakh car ka EMI" poochho\n\nJitna specific, utna better jawab! Main ${Object.keys(carDB).length}+ popular vehicles ka data rakhta hoon.`;
+}
 
 function addMsg(text,role){
   const div=document.createElement('div');
   div.className=`msg ${role}`;
-  div.innerHTML=`<div class="msg-avatar">${role==='ai'?'G':'You'}</div><div class="msg-bubble">${text}</div>`;
+  const formatted=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n\n/g,'</p><p style="margin-top:8px">').replace(/\n- /g,'<br>• ').replace(/\n\* /g,'<br>• ').replace(/\n/g,'<br>');
+  div.innerHTML=`<div class="msg-avatar">${role==='ai'?'G':'You'}</div><div class="msg-bubble"><p>${formatted}</p></div>`;
   msgs.appendChild(div);
   msgs.scrollTop=msgs.scrollHeight;
 }
@@ -1123,37 +1280,17 @@ async function sendMessage(){
   chatInput.value='';
   chatInput.style.height='auto';
 
-  // hide suggestions after first use
   const sugg=document.getElementById('suggestions');
   if(sugg)sugg.style.display='none';
 
   const typingEl=showTyping();
-
-  // Add user message to history
   chatHistory.push({role:'user',parts:[{text:q}]});
 
+  // Simulate realistic typing delay (300-800ms)
+  await new Promise(r=>setTimeout(r,300+Math.random()*500));
+
   const GEMINI_KEY='AIzaSyDW7gp0aw9tQHhjCM8GHfCuixzNGWIeSZY';
-  const SYSTEM_PROMPT=`You are DriveGuruji — India's most trusted car and bike advisor. You know every vehicle sold in India: specs, ex-showroom prices (Delhi default), variants, real-world mileage, EV range, pros/cons, comparisons, hidden costs, EMI, resale value, and upcoming launches.
-
-Personality: Straight-talking, warm, like a trusted elder who gives honest advice. No sugarcoating — if a car has a problem, say it clearly. No disrespect — always constructive. Match language naturally (Hindi/English/Hinglish). Never hedge without resolving immediately.
-
-Truth rules:
-- If a car has known issues (bad gearbox, poor after-sales, low resale) — say it directly by name.
-- If a car is overpriced for what it offers — say so with data.
-- If someone is making a bad buying decision — tell them honestly and explain why.
-- Never praise a car just because it's popular. Popularity ≠ value.
-- OEM marketing claims (like "500km range") must be contextualized with real-world numbers.
-
-Format rules:
-- Always use ₹. Specific prices, not vague ranges.
-- Bold vehicle names and key numbers using **asterisks**
-- Max 3 sentences per paragraph. Under 200 words unless detailed comparison asked.
-- For comparisons: clearly state which is better and exactly why.
-- End every comparison with: "Meri salah: [clear recommendation with one-line reason]"
-- EMI = P×r×(1+r)^n / ((1+r)^n-1) — calculate accurately when asked.
-- On-road = ex-showroom + 15-20%. Mention when relevant.
-- Bikes and scooters: same depth as cars.
-- Stay strictly on automobiles. Off-topic? Reply: "Main sirf gaadi aur bike ke sawaalon ka jawab de sakta hoon!"`;
+  const SYSTEM_PROMPT=`You are DriveGuruji — India's most trusted car and bike advisor. Personality: Straight-talking, warm, like a trusted elder. Match language naturally (Hindi/English/Hinglish). Always use ₹. Bold names with **asterisks**. Max 3 sentences per paragraph. Under 200 words. For comparisons end with "Meri salah:" recommendation. Stay strictly on automobiles.`;
 
   try{
     const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_KEY}`,{
@@ -1161,7 +1298,7 @@ Format rules:
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         system_instruction:{parts:[{text:SYSTEM_PROMPT}]},
-        contents:chatHistory.slice(-10), // keep last 10 messages for context
+        contents:chatHistory.slice(-10),
         generationConfig:{maxOutputTokens:800,temperature:0.7}
       })
     });
@@ -1170,23 +1307,21 @@ Format rules:
 
     if(data.candidates&&data.candidates[0]){
       const raw=data.candidates[0].content.parts[0].text;
-      // Save AI response to history
       chatHistory.push({role:'model',parts:[{text:raw}]});
-      const html=raw
-        .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-        .replace(/\n\n/g,'</p><p style="margin-top:8px">')
-        .replace(/\n- /g,'<br>• ')
-        .replace(/\n\* /g,'<br>• ')
-        .replace(/\n/g,'<br>');
-      addMsg('<p>'+html+'</p>','ai');
+      addMsg(raw,'ai');
     }else{
-      console.error('API error:', JSON.stringify(data));
-      addMsg('Guruji thoda busy hai abhi. 🙏 Please try again in a moment — high traffic right now!','ai');
+      // API failed — use smart offline knowledge base
+      console.log('API unavailable, using offline knowledge base');
+      const response=getOfflineResponse(q);
+      chatHistory.push({role:'model',parts:[{text:response}]});
+      addMsg(response,'ai');
     }
   }catch(err){
     typingEl.remove();
-    console.error('Fetch error:', err);
-    addMsg('Connection issue — please check your internet and try again. Guruji is always here for you!','ai');
+    console.log('Network error, using offline knowledge base');
+    const response=getOfflineResponse(q);
+    chatHistory.push({role:'model',parts:[{text:response}]});
+    addMsg(response,'ai');
   }
 }
 
@@ -1195,12 +1330,10 @@ function askSuggestion(el){
   sendMessage();
 }
 
-// Enter to send
 chatInput.addEventListener('keydown',e=>{
   if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage()}
 });
 
-// Auto-resize textarea
 chatInput.addEventListener('input',function(){
   this.style.height='auto';
   this.style.height=Math.min(this.scrollHeight,120)+'px';
