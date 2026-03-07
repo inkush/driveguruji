@@ -420,7 +420,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3);box-shadow:0 
 
 /* Small article cards grid */
 .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:3px}
-.acard{background:var(--ink3);border:1px solid rgba(0,0,0,.05);overflow:hidden;cursor:none;transition:border-color .3s,transform .3s,box-shadow .3s;display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.acard { background:var(--ink3);border:1px solid rgba(0,0,0,.05);overflow:hidden; }
 .acard:hover{border-color:rgba(184,134,11,.15);transform:translateY(-4px);box-shadow:0 4px 12px rgba(0,0,0,.12)}
 .acard-img{width:100%;height:180px;object-fit:cover;filter:brightness(.85) saturate(.8);transition:filter .4s,transform .4s;display:block}
 .acard:hover .acard-img{filter:brightness(.95) saturate(1);transform:scale(1.04)}
@@ -443,7 +443,7 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3);box-shadow:0 
 /* ── BRANDS ── */
 .brands-section{background:var(--ink);padding:80px 48px}
 .brands-grid{display:flex;flex-wrap:wrap;gap:2px}
-.brand-tile{flex:1;min-width:140px;padding:24px 20px;background:var(--ink3);border:1px solid rgba(0,0,0,.03);text-align:center;cursor:none;transition:background .25s,border-color .25s,box-shadow .25s;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.brand-tile { flex:1;min-width:140px;padding:24px 20px;background:var(--ink3);border:1px solid rgba(0,0,0,.03);text-align:center; }
 .brand-tile:hover{background:rgba(184,134,11,.06);border-color:rgba(184,134,11,.15);box-shadow:0 2px 6px rgba(0,0,0,.08)}
 .brand-name{font-family:var(--font-serif);font-size:18px;font-weight:400;color:var(--paper2);margin-bottom:4px;transition:color .2s}
 .brand-tile:hover .brand-name{color:var(--gold)}
@@ -501,6 +501,10 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 @media(max-width:600px){
   .budget-tiers-grid{grid-template-columns:1fr !important}
 }
+
+/* Interactive elements - always pointer cursor */
+.brand-tile, .acard, .t-card, .lcard, .bcard, table tbody tr, .budget-tiers-grid > div, .filter-card { cursor: pointer !important; }
+
 </style>
 </head>
 <body>
@@ -1469,36 +1473,36 @@ calcEMI();
 
 // ── COMPREHENSIVE CAR DATABASE ──
 const allCarsDB=[
-  {id:'alto-k10',name:'Alto K10',brand:'Maruti Suzuki',price:3.99,priceRange:'₹3.99–5.96L',type:'Hatchback',fuel:'Petrol',engine:'1.0L Petrol (67 PS)',power:'67 PS',mileage:'24.39 km/l',transmission:'5MT / AGS',safety:'Dual Airbags, ABS',pros:'Best mileage in segment, city-friendly, affordable, CNG option',cons:'Basic safety, poor highway comfort, feels tinny',verdict:'First car or city runabout – unbeatable in segment',img:'https://images.unsplash.com/photo-1590362891990-f8ddb41d3fcb?w=400&q=80',launched:2008,bodyType:'Hatchback'},
-  {id:'swift',name:'Swift',brand:'Maruti Suzuki',price:6.49,priceRange:'₹6.49–9.64L',type:'Hatchback',fuel:'Petrol',engine:'1.2L Petrol (90 PS)',power:'90 PS',mileage:'24.8 km/l',transmission:'5MT / AMT',safety:'6 Airbags, ESP, Hill Hold',pros:'Best-in-class mileage, peppy engine, legendary resale (~70%)',cons:'No diesel anymore, AMT jerky in traffic, tight rear seat',verdict:'India\'s most reliable hatchback – Swift is still king',img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&q=80',launched:2005,bodyType:'Hatchback'},
-  {id:'wagonr',name:'WagonR',brand:'Maruti Suzuki',price:5.54,priceRange:'₹5.54–8.00L',type:'Hatchback',fuel:'Petrol',engine:'1.0L / 1.2L Petrol',power:'68-90 PS',mileage:'23 km/l',transmission:'5MT / AMT',safety:'6 Airbags, ABS',pros:'Spacious interior, tallboy design, great value',cons:'No diesel, dull styling, average dynamics',verdict:'Family hatchback with space – good everyday car',img:'https://images.unsplash.com/photo-1606573224684-ee41c882f4bc?w=400&q=80',launched:2000,bodyType:'Hatchback'},
-  {id:'baleno',name:'Baleno',brand:'Maruti Suzuki',price:6.61,priceRange:'₹6.61–10.88L',type:'Hatchback',fuel:'Petrol',engine:'1.2L Petrol (83 PS)',power:'83 PS',mileage:'23.26 km/l',transmission:'5MT / CVT',safety:'6 Airbags, ESP',pros:'Premium interior, great space, dual-tone options, CVT smooth',cons:'No diesel, limited tech, AMT variant only in base',verdict:'Premium hatchback feel at great price',img:'https://images.unsplash.com/photo-1554744512-d2c803f67d37?w=400&q=80',launched:2015,bodyType:'Hatchback'},
-  {id:'i20',name:'i20',brand:'Hyundai',price:7.04,priceRange:'₹7.04–10.50L',type:'Hatchback',fuel:'Petrol',engine:'1.2L Petrol (83 PS)',power:'83 PS',mileage:'23.25 km/l',transmission:'5MT / iVT / 6AT',safety:'6 Airbags, ADAS',pros:'Premium cabin, ADAS in top, Hyundai service network, stylish',cons:'Overpriced vs Baleno, heavy at 1170kg, ADAS only in top',verdict:'Stylish hatchback with features – good all-rounder',img:'https://images.unsplash.com/photo-1490274814147-30e41cc3b65f?w=400&q=80',launched:2008,bodyType:'Hatchback'},
-  {id:'punch',name:'Punch',brand:'Tata Motors',price:6.13,priceRange:'₹6.13–10.20L',type:'Micro SUV',fuel:'Petrol',engine:'1.2L Petrol (86 PS)',power:'86 PS',mileage:'20.09 km/l',transmission:'5MT / AMT',safety:'5-star GNCAP, 6 Airbags',pros:'Safest in segment (5 stars!), high ground clearance, tough build',cons:'Underpowered engine, slow AMT, tight boot (366L)',verdict:'Safety champion – if roads are broken, Punch wins',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2021,bodyType:'Micro SUV'},
-  {id:'nexon',name:'Nexon',brand:'Tata Motors',price:8.10,priceRange:'₹8.10–15.50L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.2T Petrol (120PS) / 1.5D (115PS)',power:'120 PS / 115 PS',mileage:'17.4 km/l (P) / 23.2 km/l (D)',transmission:'6MT / AMT / 6AT',safety:'5-star GNCAP, 6 Airbags, ESP',pros:'5-star safety, solid build, diesel excellent, competitive',cons:'Outdated AMT, infotainment lags, rear seat cramped',verdict:'Best value compact SUV if safety is priority',img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&q=80',launched:2015,bodyType:'Compact SUV'},
-  {id:'nexon-ev',name:'Nexon EV',brand:'Tata Motors',price:14.49,priceRange:'₹14.49–19.29L',type:'Electric SUV',fuel:'Electric',engine:'Electric Motor (143 PS)',power:'143 PS',mileage:'453 km ARAI / ~300km real',transmission:'Single-speed automatic',safety:'5-star GNCAP, ESP, Hill Assist',pros:'Most affordable EV SUV, Tata service network, good range',cons:'Real range ~300km (not 453), limited fast charging',verdict:'India\'s most practical entry-level EV',img:'https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=400&q=80',launched:2019,bodyType:'Electric SUV'},
-  {id:'brezza',name:'Brezza',brand:'Maruti Suzuki',price:8.34,priceRange:'₹8.34–14.26L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.5L Petrol / Diesel',power:'103-113 PS',mileage:'18 km/l (P) / 23 km/l (D)',transmission:'5MT / 6AT / 4AT',safety:'6 Airbags, ADAS in newer',pros:'Best seller, reliable, good resale, diesel available',cons:'Older platform, basic interior vs Nexon, cramped rear',verdict:'India\'s bestselling compact SUV – safe choice',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=400&q=80',launched:2012,bodyType:'Compact SUV'},
-  {id:'fronx',name:'Fronx',brand:'Maruti Suzuki',price:7.52,priceRange:'₹7.52–13.68L',type:'Compact SUV',fuel:'Petrol',engine:'1.2L Petrol (90 PS)',power:'90 PS',mileage:'21 km/l',transmission:'5MT / 6AT',safety:'6 Airbags, ADAS L2 in top',pros:'Modern design, Maruti reliability, ADAS in top, good features',cons:'Only petrol, 90PS underpowered for highway, newer (unproven)',verdict:'Fresh design with tech – good for young buyers',img:'https://images.unsplash.com/photo-1606573224684-ee41c882f4bc?w=400&q=80',launched:2022,bodyType:'Compact SUV'},
-  {id:'creta',name:'Creta',brand:'Hyundai',price:11.11,priceRange:'₹11.11–20.15L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.5L Pet/Die/Turbo (110-170PS)',power:'110-170 PS',mileage:'16.8 km/l (P) / 21.8 km/l (D)',transmission:'6MT / IVT / 7DCT / 6AT',safety:'6 Airbags, ADAS L2, 360° camera',pros:'Feature-loaded, smooth diesel, premium cabin, strong resale',cons:'Top variants expensive (₹20L+), turbo DCT jerky at low speeds',verdict:'India\'s SUV benchmark – all features included',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=400&q=80',launched:2015,bodyType:'Compact SUV'},
-  {id:'creta-ev',name:'Creta EV',brand:'Hyundai',price:17.99,priceRange:'₹17.99–23.50L',type:'Electric SUV',fuel:'Electric',engine:'150 kW Electric Motor (204 PS)',power:'204 PS',mileage:'473 km ARAI / ~380km real',transmission:'Single-speed automatic',safety:'6 Airbags, ADAS L2, 360° camera',pros:'Best real EV range, Creta brand trust, V2L, fast charging 10-80% 58min',cons:'Heavy (1880kg), no AWD, charging infra patchy outside metros',verdict:'India\'s most important EV right now',img:'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=400&q=80',launched:2024,bodyType:'Electric SUV'},
-  {id:'seltos',name:'Seltos',brand:'Kia',price:10.90,priceRange:'₹10.90–20.35L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.5L Pet/Die/Turbo',power:'115-170 PS',mileage:'16.8 km/l (P) / 20.7 km/l (D)',transmission:'6MT / IVT / 7DCT / 6AT',safety:'6 Airbags, ADAS, 360° camera',pros:'Premium interior, Bose sound, ADAS, excellent highway cruiser',cons:'Identical to Creta mechanically, lower resale, turbo same issue',verdict:'Creta\'s sophisticated brother – same platform, different vibe',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=400&q=80',launched:2019,bodyType:'Compact SUV'},
-  {id:'sonet',name:'Sonet',brand:'Kia',price:7.99,priceRange:'₹7.99–15.52L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.2L Petrol / 1.0T / 1.5D',power:'83-150 PS',mileage:'17 km/l (P) / 22 km/l (D)',transmission:'5MT / 6AT / 7DCT',safety:'6 Airbags, ADAS, ESC',pros:'Affordable compact SUV, 1.0T turbo option, premium feel',cons:'New engine = reliability unproven, 1.0T not as powerful as 1.2T',verdict:'Kia\'s smart compact SUV – good value play',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2020,bodyType:'Compact SUV'},
-  {id:'syros',name:'Syros',brand:'Kia',price:8.99,priceRange:'₹8.99–18.99L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.0T Petrol / 1.5D',power:'120-115 PS',mileage:'~18 km/l (P) / ~22 km/l (D)',transmission:'6MT / 7DCT / 6AT',safety:'6 Airbags, ADAS, panoramic roof',pros:'Panoramic sky roof, best rear headroom, bold design, Kia quality',cons:'New model – no resale data, 1.0T strained on highways with load',verdict:'Kia\'s boldest move – different from typical compact SUVs',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2024,bodyType:'Compact SUV'},
-  {id:'venue',name:'Venue',brand:'Hyundai',price:7.10,priceRange:'₹7.10–12.02L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.2L Pet / 1.2D',power:'83-86 PS',mileage:'19.4 km/l (P) / 23.2 km/l (D)',transmission:'5MT / 6AT / 6AT',safety:'6 Airbags, ADAS, ESC',pros:'Feature-loaded for segment, good interior, decent resale',cons:'Cramped rear, weak 1.2D, AMT option older generation',verdict:'Segment leader – balanced compact SUV',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=400&q=80',launched:2019,bodyType:'Compact SUV'},
-  {id:'harrier',name:'Harrier',brand:'Tata Motors',price:15.49,priceRange:'₹15.49–23.20L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'1.8L Petrol (170PS) / 2.0D (170PS)',power:'170 PS',mileage:'16 km/l (P) / 16.4 km/l (D)',transmission:'6MT / 6AT',safety:'5-star GNCAP, 6 Airbags, ADAS L2',pros:'5-star safety, body-on-frame, premium cabin, great handling',cons:'Diesel thirsty, no 7-seater option, expensive vs Japanese SUVs',verdict:'India\'s modern midsize SUV – premium option',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2019,bodyType:'Midsize SUV'},
-  {id:'safari',name:'Safari',brand:'Tata Motors',price:21.48,priceRange:'₹21.48–28.13L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'1.8L Petrol (170PS) / 2.0D (170PS)',power:'170 PS',mileage:'15 km/l (P) / 15.8 km/l (D)',transmission:'6MT / 6AT',safety:'5-star GNCAP, 6 Airbags, ADAS L2',pros:'5-star safety, 7-seater, premium interior, excellent warranty',cons:'Expensive, diesel fuel consumption, body roll in corners',verdict:'Premium 7-seater SUV – best in segment safety-wise',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2020,bodyType:'Midsize SUV'},
-  {id:'xuv700',name:'XUV700',brand:'Mahindra',price:13.93,priceRange:'₹13.93–26.07L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'2.0L Pet (200PS) / 2.2D (185PS)',power:'185-200 PS',mileage:'14 km/l (P) / 17.3 km/l (D)',transmission:'6AT / 8AT',safety:'ADAS Level 2, 6 Airbags, 360° camera',pros:'Tech-loaded, 7-seater, great warranty, strong performance',cons:'ARAI cycle biased, expensive maintenance, interior rattle issues',verdict:'Tech enthusiast\'s choice – great features, reliability TBD',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2021,bodyType:'Midsize SUV'},
-  {id:'xev-9e',name:'XEV 9e',brand:'Mahindra',price:21.90,priceRange:'₹21.90–30.50L',type:'Electric SUV',fuel:'Electric',engine:'231 PS Electric Motor',power:'231 PS',mileage:'682 km MIDC / ~450-500km real',transmission:'Single-speed automatic',safety:'Level 2 ADAS, 7 Airbags, 360° camera',pros:'World-class platform (INGLO), longest range in India, stunning design',cons:'Brand new – reliability unknown, Mahindra EV service network limited, 2208kg heavy',verdict:'India\'s most ambitious EV – design and range world-class',img:'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=400&q=80',launched:2025,bodyType:'Electric SUV'},
-  {id:'thar',name:'Mahindra Thar',brand:'Mahindra',price:12.77,priceRange:'₹12.77–17.60L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'2.0L Petrol (150PS) / 2.2D (130PS)',power:'130-150 PS',mileage:'13 km/l (P) / 15.2 km/l (D)',transmission:'6MT / 6AT',safety:'6 Airbags, ADAS, 4x4 capability',pros:'Iconic design, go-anywhere capability, premium cabin, 4WD',cons:'Poor fuel economy, body roll on roads, no automatic diesel',verdict:'Jeep lover\'s dream – lifestyle vehicle, not practical daily driver',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2020,bodyType:'Compact SUV'},
-  {id:'scorpio-n',name:'Scorpio-N',brand:'Mahindra',price:12.49,priceRange:'₹12.49–17.95L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'2.0L Petrol (160PS) / 2.2D (160PS)',power:'160 PS',mileage:'14 km/l (P) / 18.2 km/l (D)',transmission:'6MT / 6AT',safety:'6 Airbags, ADAS, 4x4 option',pros:'Butch design, powerful engine, 4x4 available, good warranty',cons:'Diesel heavy on fuel, no hybrid, body roll on highways',verdict:'Modern butch SUV – good power, poor efficiency',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2022,bodyType:'Midsize SUV'},
-  {id:'city',name:'City',brand:'Honda',price:11.82,priceRange:'₹11.82–16.35L',type:'Sedan',fuel:'Petrol',engine:'1.5L Petrol (121 PS)',power:'121 PS',mileage:'18.4 km/l',transmission:'6MT / CVT',safety:'6 Airbags, VSA, Hill Start',pros:'Best driving dynamics, refined engine, spacious rear, Honda reliability',cons:'No diesel, CVT rubber-band feel, limited tech for price',verdict:'Sedan lovers\' last hope – driving feel unmatched',img:'https://images.unsplash.com/photo-1517524206127-48bbd363fc3f?w=400&q=80',launched:2020,bodyType:'Sedan'},
-  {id:'verna',name:'Verna',brand:'Hyundai',price:9.30,priceRange:'₹9.30–15.49L',type:'Sedan',fuel:'Petrol/Diesel',engine:'1.2L Pet (90PS) / 1.2D (75PS)',power:'75-90 PS',mileage:'18.6 km/l (P) / 23.4 km/l (D)',transmission:'5MT / 6AT / CVT',safety:'6 Airbags, ADAS, ESC',pros:'Good value, diesel option, spacious, Hyundai warranty',cons:'Weak diesel, outdated platform, AMT not smooth',verdict:'Budget sedan – practical but aging platform',img:'https://images.unsplash.com/photo-1517524206127-48bbd363fc3f?w=400&q=80',launched:2006,bodyType:'Sedan'},
-  {id:'fortuner',name:'Fortuner',brand:'Toyota',price:33.43,priceRange:'₹33.43–51.44L',type:'Fullsize SUV',fuel:'Petrol/Diesel',engine:'2.8L Diesel (204PS) / 2.7L Petrol (166PS)',power:'166-204 PS',mileage:'10-12 km/l real',transmission:'6MT / 6AT',safety:'7 Airbags, VSC, Hill Assist',pros:'Bulletproof reliability, legendary resale (~85% after 3yr), body-on-frame',cons:'Diesel thirsty, bouncy ride unladen, interior dated',verdict:'India\'s asli SUV – resale value unmatched',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=400&q=80',launched:2009,bodyType:'Fullsize SUV'},
-  {id:'bmw-3',name:'BMW 3 Series',brand:'BMW',price:48.90,priceRange:'₹48.90–62.90L',type:'Luxury Sedan',fuel:'Petrol/Diesel',engine:'2.0L Turbo Petrol (258PS) / 2.0D (190PS)',power:'190-258 PS',mileage:'22.7 km/l (D claimed)',transmission:'8-speed Automatic',safety:'6 Airbags, ADAS, 360° camera',pros:'Best driving dynamics, 258PS petrol is rocket, BMW brand',cons:'Rear seat tight, options expensive, high maintenance costs',verdict:'Driving enthusiast\'s sedan – C-Class more comfortable',img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&q=80',launched:2021,bodyType:'Luxury Sedan'},
-  {id:'classic-350',name:'Royal Enfield Classic 350',brand:'Royal Enfield',price:1.93,priceRange:'₹1.93–2.34L',type:'Cruiser Motorcycle',fuel:'Petrol',engine:'349cc Single (20.2 PS)',power:'20.2 PS',mileage:'35-38 km/l',transmission:'5-speed',safety:'Dual-channel ABS',pros:'The thump, iconic design, comfy long rides, massive community',cons:'Heavy (195kg), slow, vibrations above 90 km/h, not sporty',verdict:'Feel ride – but speed seekers should skip',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',launched:2009,bodyType:'Motorcycle'},
-  {id:'pulsar-ns200',name:'Bajaj Pulsar NS200',brand:'Bajaj',price:1.48,priceRange:'₹1.48–1.58L',type:'Sport Naked',fuel:'Petrol',engine:'199.5cc Single (24.5 PS)',power:'24.5 PS',mileage:'35-40 km/l',transmission:'6-speed',safety:'Single-channel ABS',pros:'Best value performance, peppy engine, liquid cooling, perimeter frame',cons:'Vibey above 8000 rpm, single-channel ABS only, finish could be better',verdict:'Best performance bike under ₹1.5L – no contest',img:'https://images.unsplash.com/photo-1558980394-4c7c9299fe96?w=400&q=80',launched:2012,bodyType:'Motorcycle'},
-  {id:'guerrilla-450',name:'Royal Enfield Guerrilla 450',brand:'Royal Enfield',price:2.39,priceRange:'₹2.39–2.49L',type:'Scrambler',fuel:'Petrol',engine:'452cc Single (40 PS)',power:'40 PS',mileage:'30-33 km/l',transmission:'6-speed',safety:'Dual-channel ABS',pros:'Lightest RE ever (185kg), Himalayan 450 engine, scrambler styling',cons:'New model – reliability unproven, limited dealers, no wind protection',verdict:'RE finally made what enthusiasts wanted – gem under ₹2.5L',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',launched:2024,bodyType:'Motorcycle'},
-  {id:'splendor',name:'Hero Splendor Plus',brand:'Hero MotoCorp',price:0.76,priceRange:'₹0.76–0.83L',type:'Commuter',fuel:'Petrol',engine:'97.2cc Single (8.02 PS)',power:'8.02 PS',mileage:'65-70 km/l',transmission:'4-speed',safety:'CBS (Combi Brake System)',pros:'India\'s best-selling vehicle, unmatched mileage, ultra-reliable, cheap maintenance',cons:'No excitement, basic features, drum brakes, feels dated',verdict:'India\'s backbone – 4L units/month sold for good reason',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',launched:1994,bodyType:'Motorcycle'},
+  {id:'alto-k10',name:'Alto K10',brand:'Maruti Suzuki',price:3.99,priceRange:'₹3.99–5.96L',type:'Hatchback',fuel:'Petrol',engine:'1.0L Petrol (67 PS)',power:'67 PS',mileage:'24.39 km/l',transmission:'5MT / AGS',safety:'Dual Airbags, ABS',pros:'Best mileage in segment, city-friendly, affordable, CNG option',cons:'Basic safety, poor highway comfort, feels tinny',verdict:'First car or city runabout – unbeatable in segment',img:'https://images.unsplash.com/photo-1549317661-bd32c8ce0afa?w=600',launched:2008,bodyType:'Hatchback'},
+  {id:'swift',name:'Swift',brand:'Maruti Suzuki',price:6.49,priceRange:'₹6.49–9.64L',type:'Hatchback',fuel:'Petrol',engine:'1.2L Petrol (90 PS)',power:'90 PS',mileage:'24.8 km/l',transmission:'5MT / AMT',safety:'6 Airbags, ESP, Hill Hold',pros:'Best-in-class mileage, peppy engine, legendary resale (~70%)',cons:'No diesel anymore, AMT jerky in traffic, tight rear seat',verdict:'India\'s most reliable hatchback – Swift is still king',img:'https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=600',launched:2005,bodyType:'Hatchback'},
+  {id:'wagonr',name:'WagonR',brand:'Maruti Suzuki',price:5.54,priceRange:'₹5.54–8.00L',type:'Hatchback',fuel:'Petrol',engine:'1.0L / 1.2L Petrol',power:'68-90 PS',mileage:'23 km/l',transmission:'5MT / AMT',safety:'6 Airbags, ABS',pros:'Spacious interior, tallboy design, great value',cons:'No diesel, dull styling, average dynamics',verdict:'Family hatchback with space – good everyday car',img:'https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600',launched:2000,bodyType:'Hatchback'},
+  {id:'baleno',name:'Baleno',brand:'Maruti Suzuki',price:6.61,priceRange:'₹6.61–10.88L',type:'Hatchback',fuel:'Petrol',engine:'1.2L Petrol (83 PS)',power:'83 PS',mileage:'23.26 km/l',transmission:'5MT / CVT',safety:'6 Airbags, ESP',pros:'Premium interior, great space, dual-tone options, CVT smooth',cons:'No diesel, limited tech, AMT variant only in base',verdict:'Premium hatchback feel at great price',img:'https://images.unsplash.com/photo-1606611013016-969c19ba27a5?w=600',launched:2015,bodyType:'Hatchback'},
+  {id:'i20',name:'i20',brand:'Hyundai',price:7.04,priceRange:'₹7.04–10.50L',type:'Hatchback',fuel:'Petrol',engine:'1.2L Petrol (83 PS)',power:'83 PS',mileage:'23.25 km/l',transmission:'5MT / iVT / 6AT',safety:'6 Airbags, ADAS',pros:'Premium cabin, ADAS in top, Hyundai service network, stylish',cons:'Overpriced vs Baleno, heavy at 1170kg, ADAS only in top',verdict:'Stylish hatchback with features – good all-rounder',img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=600',launched:2008,bodyType:'Hatchback'},
+  {id:'punch',name:'Punch',brand:'Tata Motors',price:6.13,priceRange:'₹6.13–10.20L',type:'Micro SUV',fuel:'Petrol',engine:'1.2L Petrol (86 PS)',power:'86 PS',mileage:'20.09 km/l',transmission:'5MT / AMT',safety:'5-star GNCAP, 6 Airbags',pros:'Safest in segment (5 stars!), high ground clearance, tough build',cons:'Underpowered engine, slow AMT, tight boot (366L)',verdict:'Safety champion – if roads are broken, Punch wins',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600',launched:2021,bodyType:'Micro SUV'},
+  {id:'nexon',name:'Nexon',brand:'Tata Motors',price:8.10,priceRange:'₹8.10–15.50L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.2T Petrol (120PS) / 1.5D (115PS)',power:'120 PS / 115 PS',mileage:'17.4 km/l (P) / 23.2 km/l (D)',transmission:'6MT / AMT / 6AT',safety:'5-star GNCAP, 6 Airbags, ESP',pros:'5-star safety, solid build, diesel excellent, competitive',cons:'Outdated AMT, infotainment lags, rear seat cramped',verdict:'Best value compact SUV if safety is priority',img:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=600',launched:2015,bodyType:'Compact SUV'},
+  {id:'nexon-ev',name:'Nexon EV',brand:'Tata Motors',price:14.49,priceRange:'₹14.49–19.29L',type:'Electric SUV',fuel:'Electric',engine:'Electric Motor (143 PS)',power:'143 PS',mileage:'453 km ARAI / ~300km real',transmission:'Single-speed automatic',safety:'5-star GNCAP, ESP, Hill Assist',pros:'Most affordable EV SUV, Tata service network, good range',cons:'Real range ~300km (not 453), limited fast charging',verdict:'India\'s most practical entry-level EV',img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600',launched:2019,bodyType:'Electric SUV'},
+  {id:'brezza',name:'Brezza',brand:'Maruti Suzuki',price:8.34,priceRange:'₹8.34–14.26L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.5L Petrol / Diesel',power:'103-113 PS',mileage:'18 km/l (P) / 23 km/l (D)',transmission:'5MT / 6AT / 4AT',safety:'6 Airbags, ADAS in newer',pros:'Best seller, reliable, good resale, diesel available',cons:'Older platform, basic interior vs Nexon, cramped rear',verdict:'India\'s bestselling compact SUV – safe choice',img:'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600',launched:2012,bodyType:'Compact SUV'},
+  {id:'fronx',name:'Fronx',brand:'Maruti Suzuki',price:7.52,priceRange:'₹7.52–13.68L',type:'Compact SUV',fuel:'Petrol',engine:'1.2L Petrol (90 PS)',power:'90 PS',mileage:'21 km/l',transmission:'5MT / 6AT',safety:'6 Airbags, ADAS L2 in top',pros:'Modern design, Maruti reliability, ADAS in top, good features',cons:'Only petrol, 90PS underpowered for highway, newer (unproven)',verdict:'Fresh design with tech – good for young buyers',img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600',launched:2022,bodyType:'Compact SUV'},
+  {id:'creta',name:'Creta',brand:'Hyundai',price:11.11,priceRange:'₹11.11–20.15L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.5L Pet/Die/Turbo (110-170PS)',power:'110-170 PS',mileage:'16.8 km/l (P) / 21.8 km/l (D)',transmission:'6MT / IVT / 7DCT / 6AT',safety:'6 Airbags, ADAS L2, 360° camera',pros:'Feature-loaded, smooth diesel, premium cabin, strong resale',cons:'Top variants expensive (₹20L+), turbo DCT jerky at low speeds',verdict:'India\'s SUV benchmark – all features included',img:'https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600',launched:2015,bodyType:'Compact SUV'},
+  {id:'creta-ev',name:'Creta EV',brand:'Hyundai',price:17.99,priceRange:'₹17.99–23.50L',type:'Electric SUV',fuel:'Electric',engine:'150 kW Electric Motor (204 PS)',power:'204 PS',mileage:'473 km ARAI / ~380km real',transmission:'Single-speed automatic',safety:'6 Airbags, ADAS L2, 360° camera',pros:'Best real EV range, Creta brand trust, V2L, fast charging 10-80% 58min',cons:'Heavy (1880kg), no AWD, charging infra patchy outside metros',verdict:'India\'s most important EV right now',img:'https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?w=600',launched:2024,bodyType:'Electric SUV'},
+  {id:'seltos',name:'Seltos',brand:'Kia',price:10.90,priceRange:'₹10.90–20.35L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.5L Pet/Die/Turbo',power:'115-170 PS',mileage:'16.8 km/l (P) / 20.7 km/l (D)',transmission:'6MT / IVT / 7DCT / 6AT',safety:'6 Airbags, ADAS, 360° camera',pros:'Premium interior, Bose sound, ADAS, excellent highway cruiser',cons:'Identical to Creta mechanically, lower resale, turbo same issue',verdict:'Creta\'s sophisticated brother – same platform, different vibe',img:'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600',launched:2019,bodyType:'Compact SUV'},
+  {id:'sonet',name:'Sonet',brand:'Kia',price:7.99,priceRange:'₹7.99–15.52L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.2L Petrol / 1.0T / 1.5D',power:'83-150 PS',mileage:'17 km/l (P) / 22 km/l (D)',transmission:'5MT / 6AT / 7DCT',safety:'6 Airbags, ADAS, ESC',pros:'Affordable compact SUV, 1.0T turbo option, premium feel',cons:'New engine = reliability unproven, 1.0T not as powerful as 1.2T',verdict:'Kia\'s smart compact SUV – good value play',img:'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600',launched:2020,bodyType:'Compact SUV'},
+  {id:'syros',name:'Syros',brand:'Kia',price:8.99,priceRange:'₹8.99–18.99L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.0T Petrol / 1.5D',power:'120-115 PS',mileage:'~18 km/l (P) / ~22 km/l (D)',transmission:'6MT / 7DCT / 6AT',safety:'6 Airbags, ADAS, panoramic roof',pros:'Panoramic sky roof, best rear headroom, bold design, Kia quality',cons:'New model – no resale data, 1.0T strained on highways with load',verdict:'Kia\'s boldest move – different from typical compact SUVs',img:'https://images.unsplash.com/photo-1485291571150-772bcfc10da5?w=600',launched:2024,bodyType:'Compact SUV'},
+  {id:'venue',name:'Venue',brand:'Hyundai',price:7.10,priceRange:'₹7.10–12.02L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'1.2L Pet / 1.2D',power:'83-86 PS',mileage:'19.4 km/l (P) / 23.2 km/l (D)',transmission:'5MT / 6AT / 6AT',safety:'6 Airbags, ADAS, ESC',pros:'Feature-loaded for segment, good interior, decent resale',cons:'Cramped rear, weak 1.2D, AMT option older generation',verdict:'Segment leader – balanced compact SUV',img:'https://images.unsplash.com/photo-1542362567-b07e54358753?w=600',launched:2019,bodyType:'Compact SUV'},
+  {id:'harrier',name:'Harrier',brand:'Tata Motors',price:15.49,priceRange:'₹15.49–23.20L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'1.8L Petrol (170PS) / 2.0D (170PS)',power:'170 PS',mileage:'16 km/l (P) / 16.4 km/l (D)',transmission:'6MT / 6AT',safety:'5-star GNCAP, 6 Airbags, ADAS L2',pros:'5-star safety, body-on-frame, premium cabin, great handling',cons:'Diesel thirsty, no 7-seater option, expensive vs Japanese SUVs',verdict:'India\'s modern midsize SUV – premium option',img:'https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?w=600',launched:2019,bodyType:'Midsize SUV'},
+  {id:'safari',name:'Safari',brand:'Tata Motors',price:21.48,priceRange:'₹21.48–28.13L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'1.8L Petrol (170PS) / 2.0D (170PS)',power:'170 PS',mileage:'15 km/l (P) / 15.8 km/l (D)',transmission:'6MT / 6AT',safety:'5-star GNCAP, 6 Airbags, ADAS L2',pros:'5-star safety, 7-seater, premium interior, excellent warranty',cons:'Expensive, diesel fuel consumption, body roll in corners',verdict:'Premium 7-seater SUV – best in segment safety-wise',img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600',launched:2020,bodyType:'Midsize SUV'},
+  {id:'xuv700',name:'XUV700',brand:'Mahindra',price:13.93,priceRange:'₹13.93–26.07L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'2.0L Pet (200PS) / 2.2D (185PS)',power:'185-200 PS',mileage:'14 km/l (P) / 17.3 km/l (D)',transmission:'6AT / 8AT',safety:'ADAS Level 2, 6 Airbags, 360° camera',pros:'Tech-loaded, 7-seater, great warranty, strong performance',cons:'ARAI cycle biased, expensive maintenance, interior rattle issues',verdict:'Tech enthusiast\'s choice – great features, reliability TBD',img:'https://images.unsplash.com/photo-1590362891991-f776e747a588?w=600',launched:2021,bodyType:'Midsize SUV'},
+  {id:'xev-9e',name:'XEV 9e',brand:'Mahindra',price:21.90,priceRange:'₹21.90–30.50L',type:'Electric SUV',fuel:'Electric',engine:'231 PS Electric Motor',power:'231 PS',mileage:'682 km MIDC / ~450-500km real',transmission:'Single-speed automatic',safety:'Level 2 ADAS, 7 Airbags, 360° camera',pros:'World-class platform (INGLO), longest range in India, stunning design',cons:'Brand new – reliability unknown, Mahindra EV service network limited, 2208kg heavy',verdict:'India\'s most ambitious EV – design and range world-class',img:'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600',launched:2025,bodyType:'Electric SUV'},
+  {id:'thar',name:'Mahindra Thar',brand:'Mahindra',price:12.77,priceRange:'₹12.77–17.60L',type:'Compact SUV',fuel:'Petrol/Diesel',engine:'2.0L Petrol (150PS) / 2.2D (130PS)',power:'130-150 PS',mileage:'13 km/l (P) / 15.2 km/l (D)',transmission:'6MT / 6AT',safety:'6 Airbags, ADAS, 4x4 capability',pros:'Iconic design, go-anywhere capability, premium cabin, 4WD',cons:'Poor fuel economy, body roll on roads, no automatic diesel',verdict:'Jeep lover\'s dream – lifestyle vehicle, not practical daily driver',img:'https://images.unsplash.com/photo-1617654112368-307921291f42?w=600',launched:2020,bodyType:'Compact SUV'},
+  {id:'scorpio-n',name:'Scorpio-N',brand:'Mahindra',price:12.49,priceRange:'₹12.49–17.95L',type:'Midsize SUV',fuel:'Petrol/Diesel',engine:'2.0L Petrol (160PS) / 2.2D (160PS)',power:'160 PS',mileage:'14 km/l (P) / 18.2 km/l (D)',transmission:'6MT / 6AT',safety:'6 Airbags, ADAS, 4x4 option',pros:'Butch design, powerful engine, 4x4 available, good warranty',cons:'Diesel heavy on fuel, no hybrid, body roll on highways',verdict:'Modern butch SUV – good power, poor efficiency',img:'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600',launched:2022,bodyType:'Midsize SUV'},
+  {id:'city',name:'City',brand:'Honda',price:11.82,priceRange:'₹11.82–16.35L',type:'Sedan',fuel:'Petrol',engine:'1.5L Petrol (121 PS)',power:'121 PS',mileage:'18.4 km/l',transmission:'6MT / CVT',safety:'6 Airbags, VSA, Hill Start',pros:'Best driving dynamics, refined engine, spacious rear, Honda reliability',cons:'No diesel, CVT rubber-band feel, limited tech for price',verdict:'Sedan lovers\' last hope – driving feel unmatched',img:'https://images.unsplash.com/photo-1625231334168-30dc1d87b330?w=600',launched:2020,bodyType:'Sedan'},
+  {id:'verna',name:'Verna',brand:'Hyundai',price:9.30,priceRange:'₹9.30–15.49L',type:'Sedan',fuel:'Petrol/Diesel',engine:'1.2L Pet (90PS) / 1.2D (75PS)',power:'75-90 PS',mileage:'18.6 km/l (P) / 23.4 km/l (D)',transmission:'5MT / 6AT / CVT',safety:'6 Airbags, ADAS, ESC',pros:'Good value, diesel option, spacious, Hyundai warranty',cons:'Weak diesel, outdated platform, AMT not smooth',verdict:'Budget sedan – practical but aging platform',img:'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600',launched:2006,bodyType:'Sedan'},
+  {id:'fortuner',name:'Fortuner',brand:'Toyota',price:33.43,priceRange:'₹33.43–51.44L',type:'Fullsize SUV',fuel:'Petrol/Diesel',engine:'2.8L Diesel (204PS) / 2.7L Petrol (166PS)',power:'166-204 PS',mileage:'10-12 km/l real',transmission:'6MT / 6AT',safety:'7 Airbags, VSC, Hill Assist',pros:'Bulletproof reliability, legendary resale (~85% after 3yr), body-on-frame',cons:'Diesel thirsty, bouncy ride unladen, interior dated',verdict:'India\'s asli SUV – resale value unmatched',img:'https://images.unsplash.com/photo-1568844293986-8d0400f4f36b?w=600',launched:2009,bodyType:'Fullsize SUV'},
+  {id:'bmw-3',name:'BMW 3 Series',brand:'BMW',price:48.90,priceRange:'₹48.90–62.90L',type:'Luxury Sedan',fuel:'Petrol/Diesel',engine:'2.0L Turbo Petrol (258PS) / 2.0D (190PS)',power:'190-258 PS',mileage:'22.7 km/l (D claimed)',transmission:'8-speed Automatic',safety:'6 Airbags, ADAS, 360° camera',pros:'Best driving dynamics, 258PS petrol is rocket, BMW brand',cons:'Rear seat tight, options expensive, high maintenance costs',verdict:'Driving enthusiast\'s sedan – C-Class more comfortable',img:'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600',launched:2021,bodyType:'Luxury Sedan'},
+  {id:'classic-350',name:'Royal Enfield Classic 350',brand:'Royal Enfield',price:1.93,priceRange:'₹1.93–2.34L',type:'Cruiser Motorcycle',fuel:'Petrol',engine:'349cc Single (20.2 PS)',power:'20.2 PS',mileage:'35-38 km/l',transmission:'5-speed',safety:'Dual-channel ABS',pros:'The thump, iconic design, comfy long rides, massive community',cons:'Heavy (195kg), slow, vibrations above 90 km/h, not sporty',verdict:'Feel ride – but speed seekers should skip',img:'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600',launched:2009,bodyType:'Motorcycle'},
+  {id:'pulsar-ns200',name:'Bajaj Pulsar NS200',brand:'Bajaj',price:1.48,priceRange:'₹1.48–1.58L',type:'Sport Naked',fuel:'Petrol',engine:'199.5cc Single (24.5 PS)',power:'24.5 PS',mileage:'35-40 km/l',transmission:'6-speed',safety:'Single-channel ABS',pros:'Best value performance, peppy engine, liquid cooling, perimeter frame',cons:'Vibey above 8000 rpm, single-channel ABS only, finish could be better',verdict:'Best performance bike under ₹1.5L – no contest',img:'https://images.unsplash.com/photo-1558981285-6f0c94958bb6?w=600',launched:2012,bodyType:'Motorcycle'},
+  {id:'guerrilla-450',name:'Royal Enfield Guerrilla 450',brand:'Royal Enfield',price:2.39,priceRange:'₹2.39–2.49L',type:'Scrambler',fuel:'Petrol',engine:'452cc Single (40 PS)',power:'40 PS',mileage:'30-33 km/l',transmission:'6-speed',safety:'Dual-channel ABS',pros:'Lightest RE ever (185kg), Himalayan 450 engine, scrambler styling',cons:'New model – reliability unproven, limited dealers, no wind protection',verdict:'RE finally made what enthusiasts wanted – gem under ₹2.5L',img:'https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600',launched:2024,bodyType:'Motorcycle'},
+  {id:'splendor',name:'Hero Splendor Plus',brand:'Hero MotoCorp',price:0.76,priceRange:'₹0.76–0.83L',type:'Commuter',fuel:'Petrol',engine:'97.2cc Single (8.02 PS)',power:'8.02 PS',mileage:'65-70 km/l',transmission:'4-speed',safety:'CBS (Combi Brake System)',pros:'India\'s best-selling vehicle, unmatched mileage, ultra-reliable, cheap maintenance',cons:'No excitement, basic features, drum brakes, feels dated',verdict:'India\'s backbone – 4L units/month sold for good reason',img:'https://images.unsplash.com/photo-1622185135505-2d795003994a?w=600',launched:1994,bodyType:'Motorcycle'},
 ];
 
 // ── AI CHATBOT — Smart Knowledge Engine ──
@@ -2076,9 +2080,9 @@ function filterAndShowCars(){
   const typeChecks=document.querySelectorAll('#typeFilterList input:checked');
   const fuelChecks=document.querySelectorAll('#fuelFilterList input:checked');
 
-  const brands=Array.from(brandChecks).map(c=>c.nextElementSibling.textContent.trim());
-  const types=Array.from(typeChecks).map(c=>c.nextElementSibling.textContent.trim());
-  const fuels=Array.from(fuelChecks).map(c=>c.nextElementSibling.textContent.trim());
+  const brands=Array.from(brandChecks).map(c=>c.parentElement.textContent.trim());
+  const types=Array.from(typeChecks).map(c=>c.parentElement.textContent.trim());
+  const fuels=Array.from(fuelChecks).map(c=>c.parentElement.textContent.trim());
 
   let filtered=allCarsDB;
   if(brands.length>0)filtered=filtered.filter(c=>brands.includes(c.brand));
@@ -2166,6 +2170,105 @@ document.querySelectorAll('.t-compare').forEach(btn=>{
     }
   };
 });
+
+
+// ================= INTERACTIVE ELEMENTS - BUG FIXES =================
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // BUG 1: Brand tiles clickable
+  // Wire brand tiles with onclick — use the ORIGINAL openBrandFilter(brand) which takes allCarsDB brand values
+  const brandTiles = document.querySelectorAll('.brand-tile');
+  const brandDBNames = ['Maruti Suzuki', 'Hyundai', 'Tata Motors', 'Mahindra', 'Kia', 'Toyota', 'Honda', 'Volkswagen',
+                       'Royal Enfield', 'Hero MotoCorp', 'Bajaj', 'TVS', 'BMW', 'Mercedes', 'Audi', 'Porsche'];
+  const comingSoonBrands = ['Volkswagen', 'Mercedes', 'Audi', 'Porsche'];
+  brandTiles.forEach((tile, idx) => {
+    if (idx < brandDBNames.length) {
+      tile.style.cursor = 'pointer';
+      tile.onclick = function() {
+        if (comingSoonBrands.includes(brandDBNames[idx])) {
+          alert(brandDBNames[idx] + ' models coming soon!');
+        } else {
+          openBrandFilter(brandDBNames[idx]);
+        }
+      };
+    }
+  });
+  
+  // BUG 3: Article cards clickable
+  document.querySelectorAll('.acard').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function() {
+      alert('Full article coming soon! We are writing sharp, opinionated content.');
+    });
+  });
+  
+  document.querySelectorAll('.art-read').forEach(link => {
+    link.style.cursor = 'pointer';
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      alert('Full article coming soon! We are writing sharp, opinionated content.');
+    });
+  });
+  
+  // BUG 4: Specs table rows clickable
+  const specsMap = {
+    'Maruti Swift': 'swift',
+    'Tata Punch': 'punch',
+    'Hyundai Creta': 'creta',
+    'Tata Nexon': 'nexon',
+    'Kia Seltos': 'seltos',
+    'Mahindra XUV700': 'xuv700',
+    'Hyundai i20': 'i20',
+    'Maruti Brezza': 'brezza',
+    'Tata Nexon EV': 'nexon-ev',
+    'Hyundai Verna': 'verna'
+  };
+  
+  document.querySelectorAll('table tbody tr').forEach((tr, idx) => {
+    const carName = tr.querySelector('td')?.textContent?.trim() || '';
+    const carId = specsMap[carName];
+    
+    tr.style.cursor = 'pointer';
+    tr.style.transition = 'background 200ms';
+    
+    const originalBg = idx % 2 === 0 ? '' : 'rgba(255,255,255,.02)';
+    tr.addEventListener('mouseover', function() {
+      this.style.background = 'rgba(184,134,11,.08)';
+    });
+    tr.addEventListener('mouseout', function() {
+      this.style.background = originalBg;
+    });
+    
+    if (carId) {
+      tr.onclick = function() { openCarDetail(carId); };
+    }
+  });
+  
+  // BUG 2: Fix modal stacking — close any open filter/listing modals before opening detail
+  const _origOpenCarDetail = window.openCarDetail;
+  window.openCarDetail = function(carId) {
+    const listingOpen = document.getElementById('carsListingModal')?.classList.contains('open');
+    const filterOpen = document.getElementById('filterOverlay')?.classList.contains('open');
+    if (listingOpen) closeModal('carsListingModal');
+    if (filterOpen) closeModal('filterOverlay');
+    if (listingOpen || filterOpen) {
+      setTimeout(() => _origOpenCarDetail(carId), 150);
+    } else {
+      _origOpenCarDetail(carId);
+    }
+  };
+  
+  // BUG 6: Launch cards fully clickable
+  document.querySelectorAll('.lcard').forEach(card => {
+    const link = card.querySelector('.lcard-link');
+    if (link) {
+      card.style.cursor = 'pointer';
+      card.onclick = function() { link.click(); };
+    }
+  });
+});
+
 </script>
 </body>
 </html>
