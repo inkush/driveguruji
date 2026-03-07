@@ -388,6 +388,13 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
   .hero-title{font-size:38px}
   .budget-num{font-size:72px}
 }
+.t-spec-tag{font-family:var(--font-mono);font-size:9px;letter-spacing:.06em;padding:3px 8px;border-radius:4px;background:rgba(184,134,11,.08);color:var(--gold);border:1px solid rgba(184,134,11,.15)}
+@media(max-width:900px){
+  .budget-tiers-grid{grid-template-columns:1fr 1fr !important}
+}
+@media(max-width:600px){
+  .budget-tiers-grid{grid-template-columns:1fr !important}
+}
 </style>
 </head>
 <body>
@@ -504,11 +511,15 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
         <div class="t-brand">Maruti Suzuki</div>
         <div class="t-name">Swift</div>
         <div class="t-info">
-          <div class="t-price">₹6.49 Lakh</div>
+          <div class="t-price">₹6.49 – 9.64L</div>
           <div class="t-div"></div>
-          <div class="t-detail">24.8 km/l</div>
-          <div class="t-div"></div>
-          <div class="t-detail">Petrol · MT/AMT</div>
+          <div class="t-detail">24.8 km/l · Petrol</div>
+        </div>
+        <div class="t-specs" style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+          <span class="t-spec-tag">1.2L 90PS</span>
+          <span class="t-spec-tag">MT / AMT</span>
+          <span class="t-spec-tag">6 Airbags</span>
+          <span class="t-spec-tag">★ 70% Resale</span>
         </div>
       </div>
     </div>
@@ -520,7 +531,12 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
         <div class="t-rank">2</div>
         <div class="t-brand">Hyundai</div>
         <div class="t-name">Creta EV</div>
-        <div class="t-info"><div class="t-price">₹17.99 L</div><div class="t-div"></div><div class="t-detail">473 km range</div></div>
+        <div class="t-info"><div class="t-price">₹17.99 – 23.50L</div><div class="t-div"></div><div class="t-detail">473 km · Electric</div></div>
+        <div class="t-specs" style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+          <span class="t-spec-tag">204 PS</span>
+          <span class="t-spec-tag">ADAS L2</span>
+          <span class="t-spec-tag">V2L</span>
+        </div>
       </div>
     </div>
     <div class="t-card">
@@ -531,7 +547,12 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
         <div class="t-rank">3</div>
         <div class="t-brand">Mahindra</div>
         <div class="t-name">XEV 9e</div>
-        <div class="t-info"><div class="t-price">₹21.90 L</div><div class="t-div"></div><div class="t-detail">682 km range</div></div>
+        <div class="t-info"><div class="t-price">₹21.90 – 30.50L</div><div class="t-div"></div><div class="t-detail">682 km · Electric</div></div>
+        <div class="t-specs" style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+          <span class="t-spec-tag">231 PS</span>
+          <span class="t-spec-tag">ADAS L2</span>
+          <span class="t-spec-tag">175kW Fast Charge</span>
+        </div>
       </div>
     </div>
     <div class="t-card">
@@ -542,7 +563,12 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
         <div class="t-rank">4</div>
         <div class="t-brand">Kia</div>
         <div class="t-name">Seltos</div>
-        <div class="t-info"><div class="t-price">₹10.90 L</div><div class="t-div"></div><div class="t-detail">6 variants</div></div>
+        <div class="t-info"><div class="t-price">₹10.90 – 20.35L</div><div class="t-div"></div><div class="t-detail">16.8 km/l · Pet/Die</div></div>
+        <div class="t-specs" style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+          <span class="t-spec-tag">1.5L / 1.5T</span>
+          <span class="t-spec-tag">ADAS</span>
+          <span class="t-spec-tag">6 Airbags</span>
+        </div>
       </div>
     </div>
     <div class="t-card">
@@ -553,7 +579,12 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
         <div class="t-rank">5</div>
         <div class="t-brand">Kia</div>
         <div class="t-name">Syros</div>
-        <div class="t-info"><div class="t-price">₹8.99 L</div><div class="t-div"></div><div class="t-detail">Compact SUV</div></div>
+        <div class="t-info"><div class="t-price">₹8.99 – 18.99L</div><div class="t-div"></div><div class="t-detail">~20 km/l · Pet/Die</div></div>
+        <div class="t-specs" style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+          <span class="t-spec-tag">1.0T / 1.5D</span>
+          <span class="t-spec-tag">Pano Roof</span>
+          <span class="t-spec-tag">6 Airbags</span>
+        </div>
       </div>
     </div>
   </div>
@@ -593,6 +624,40 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 
 <div class="divider"></div>
 
+<!-- ══════════════════════ POPULAR BY BUDGET ══════════════════════ -->
+<section class="section fi" style="background:var(--ink2)">
+  <div class="sec-eye">Shop by Budget</div>
+  <h2 class="sec-title" style="margin-bottom:40px">Popular Cars by <em>Price Range</em></h2>
+  <div class="budget-tiers-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:3px">
+    <div style="background:var(--ink3);padding:28px 24px;border:1px solid rgba(0,0,0,.05);cursor:pointer;transition:all .25s;box-shadow:0 1px 3px rgba(0,0,0,.08)" onmouseover="this.style.borderColor='rgba(184,134,11,.25)'" onmouseout="this.style.borderColor='rgba(0,0,0,.05)'">
+      <div style="font-family:var(--font-serif);font-size:28px;color:var(--gold);margin-bottom:4px">Under ₹5L</div>
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.1em;margin-bottom:16px">ENTRY SEGMENT</div>
+      <div style="font-size:13px;color:var(--smoke);line-height:1.8;font-weight:300">Alto K10 · ₹3.99L<br>S-Presso · ₹4.26L<br>Renault Kwid · ₹4.70L<br>WagonR · ₹5.54L</div>
+      <div style="margin-top:14px;font-family:var(--font-mono);font-size:9px;color:var(--gold);letter-spacing:.12em">12 CARS →</div>
+    </div>
+    <div style="background:var(--ink3);padding:28px 24px;border:1px solid rgba(0,0,0,.05);cursor:pointer;transition:all .25s;box-shadow:0 1px 3px rgba(0,0,0,.08)" onmouseover="this.style.borderColor='rgba(184,134,11,.25)'" onmouseout="this.style.borderColor='rgba(0,0,0,.05)'">
+      <div style="font-family:var(--font-serif);font-size:28px;color:var(--gold);margin-bottom:4px">₹5 – 10L</div>
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.1em;margin-bottom:16px">MOST POPULAR</div>
+      <div style="font-size:13px;color:var(--smoke);line-height:1.8;font-weight:300">Swift · ₹6.49L<br>Punch · ₹6.13L<br>Baleno · ₹6.61L<br>i20 · ₹7.04L<br>Nexon · ₹8.10L</div>
+      <div style="margin-top:14px;font-family:var(--font-mono);font-size:9px;color:var(--gold);letter-spacing:.12em">22 CARS →</div>
+    </div>
+    <div style="background:var(--ink3);padding:28px 24px;border:1px solid rgba(0,0,0,.05);cursor:pointer;transition:all .25s;box-shadow:0 1px 3px rgba(0,0,0,.08)" onmouseover="this.style.borderColor='rgba(184,134,11,.25)'" onmouseout="this.style.borderColor='rgba(0,0,0,.05)'">
+      <div style="font-family:var(--font-serif);font-size:28px;color:var(--gold);margin-bottom:4px">₹10 – 20L</div>
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.1em;margin-bottom:16px">SUV TERRITORY</div>
+      <div style="font-size:13px;color:var(--smoke);line-height:1.8;font-weight:300">Creta · ₹11.11L<br>Seltos · ₹10.90L<br>Nexon EV · ₹14.49L<br>City · ₹11.82L<br>Syros · ₹8.99L</div>
+      <div style="margin-top:14px;font-family:var(--font-mono);font-size:9px;color:var(--gold);letter-spacing:.12em">18 CARS →</div>
+    </div>
+    <div style="background:var(--ink3);padding:28px 24px;border:1px solid rgba(0,0,0,.05);cursor:pointer;transition:all .25s;box-shadow:0 1px 3px rgba(0,0,0,.08)" onmouseover="this.style.borderColor='rgba(184,134,11,.25)'" onmouseout="this.style.borderColor='rgba(0,0,0,.05)'">
+      <div style="font-family:var(--font-serif);font-size:28px;color:var(--gold);margin-bottom:4px">₹20L+</div>
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.1em;margin-bottom:16px">PREMIUM</div>
+      <div style="font-size:13px;color:var(--smoke);line-height:1.8;font-weight:300">Creta EV · ₹17.99L<br>XEV 9e · ₹21.90L<br>Fortuner · ₹33.43L<br>BMW 3 · ₹48.90L</div>
+      <div style="margin-top:14px;font-family:var(--font-mono);font-size:9px;color:var(--gold);letter-spacing:.12em">15 CARS →</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ══════════════════════ NEW LAUNCHES ══════════════════════ -->
 <section class="section launches-section fi">
   <div class="sec-head">
@@ -609,6 +674,12 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
         <div class="lcard-date">Launched · Jan 2025</div>
         <div class="lcard-name">Mahindra XEV 9e</div>
         <p class="lcard-desc">INGLO platform, 682km MIDC range, Level 2 ADAS and a design that makes everything else look old.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <span class="t-spec-tag">231 PS</span>
+          <span class="t-spec-tag">682 km MIDC</span>
+          <span class="t-spec-tag">ADAS L2</span>
+          <span class="t-spec-tag">175kW DC</span>
+        </div>
         <div class="lcard-foot"><span class="lcard-price">₹21.90 – 30.50 L</span><a href="#" class="lcard-link">Read →</a></div>
       </div>
     </div>
@@ -618,6 +689,12 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
         <div class="lcard-date">Launched · Jan 2025</div>
         <div class="lcard-name">Hyundai Creta EV</div>
         <p class="lcard-desc">India's most awaited EV — 473km real range, panoramic roof, ADAS suite and the Creta badge that sells itself.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <span class="t-spec-tag">204 PS</span>
+          <span class="t-spec-tag">473 km Real</span>
+          <span class="t-spec-tag">ADAS L2</span>
+          <span class="t-spec-tag">V2L</span>
+        </div>
         <div class="lcard-foot"><span class="lcard-price">₹17.99 – 23.50 L</span><a href="#" class="lcard-link">Read →</a></div>
       </div>
     </div>
@@ -627,6 +704,12 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
         <div class="lcard-date">Launched · Jan 2025</div>
         <div class="lcard-name">Kia Syros</div>
         <p class="lcard-desc">Kia's boldest bet — panoramic sky roof, sky-high rear headroom, 1.0T and 1.5D engines. A Creta fighter with personality.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <span class="t-spec-tag">1.0T / 1.5D</span>
+          <span class="t-spec-tag">Pano Roof</span>
+          <span class="t-spec-tag">6 Airbags</span>
+          <span class="t-spec-tag">ADAS</span>
+        </div>
         <div class="lcard-foot"><span class="lcard-price">₹8.99 – 18.99 L</span><a href="#" class="lcard-link">Read →</a></div>
       </div>
     </div>
@@ -636,6 +719,11 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
         <div class="lcard-date">Launched · Aug 2024</div>
         <div class="lcard-name">RE Guerrilla 450</div>
         <p class="lcard-desc">Himalayan's 452cc heart in a raw scrambler body. Lightest RE ever. Most exciting RE in a decade, at least.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <span class="t-spec-tag">452cc 40PS</span>
+          <span class="t-spec-tag">185 kg</span>
+          <span class="t-spec-tag">Dual ABS</span>
+        </div>
         <div class="lcard-foot"><span class="lcard-price">₹2.39 – 2.49 L</span><a href="#" class="lcard-link">Read →</a></div>
       </div>
     </div>
@@ -645,6 +733,11 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
         <div class="lcard-date">Upcoming · Q2 2025</div>
         <div class="lcard-name">BMW M4 CS</div>
         <p class="lcard-desc">543bhp. Cup 2 tyres. Carbon everything. The M4 CS is the closest thing to an M4 GT3 for the road.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+          <span class="t-spec-tag">543 bhp</span>
+          <span class="t-spec-tag">3.4s 0-100</span>
+          <span class="t-spec-tag">Cup 2 Tyres</span>
+        </div>
         <div class="lcard-foot"><span class="lcard-price">₹1.90 Cr est.</span><a href="#" class="lcard-link">Notify →</a></div>
       </div>
     </div>
@@ -919,27 +1012,116 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 
 <div class="divider"></div>
 
+<!-- ══════════════════════ QUICK SPECS TABLE ══════════════════════ -->
+<section class="section fi" style="background:var(--ink)">
+  <div class="sec-eye">At a Glance</div>
+  <h2 class="sec-title" style="margin-bottom:40px">Most Searched <em>Cars</em></h2>
+  <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-family:var(--font-sans);font-size:13px">
+      <thead>
+        <tr style="border-bottom:2px solid rgba(184,134,11,.2)">
+          <th style="text-align:left;padding:12px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);font-weight:400">Car</th>
+          <th style="text-align:left;padding:12px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);font-weight:400">Price</th>
+          <th style="text-align:left;padding:12px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);font-weight:400">Type</th>
+          <th style="text-align:left;padding:12px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);font-weight:400">Engine</th>
+          <th style="text-align:left;padding:12px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);font-weight:400">Mileage</th>
+          <th style="text-align:left;padding:12px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);font-weight:400">Safety</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.05)">
+          <td style="padding:14px 16px;font-family:var(--font-serif);font-weight:400">Maruti Swift</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--gold)">₹6.49 – 9.64L</td>
+          <td style="padding:14px 16px;color:var(--smoke)">Hatchback</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">1.2L 90PS</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">24.8 km/l</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">6 Airbags</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.05);background:rgba(0,0,0,.015)">
+          <td style="padding:14px 16px;font-family:var(--font-serif);font-weight:400">Tata Punch</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--gold)">₹6.13 – 10.20L</td>
+          <td style="padding:14px 16px;color:var(--smoke)">Micro SUV</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">1.2L 86PS</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">20 km/l</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px;color:#4ade80">5★ GNCAP</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.05)">
+          <td style="padding:14px 16px;font-family:var(--font-serif);font-weight:400">Hyundai Creta</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--gold)">₹11.11 – 20.15L</td>
+          <td style="padding:14px 16px;color:var(--smoke)">Compact SUV</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">1.5L P/D/T</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">16–22 km/l</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">ADAS L2</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.05);background:rgba(0,0,0,.015)">
+          <td style="padding:14px 16px;font-family:var(--font-serif);font-weight:400">Tata Nexon</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--gold)">₹8.10 – 15.50L</td>
+          <td style="padding:14px 16px;color:var(--smoke)">Compact SUV</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">1.2T / 1.5D</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">17–23 km/l</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px;color:#4ade80">5★ GNCAP</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.05)">
+          <td style="padding:14px 16px;font-family:var(--font-serif);font-weight:400">Kia Seltos</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--gold)">₹10.90 – 20.35L</td>
+          <td style="padding:14px 16px;color:var(--smoke)">Compact SUV</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">1.5L / 1.5T</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">16–21 km/l</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">ADAS</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.05);background:rgba(0,0,0,.015)">
+          <td style="padding:14px 16px;font-family:var(--font-serif);font-weight:400">Hyundai Creta EV</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--gold)">₹17.99 – 23.50L</td>
+          <td style="padding:14px 16px;color:var(--smoke)">Electric SUV</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">150kW 204PS</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">473 km</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">ADAS L2</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.05)">
+          <td style="padding:14px 16px;font-family:var(--font-serif);font-weight:400">Mahindra XEV 9e</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--gold)">₹21.90 – 30.50L</td>
+          <td style="padding:14px 16px;color:var(--smoke)">Electric Coupe SUV</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">231 PS</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">682 km</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">ADAS L2</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(0,0,0,.05);background:rgba(0,0,0,.015)">
+          <td style="padding:14px 16px;font-family:var(--font-serif);font-weight:400">Toyota Fortuner</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:12px;color:var(--gold)">₹33.43 – 51.44L</td>
+          <td style="padding:14px 16px;color:var(--smoke)">Full-size SUV</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">2.8D 204PS</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">10–12 km/l</td>
+          <td style="padding:14px 16px;font-family:var(--font-mono);font-size:11px">7 Airbags</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:20px;font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.08em">All prices ex-showroom Delhi · Mileage claimed ARAI · Data updated March 2026</p>
+</section>
+
+<div class="divider"></div>
+
 <!-- ══════════════════════ BRANDS ══════════════════════ -->
 <section class="brands-section fi">
   <div class="sec-eye">Browse by Brand</div>
   <h2 class="sec-title" style="margin-bottom:40px">All <em>Brands</em></h2>
   <div class="brands-grid">
-    <div class="brand-tile"><div class="brand-name">Maruti</div><div class="brand-count">17 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Hyundai</div><div class="brand-count">12 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Tata</div><div class="brand-count">11 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Mahindra</div><div class="brand-count">9 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Kia</div><div class="brand-count">5 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Toyota</div><div class="brand-count">7 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Honda</div><div class="brand-count">6 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Volkswagen</div><div class="brand-count">4 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Royal Enfield</div><div class="brand-count">14 bikes</div></div>
-    <div class="brand-tile"><div class="brand-name">Hero</div><div class="brand-count">22 bikes</div></div>
-    <div class="brand-tile"><div class="brand-name">Bajaj</div><div class="brand-count">16 bikes</div></div>
-    <div class="brand-tile"><div class="brand-name">TVS</div><div class="brand-count">18 bikes</div></div>
-    <div class="brand-tile"><div class="brand-name">BMW</div><div class="brand-count">8 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Mercedes</div><div class="brand-count">10 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Audi</div><div class="brand-count">7 models</div></div>
-    <div class="brand-tile"><div class="brand-name">Porsche</div><div class="brand-count">5 models</div></div>
+    <div class="brand-tile"><div class="brand-name">Maruti</div><div class="brand-count">17 models · ₹3.99L – ₹20.99L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Swift · Brezza · Baleno · Fronx</div></div>
+    <div class="brand-tile"><div class="brand-name">Hyundai</div><div class="brand-count">12 models · ₹5.92L – ₹27L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Creta · i20 · Venue · Creta EV</div></div>
+    <div class="brand-tile"><div class="brand-name">Tata</div><div class="brand-count">11 models · ₹5.49L – ₹27L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Nexon · Punch · Harrier · Safari</div></div>
+    <div class="brand-tile"><div class="brand-name">Mahindra</div><div class="brand-count">9 models · ₹7.59L – ₹31L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Scorpio · XUV700 · XEV 9e · Thar</div></div>
+    <div class="brand-tile"><div class="brand-name">Kia</div><div class="brand-count">5 models · ₹8.99L – ₹20L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Seltos · Sonet · Syros · Carens</div></div>
+    <div class="brand-tile"><div class="brand-name">Toyota</div><div class="brand-count">7 models · ₹7.74L – ₹52L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Fortuner · Innova · Hyryder · Glanza</div></div>
+    <div class="brand-tile"><div class="brand-name">Honda</div><div class="brand-count">6 models · ₹6.41L – ₹19L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">City · Amaze · Elevate · WR-V</div></div>
+    <div class="brand-tile"><div class="brand-name">Volkswagen</div><div class="brand-count">4 models · ₹7.89L – ₹19L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Virtus · Taigun · Tiguan</div></div>
+    <div class="brand-tile"><div class="brand-name">Royal Enfield</div><div class="brand-count">14 bikes · ₹1.55L – ₹3.39L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Classic · Hunter · Himalayan · Guerrilla</div></div>
+    <div class="brand-tile"><div class="brand-name">Hero</div><div class="brand-count">22 bikes · ₹52K – ₹2.02L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Splendor · HF Deluxe · Xtreme · Xpulse</div></div>
+    <div class="brand-tile"><div class="brand-name">Bajaj</div><div class="brand-count">16 bikes · ₹80K – ₹2.12L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Pulsar · Dominar · Avenger · CT</div></div>
+    <div class="brand-tile"><div class="brand-name">TVS</div><div class="brand-count">18 bikes · ₹55K – ₹2.32L</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Apache · Raider · Jupiter · Ntorq</div></div>
+    <div class="brand-tile"><div class="brand-name">BMW</div><div class="brand-count">8 models · ₹43L – ₹2.5Cr</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">3 Series · 5 Series · X1 · X3</div></div>
+    <div class="brand-tile"><div class="brand-name">Mercedes</div><div class="brand-count">10 models · ₹48L – ₹3Cr</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">C-Class · E-Class · GLC · GLE</div></div>
+    <div class="brand-tile"><div class="brand-name">Audi</div><div class="brand-count">7 models · ₹40L – ₹1.9Cr</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">A4 · Q3 · Q5 · e-tron</div></div>
+    <div class="brand-tile"><div class="brand-name">Porsche</div><div class="brand-count">5 models · ₹1.2Cr – ₹3.6Cr</div><div style="font-size:11px;color:var(--smoke);margin-top:6px;line-height:1.5">Cayenne · Macan · 911 · Taycan</div></div>
   </div>
 </section>
 
@@ -1011,18 +1193,20 @@ const slFill=document.getElementById('slFill');
 const bResults=document.getElementById('bResults');
 
 const cars=[
-  {n:'Maruti Alto K10',p:3.99,min:2,max:5,cat:'hatch',img:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=160&q=50'},
-  {n:'Maruti Swift',p:6.49,min:5,max:10,cat:'hatch',img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=160&q=50'},
-  {n:'Tata Punch',p:6.13,min:5,max:10,cat:'suv',img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=160&q=50'},
-  {n:'Honda City',p:11.82,min:10,max:18,cat:'sedan',img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=160&q=50'},
-  {n:'Tata Nexon',p:8.10,min:7,max:15,cat:'suv',img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=160&q=50'},
-  {n:'Hyundai Creta',p:11.11,min:9,max:20,cat:'suv',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=160&q=50'},
-  {n:'Kia Seltos',p:10.90,min:9,max:20,cat:'suv',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=160&q=50'},
-  {n:'Hyundai Creta EV',p:17.99,min:16,max:28,cat:'ev',img:'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=160&q=50'},
-  {n:'Tata Nexon EV',p:14.49,min:12,max:24,cat:'ev',img:'https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=160&q=50'},
-  {n:'RE Classic 350',p:1.93,min:1,max:3,cat:'bike',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=160&q=50'},
-  {n:'Bajaj Pulsar NS200',p:1.48,min:1,max:2,cat:'bike',img:'https://images.unsplash.com/photo-1558980394-4c7c9299fe96?w=160&q=50'},
-  {n:'BMW 3 Series',p:48.90,min:40,max:70,cat:'sedan',img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=160&q=50'},
+  {n:'Maruti Alto K10',p:3.99,min:2,max:5,cat:'hatch',eng:'1.0L 67PS',mil:'24 km/l',safe:'2 Airbags',img:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=160&q=50'},
+  {n:'Maruti Swift',p:6.49,min:5,max:10,cat:'hatch',eng:'1.2L 90PS',mil:'24.8 km/l',safe:'6 Airbags',img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=160&q=50'},
+  {n:'Tata Punch',p:6.13,min:5,max:10,cat:'suv',eng:'1.2L 86PS',mil:'20 km/l',safe:'5★ GNCAP',img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=160&q=50'},
+  {n:'Honda City',p:11.82,min:10,max:18,cat:'sedan',eng:'1.5L 121PS',mil:'18.4 km/l',safe:'6 Airbags',img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=160&q=50'},
+  {n:'Tata Nexon',p:8.10,min:7,max:15,cat:'suv',eng:'1.2T / 1.5D',mil:'17–23 km/l',safe:'5★ GNCAP',img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=160&q=50'},
+  {n:'Hyundai Creta',p:11.11,min:9,max:20,cat:'suv',eng:'1.5L Pet/Die',mil:'16–22 km/l',safe:'ADAS L2',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=160&q=50'},
+  {n:'Kia Seltos',p:10.90,min:9,max:20,cat:'suv',eng:'1.5L / 1.5T',mil:'16–21 km/l',safe:'ADAS',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=160&q=50'},
+  {n:'Hyundai Creta EV',p:17.99,min:16,max:28,cat:'ev',eng:'150kW EV',mil:'473 km',safe:'ADAS L2',img:'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=160&q=50'},
+  {n:'Tata Nexon EV',p:14.49,min:12,max:24,cat:'ev',eng:'EV 143PS',mil:'453 km',safe:'5★ GNCAP',img:'https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=160&q=50'},
+  {n:'RE Classic 350',p:1.93,min:1,max:3,cat:'bike',eng:'349cc 20PS',mil:'35 km/l',safe:'Dual ABS',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=160&q=50'},
+  {n:'Bajaj Pulsar NS200',p:1.48,min:1,max:2,cat:'bike',eng:'200cc 24.5PS',mil:'38 km/l',safe:'ABS',img:'https://images.unsplash.com/photo-1558980394-4c7c9299fe96?w=160&q=50'},
+  {n:'BMW 3 Series',p:48.90,min:40,max:70,cat:'sedan',eng:'2.0T 258PS',mil:'22.7 km/l',safe:'ADAS',img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=160&q=50'},
+  {n:'Kia Syros',p:8.99,min:7,max:20,cat:'suv',eng:'1.0T / 1.5D',mil:'~20 km/l',safe:'6 Airbags',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=160&q=50'},
+  {n:'Toyota Fortuner',p:33.43,min:28,max:55,cat:'suv',eng:'2.8D 204PS',mil:'10 km/l',safe:'7 Airbags',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=160&q=50'},
 ];
 
 let activeFilter='all';
@@ -1037,9 +1221,16 @@ function updateBudget(){
   matched=matched.slice(0,4);
   if(!matched.length){bResults.innerHTML=`<p style="font-family:var(--font-serif);font-style:italic;color:var(--mist);font-size:18px">No matches — try adjusting budget or filter</p>`;return}
   bResults.innerHTML=matched.map(c=>`
-    <div class="bcard">
-      <img src="${c.img}" style="width:72px;height:44px;object-fit:cover;border-radius:6px;filter:brightness(.9)" alt="${c.n}" onerror="this.style.display='none'">
-      <div><div class="bcard-name">${c.n}</div><div class="bcard-price">₹${c.p}L onwards</div></div>
+    <div class="bcard" style="flex-direction:column;align-items:stretch;min-width:220px;padding:16px 20px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px">
+        <img src="${c.img}" style="width:64px;height:40px;object-fit:cover;border-radius:6px;filter:brightness(.9)" alt="${c.n}" onerror="this.style.display='none'">
+        <div><div class="bcard-name">${c.n}</div><div class="bcard-price">₹${c.p}L onwards</div></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <span class="t-spec-tag">${c.eng||c.cat.toUpperCase()}</span>
+        <span class="t-spec-tag">${c.mil||'—'}</span>
+        ${c.safe?'<span class="t-spec-tag">'+c.safe+'</span>':''}
+      </div>
     </div>`).join('');
 }
 bSlider.addEventListener('input',updateBudget);
