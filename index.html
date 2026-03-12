@@ -694,45 +694,45 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 <!-- ══════════════════════ QUICK ACCESS PORTAL ══════════════════════ -->
 <section class="portal-strip fi">
   <div class="portal-grid">
-    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.trending-section').scrollIntoView({behavior:'smooth'})">
+    <a href="#" class="portal-card" onclick="event.preventDefault();smoothScrollTo('.trending-section')">
       <div class="portal-icon">🔥</div>
       <span class="portal-label">Trending</span>
       <span class="portal-count">Updated Daily</span>
     </a>
-    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.budget-section').scrollIntoView({behavior:'smooth'})">
+    <a href="#" class="portal-card" onclick="event.preventDefault();smoothScrollTo('.budget-section')">
       <div class="portal-icon">💰</div>
       <span class="portal-label">By Budget</span>
       <span class="portal-count">₹3L — ₹1Cr+</span>
     </a>
-    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.launches-section').scrollIntoView({behavior:'smooth'})">
+    <a href="#" class="portal-card" onclick="event.preventDefault();smoothScrollTo('.launches-section')">
       <div class="portal-icon">🚀</div>
       <span class="portal-label">New Launches</span>
       <span class="portal-count">2025-26</span>
     </a>
-    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.compare-section').scrollIntoView({behavior:'smooth'})">
+    <a href="#" class="portal-card" onclick="event.preventDefault();smoothScrollTo('.compare-section')">
       <div class="portal-icon">⚖️</div>
       <span class="portal-label">Compare</span>
-      <span class="portal-count">Side by Side</span>
+      <span class="portal-count">Up to 5 Cars</span>
     </a>
-    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.emi-section').scrollIntoView({behavior:'smooth'})">
+    <a href="#" class="portal-card" onclick="event.preventDefault();smoothScrollTo('.emi-section')">
       <div class="portal-icon">🏦</div>
       <span class="portal-label">EMI Calculator</span>
       <span class="portal-count">Real Math</span>
     </a>
-    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.articles-section').scrollIntoView({behavior:'smooth'})">
+    <a href="#" class="portal-card" onclick="event.preventDefault();smoothScrollTo('.articles-section')">
       <div class="portal-icon">📰</div>
       <span class="portal-label">Articles</span>
       <span class="portal-count">No Fluff</span>
     </a>
-    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.brands-section').scrollIntoView({behavior:'smooth'})">
+    <a href="#" class="portal-card" onclick="event.preventDefault();smoothScrollTo('.brands-section')">
       <div class="portal-icon">🏷️</div>
       <span class="portal-label">All Brands</span>
-      <span class="portal-count">45+ Brands</span>
+      <span class="portal-count">62+ Brands</span>
     </a>
     <a href="#" class="portal-card" onclick="event.preventDefault();showAllCars()">
       <div class="portal-icon">🚗</div>
       <span class="portal-label">All Cars</span>
-      <span class="portal-count">213+ Vehicles</span>
+      <span class="portal-count">264+ Vehicles</span>
     </a>
   </div>
 </section>
@@ -853,16 +853,21 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
       <div class="sl-fill" id="slFill" style="width:8%"></div>
       <input type="range" id="bSlider" min="3" max="100" value="10">
     </div>
-    <div class="sl-minmax"><span>₹2L</span><span>₹25L</span><span>₹50L</span><span>₹1Cr+</span></div>
+    <div class="sl-minmax"><span>₹3L</span><span>₹25L</span><span>₹50L</span><span>₹1Cr+</span></div>
   </div>
 
-  <div class="filter-chips">
+  <!-- Cars / Bikes Toggle -->
+  <div style="display:flex;justify-content:center;gap:4px;margin-bottom:20px">
+    <button class="chip on" id="toggleCars" onclick="setBudgetMode('cars')" style="padding:10px 28px;font-size:14px">Cars</button>
+    <button class="chip" id="toggleBikes" onclick="setBudgetMode('bikes')" style="padding:10px 28px;font-size:14px">Bikes & Scooters</button>
+  </div>
+
+  <div class="filter-chips" id="filterChips">
     <button class="chip on" onclick="setChip(this,'all')">All</button>
     <button class="chip" onclick="setChip(this,'hatch')">Hatchback</button>
     <button class="chip" onclick="setChip(this,'suv')">SUV</button>
     <button class="chip" onclick="setChip(this,'sedan')">Sedan</button>
     <button class="chip" onclick="setChip(this,'ev')">Electric</button>
-    <button class="chip" onclick="setChip(this,'bike')">Bikes</button>
   </div>
 
   <div class="budget-results" id="bResults"></div>
@@ -1405,6 +1410,14 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 <!-- ══════════════════════ JS ══════════════════════ -->
 <script src="vehicles.js"></script>
 <script>
+// ── SMOOTH SCROLL HELPER (with offset for fixed nav) ──
+function smoothScrollTo(selector){
+  const el=document.querySelector(selector);
+  if(!el) return;
+  const y=el.getBoundingClientRect().top+window.pageYOffset-80;
+  window.scrollTo({top:y,behavior:'smooth'});
+}
+
 // ── IMAGE FALLBACK ──
 const brandColors={
   'Maruti Suzuki':'#1B3C87','Hyundai':'#002C5F','Tata':'#1A5296',
@@ -1459,51 +1472,125 @@ const blbl=document.getElementById('budgetLbl');
 const slFill=document.getElementById('slFill');
 const bResults=document.getElementById('bResults');
 
-const cars=[
-  {n:'Maruti Alto K10',p:3.99,min:2,max:5,cat:'hatch',eng:'1.0L 67PS',mil:'24 km/l',safe:'2 Airbags',img:''},
-  {n:'Maruti Swift',p:6.49,min:5,max:10,cat:'hatch',eng:'1.2L 90PS',mil:'24.8 km/l',safe:'6 Airbags',img:'https://az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car/car-detail/dealer-homepage-banners/swift_1366x600_desktop'},
-  {n:'Tata Punch',p:6.13,min:5,max:10,cat:'suv',eng:'1.2L 86PS',mil:'20 km/l',safe:'5★ GNCAP',img:'https://s7ap1.scene7.com/is/image/tatamotors/punch-mce-navigation?$PO-750-500-S$&fit=crop&fmt=webp'},
-  {n:'Honda City',p:11.82,min:10,max:18,cat:'sedan',eng:'1.5L 121PS',mil:'18.4 km/l',safe:'6 Airbags',img:'https://www.hondacarindia.com/web-data/models/carModelImage/city5thGeneration/City-Desktop.png'},
-  {n:'Tata Nexon',p:8.10,min:7,max:15,cat:'suv',eng:'1.2T / 1.5D',mil:'17–23 km/l',safe:'5★ GNCAP',img:'https://s7ap1.scene7.com/is/image/tatamotors/navigation-2?$PO-750-500-S$&fit=crop&fmt=webp'},
-  {n:'Hyundai Creta',p:11.11,min:9,max:20,cat:'suv',eng:'1.5L Pet/Die',mil:'16–22 km/l',safe:'ADAS L2',img:'https://www.hyundai.com/content/dam/hyundai/in/en/data/vehicle-thumbnail/Thumbnail/creta-suvpc.png'},
-  {n:'Kia Seltos',p:10.90,min:9,max:20,cat:'suv',eng:'1.5L / 1.5T',mil:'16–21 km/l',safe:'ADAS',img:'https://www.kia.com/content/dam/kia2/in/en/our-vehicles/new-seltos/seltos_d_1.jpg'},
-  {n:'Hyundai Creta EV',p:17.99,min:16,max:28,cat:'ev',eng:'150kW EV',mil:'473 km',safe:'ADAS L2',img:'https://www.hyundai.com/content/dam/hyundai/in/en/data/vehicle-thumbnail/creta_thumbnail_pc.png'},
-  {n:'Tata Nexon EV',p:14.49,min:12,max:24,cat:'ev',eng:'EV 143PS',mil:'453 km',safe:'5★ GNCAP',img:'https://s7ap1.scene7.com/is/image/tatamotors/oxide?$PO-750-500-S$&fit=crop&fmt=webp'},
-  {n:'RE Classic 350',p:1.93,min:1,max:3,cat:'bike',eng:'349cc 20PS',mil:'35 km/l',safe:'Dual ABS',img:'https://www.royalenfield.com/content/dam/royal-enfield/motorcycles/new-classic-350/classic-350-motorcycle-listing.jpg'},
-  {n:'Bajaj Pulsar NS200',p:1.48,min:1,max:2,cat:'bike',eng:'200cc 24.5PS',mil:'38 km/l',safe:'ABS',img:'https://cdn.bajajauto.com/-/media/assets/bajajauto/bikes/web-header-navigator-images/ns200.webp'},
-  {n:'BMW 3 Series',p:48.90,min:40,max:70,cat:'sedan',eng:'2.0T 258PS',mil:'22.7 km/l',safe:'ADAS',img:''},
-  {n:'Kia Syros',p:8.99,min:7,max:20,cat:'suv',eng:'1.0T / 1.5D',mil:'~20 km/l',safe:'6 Airbags',img:'https://www.kia.com/content/dam/kia2/in/en/our-vehicles/syros/showroom/section/section_1.jpg'},
-  {n:'Toyota Fortuner',p:33.43,min:28,max:55,cat:'suv',eng:'2.8D 204PS',mil:'10 km/l',safe:'7 Airbags',img:''},
-];
-
+// ── Budget mode: 'cars' or 'bikes' ──
+let budgetMode='cars';
 let activeFilter='all';
+
+// Map allVehiclesDB categories to filter chips
+function getVehicleCat(v){
+  const t=(v.type||'').toLowerCase();
+  const cat=(v.category||'').toLowerCase();
+  const fuel=(v.fuel||'').toLowerCase();
+  if(fuel.includes('electric')) return 'ev';
+  if(cat==='bike'||cat==='scooter') return 'bike';
+  if(t.includes('suv')||t.includes('muv')||t.includes('mpv')) return 'suv';
+  if(t.includes('sedan')) return 'sedan';
+  if(t.includes('hatch')||t.includes('micro')) return 'hatch';
+  if(t.includes('cruiser')||t.includes('sport')||t.includes('adventure')||t.includes('naked')||t.includes('commuter')||t.includes('scooter')||t.includes('scrambler')||t.includes('touring')) return 'bike';
+  return 'other';
+}
+
+function setBudgetMode(mode){
+  budgetMode=mode;
+  document.getElementById('toggleCars').classList.toggle('on',mode==='cars');
+  document.getElementById('toggleBikes').classList.toggle('on',mode==='bikes');
+  // Update filter chips based on mode
+  const chips=document.getElementById('filterChips');
+  if(mode==='bikes'){
+    chips.innerHTML=`
+      <button class="chip on" onclick="setChip(this,'all')">All</button>
+      <button class="chip" onclick="setChip(this,'commuter')">Commuter</button>
+      <button class="chip" onclick="setChip(this,'sport')">Sport</button>
+      <button class="chip" onclick="setChip(this,'cruiser')">Cruiser</button>
+      <button class="chip" onclick="setChip(this,'scooter')">Scooter</button>
+      <button class="chip" onclick="setChip(this,'ev')">Electric</button>`;
+  }else{
+    chips.innerHTML=`
+      <button class="chip on" onclick="setChip(this,'all')">All</button>
+      <button class="chip" onclick="setChip(this,'hatch')">Hatchback</button>
+      <button class="chip" onclick="setChip(this,'suv')">SUV</button>
+      <button class="chip" onclick="setChip(this,'sedan')">Sedan</button>
+      <button class="chip" onclick="setChip(this,'ev')">Electric</button>`;
+  }
+  activeFilter='all';
+  updateBudget();
+}
+
+function getBikeSubcat(v){
+  const t=(v.type||'').toLowerCase();
+  if(t.includes('commuter')) return 'commuter';
+  if(t.includes('sport')||t.includes('naked')||t.includes('super')) return 'sport';
+  if(t.includes('cruiser')||t.includes('touring')||t.includes('adventure')||t.includes('scrambler')) return 'cruiser';
+  if(t.includes('scooter')) return 'scooter';
+  if((v.fuel||'').toLowerCase().includes('electric')) return 'ev';
+  const cat=(v.category||'').toLowerCase();
+  if(cat==='scooter') return 'scooter';
+  return 'sport'; // default for bikes
+}
+
 function updateBudget(){
   const v=parseInt(bSlider.value);
   const pct=(v-3)/97*100;
   slFill.style.width=pct+'%';
   if(v>=100){bv.textContent='1';blbl.textContent='Crore+'}
   else{bv.textContent=v;blbl.textContent='Lakh'}
-  let matched=cars.filter(c=>v>=c.min&&v<=c.max+6);
-  if(activeFilter!=='all') matched=matched.filter(c=>c.cat===activeFilter);
-  matched=matched.slice(0,4);
-  if(!matched.length){bResults.innerHTML=`<p style="font-family:var(--font-serif);font-style:italic;color:var(--mist);font-size:18px">No matches — try adjusting budget or filter</p>`;return}
-  bResults.innerHTML=matched.map(c=>`
-    <div class="bcard" style="flex-direction:column;align-items:stretch;min-width:220px;padding:16px 20px">
+
+  // Filter from allVehiclesDB
+  let pool=allVehiclesDB.filter(c=>{
+    const cat=getVehicleCat(c);
+    const isBikeType=(cat==='bike'||(c.category||'').toLowerCase()==='bike'||(c.category||'').toLowerCase()==='scooter');
+    if(budgetMode==='cars' && isBikeType) return false;
+    if(budgetMode==='bikes' && !isBikeType) return false;
+    const price=parseFloat(c.price);
+    if(isNaN(price)||price<=0) return false;
+    // Show vehicles within ±30% of slider value
+    return price<=v*1.1 && price>=v*0.4;
+  });
+
+  // Apply sub-filter
+  if(activeFilter!=='all'){
+    pool=pool.filter(c=>{
+      if(budgetMode==='bikes') return getBikeSubcat(c)===activeFilter;
+      return getVehicleCat(c)===activeFilter;
+    });
+  }
+
+  // Sort by closest to budget, then slice
+  pool.sort((a,b)=>Math.abs(parseFloat(a.price)-v)-Math.abs(parseFloat(b.price)-v));
+  pool=pool.slice(0,6);
+
+  if(!pool.length){
+    bResults.innerHTML=`<p style="font-family:var(--font-serif);font-style:italic;color:var(--mist);font-size:18px">No matches — try adjusting budget or filter</p>`;
+    return;
+  }
+
+  bResults.innerHTML=pool.map(c=>{
+    const p=parseFloat(c.price);
+    const priceStr=p>=100?'₹'+(p/100).toFixed(2)+' Cr':'₹'+p+'L';
+    const imgSrc=c.img||'';
+    const fallbackSvg=`data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="64" height="40" fill="none"><rect width="64" height="40" rx="6" fill="%23f0f0f0"/><text x="32" y="24" text-anchor="middle" font-size="8" fill="%23999" font-family="sans-serif">'+c.brand.split(' ')[0]+'</text></svg>')}`;
+    return `<div class="bcard" style="flex-direction:column;align-items:stretch;min-width:220px;padding:16px 20px">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px">
-        <img src="${c.img}" style="width:64px;height:40px;object-fit:cover;border-radius:6px;filter:brightness(.9)" alt="${c.n}" onerror="this.style.display='none'">
-        <div><div class="bcard-name">${c.n}</div><div class="bcard-price">₹${c.p}L onwards</div></div>
+        <img src="${imgSrc||fallbackSvg}" style="width:64px;height:40px;object-fit:cover;border-radius:6px;filter:brightness(.9)" alt="${c.name}" onerror="this.src='${fallbackSvg}'">
+        <div><div class="bcard-name">${c.name}</div><div class="bcard-price">${priceStr} onwards</div></div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <span class="t-spec-tag">${c.eng||c.cat.toUpperCase()}</span>
-        <span class="t-spec-tag">${c.mil||'—'}</span>
-        ${c.safe?'<span class="t-spec-tag">'+c.safe+'</span>':''}
+        <span class="t-spec-tag">${c.engine||c.type||''}</span>
+        <span class="t-spec-tag">${c.mileage||'—'}</span>
+        ${c.safety?'<span class="t-spec-tag">'+c.safety+'</span>':''}
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 bSlider.addEventListener('input',updateBudget);
 updateBudget();
 
-function setChip(el,cat){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');activeFilter=cat;updateBudget()}
+function setChip(el,cat){
+  el.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+  el.classList.add('on');
+  activeFilter=cat;
+  updateBudget();
+}
 
 // ── MULTI COMPARE (5 vehicles) ──
 function initCompareMulti(){
@@ -1929,15 +2016,25 @@ async function sendMessage(){
   const SYSTEM_PROMPT=buildSystemPrompt(q);
   const GEMINI_KEY='AIzaSyDW7gp0aw9tQHhjCM8GHfCuixzNGWIeSZY';
 
+  // Detect if query needs web search (reviews, news, latest, opinions, social)
+  const qLow=q.toLowerCase();
+  const needsSearch=/(review|rating|opinion|news|latest|update|social|youtube|owner|experience|problem|issue|recall|compare.*real|real world|mileage.*real|actual|2024|2025|2026|launch.*date|when.*launch|discount|offer|waiting period)/.test(qLow);
+
   try{
+    const requestBody={
+      system_instruction:{parts:[{text:SYSTEM_PROMPT}]},
+      contents:chatHistory.slice(-10),
+      generationConfig:{maxOutputTokens:1200,temperature:0.7}
+    };
+    // Enable Google Search grounding for queries needing real-time info
+    if(needsSearch){
+      requestBody.tools=[{google_search:{}}];
+    }
+
     const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_KEY}`,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        system_instruction:{parts:[{text:SYSTEM_PROMPT}]},
-        contents:chatHistory.slice(-10),
-        generationConfig:{maxOutputTokens:1200,temperature:0.7}
-      })
+      body:JSON.stringify(requestBody)
     });
     const data=await res.json();
     typingEl.remove();
