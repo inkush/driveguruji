@@ -88,7 +88,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .onroad-row.total .v{color:var(--gold);font-weight:500}
 
 /* ── HERO / CHATBOT ── */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 24px 60px;position:relative;overflow:hidden}
+.hero{min-height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 24px 40px;position:relative;overflow:hidden}
 
 /* animated grid bg */
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,134,11,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(184,134,11,.04) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 30%,transparent 100%);animation:gridShift 20s linear infinite}
@@ -97,13 +97,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 /* radial glow behind chat */
 .hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:500px;background:radial-gradient(ellipse,rgba(184,134,11,.06) 0%,transparent 70%);pointer-events:none}
 
-.hero-top{text-align:center;margin-bottom:52px;position:relative;z-index:2}
+.hero-top{text-align:center;margin-bottom:28px;position:relative;z-index:2}
 .hero-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:12px}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';flex:1;max-width:40px;height:1px;background:linear-gradient(to right,transparent,var(--gold))}
 .hero-eyebrow::after{background:linear-gradient(to left,transparent,var(--gold))}
-.hero-title{font-family:var(--font-serif);font-size:clamp(44px,6vw,80px);font-weight:400;line-height:1.05;letter-spacing:-.01em;margin-bottom:20px}
+.hero-title{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:400;line-height:1.05;letter-spacing:-.01em;margin-bottom:12px}
 .hero-title em{font-style:italic;color:var(--gold)}
-.hero-sub{font-size:16px;color:var(--smoke);font-weight:300;max-width:480px;margin:0 auto;line-height:1.7}
+.hero-sub{font-size:16px;color:var(--smoke);font-weight:300;max-width:560px;margin:0 auto;line-height:1.7}
 
 /* ── CHAT WIDGET ── */
 .chat-widget{width:100%;max-width:760px;position:relative;z-index:10}
@@ -274,6 +274,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .stat-num{font-family:var(--font-serif);font-size:26px;font-weight:400;color:var(--paper)}
 .stat-label{font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--mist)}
 
+/* ── PORTAL STRIP ── */
+.portal-strip{background:var(--ink2);padding:24px;border-top:1px solid rgba(0,0,0,.04);border-bottom:1px solid rgba(0,0,0,.04)}
+.portal-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;max-width:1200px;margin:0 auto}
+.portal-card{display:flex;flex-direction:column;align-items:center;padding:16px 8px;background:var(--ink);border-radius:12px;text-decoration:none;transition:all .2s;border:1px solid transparent;cursor:none}
+.portal-card:hover{border-color:rgba(184,134,11,.2);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.portal-icon{font-size:24px;margin-bottom:8px}
+.portal-label{font-family:var(--font-sans);font-size:12px;font-weight:500;color:var(--paper);text-align:center}
+.portal-count{font-family:var(--font-mono);font-size:9px;color:var(--mist);letter-spacing:.06em;margin-top:2px}
+@media(max-width:768px){.portal-grid{grid-template-columns:repeat(4,1fr);gap:6px}.portal-card{padding:12px 6px}.portal-icon{font-size:20px}}
+@media(max-width:480px){.portal-grid{grid-template-columns:repeat(4,1fr)}}
+
 /* ── SECTION COMMONS ── */
 .section{padding:96px 48px}
 .sec-eye{font-family:var(--font-mono);font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
@@ -360,21 +371,22 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3);box-shadow:0 
 
 /* ── COMPARE TOOL ── */
 .compare-section{background:var(--ink);padding:96px 48px}
-.compare-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;border:1px solid rgba(0,0,0,.05);border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
-.compare-col{padding:32px 28px;background:var(--ink3)}
-.compare-col.vs-col{background:var(--ink4);display:flex;align-items:center;justify-content:center}
-.vs-label{font-family:var(--font-serif);font-size:48px;font-style:italic;color:rgba(0,0,0,.08);font-weight:400}
-.compare-car-slot{background:rgba(0,0,0,.03);border:1px dashed rgba(0,0,0,.08);border-radius:8px;padding:20px;text-align:center;margin-bottom:24px;cursor:none;transition:all .25s}
-.compare-car-slot:hover{border-color:rgba(184,134,11,.3);background:rgba(184,134,11,.04)}
-.compare-car-slot.filled{border-style:solid;border-color:rgba(184,134,11,.2)}
-.slot-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mist);margin-bottom:6px}
-.slot-name{font-family:var(--font-serif);font-size:20px;font-weight:400;color:var(--paper)}
-.compare-spec-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.04)}
-.compare-spec-row:last-child{border-bottom:none}
-.spec-key{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--mist)}
-.spec-value{font-family:var(--font-mono);font-size:11px;color:var(--paper2);text-align:right}
-.spec-value.better{color:#4ade80}
-.spec-value.worse{color:#f87171}
+.compare-picker{display:flex;gap:8px;overflow-x:auto;padding:0 0 16px;margin-bottom:24px;max-width:1200px}
+.compare-slot{flex:1;min-width:160px}
+.compare-dd{width:100%;padding:10px 12px;border:1px solid rgba(0,0,0,.1);border-radius:10px;font-family:var(--font-sans);font-size:13px;background:var(--ink);color:var(--paper);cursor:pointer;appearance:none;-webkit-appearance:none}
+.compare-dd:focus{outline:none;border-color:var(--gold)}
+.compare-table-wrap{overflow-x:auto;max-width:1200px;margin:0 auto}
+.compare-table{width:100%;border-collapse:collapse;font-family:var(--font-sans);font-size:13px}
+.compare-table th{font-family:var(--font-serif);font-size:15px;font-weight:500;padding:12px 16px;text-align:center;border-bottom:2px solid rgba(184,134,11,.2);background:var(--ink2);position:sticky;top:0}
+.compare-table th img{width:100%;max-width:140px;height:80px;object-fit:cover;border-radius:8px;margin-bottom:8px;display:block;margin:0 auto 8px}
+.compare-table td{padding:10px 16px;text-align:center;border-bottom:1px solid rgba(0,0,0,.05);vertical-align:middle}
+.compare-table td:first-child{text-align:left;font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--mist);font-weight:400;white-space:nowrap}
+.compare-table tr:hover td{background:rgba(184,134,11,.03)}
+.compare-table .best-val{color:var(--gold);font-weight:500;position:relative}
+.compare-table .best-val::after{content:'★';font-size:8px;margin-left:3px;vertical-align:super}
+.compare-table .worse-val{color:var(--mist)}
+.compare-empty{text-align:center;padding:48px 24px}
+@media(max-width:768px){.compare-picker{flex-wrap:wrap}.compare-slot{min-width:calc(50% - 4px);flex:none}}
 
 /* ── EMI CALCULATOR ── */
 .emi-section{background:var(--ink2);padding:96px 48px}
@@ -480,7 +492,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
   .compare-col.vs-col{display:none}
   .emi-wrap{grid-template-columns:1fr;gap:40px}
   .foot-top{grid-template-columns:1fr 1fr;gap:40px}
-  .hero{padding:80px 20px 48px}
+  .hero{padding:60px 16px 32px}
   .stats-bar{flex-wrap:wrap;gap:0;justify-content:center}
   .stat-item{border-right:none;border-bottom:1px solid rgba(0,0,0,.06);width:50%;padding:16px 20px}
 }
@@ -618,8 +630,8 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 
 <!-- ══════════════════════ HERO — AI CHATBOT ══════════════════════ -->
 <div class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
+  <!-- <div class="hero-grid"></div> -->
+  <!-- <div class="hero-glow"></div> -->
 
   <div class="hero-top fi">
     <div class="hero-eyebrow">India's Smartest Car & Bike Advisor</div>
@@ -670,14 +682,60 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
   </div>
 
   <div class="stats-bar fi">
-    <div class="stat-item"><span class="stat-num">30+</span><span class="stat-label">Brands Covered</span></div>
-    <div class="stat-item"><span class="stat-num">500+</span><span class="stat-label">Cars & Bikes</span></div>
+    <div class="stat-item"><span class="stat-num">45+</span><span class="stat-label">Brands Covered</span></div>
+    <div class="stat-item"><span class="stat-num">213+</span><span class="stat-label">Cars & Bikes</span></div>
     <div class="stat-item"><span class="stat-num">Hindi + English</span><span class="stat-label">Both Languages</span></div>
     <div class="stat-item"><span class="stat-num">Zero</span><span class="stat-label">Forms to Fill</span></div>
   </div>
 </div>
 
 <div class="divider"></div>
+
+<!-- ══════════════════════ QUICK ACCESS PORTAL ══════════════════════ -->
+<section class="portal-strip fi">
+  <div class="portal-grid">
+    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.trending-section').scrollIntoView({behavior:'smooth'})">
+      <div class="portal-icon">🔥</div>
+      <span class="portal-label">Trending</span>
+      <span class="portal-count">Updated Daily</span>
+    </a>
+    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.budget-section').scrollIntoView({behavior:'smooth'})">
+      <div class="portal-icon">💰</div>
+      <span class="portal-label">By Budget</span>
+      <span class="portal-count">₹3L — ₹1Cr+</span>
+    </a>
+    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.launches-section').scrollIntoView({behavior:'smooth'})">
+      <div class="portal-icon">🚀</div>
+      <span class="portal-label">New Launches</span>
+      <span class="portal-count">2025-26</span>
+    </a>
+    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.compare-section').scrollIntoView({behavior:'smooth'})">
+      <div class="portal-icon">⚖️</div>
+      <span class="portal-label">Compare</span>
+      <span class="portal-count">Side by Side</span>
+    </a>
+    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.emi-section').scrollIntoView({behavior:'smooth'})">
+      <div class="portal-icon">🏦</div>
+      <span class="portal-label">EMI Calculator</span>
+      <span class="portal-count">Real Math</span>
+    </a>
+    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.articles-section').scrollIntoView({behavior:'smooth'})">
+      <div class="portal-icon">📰</div>
+      <span class="portal-label">Articles</span>
+      <span class="portal-count">No Fluff</span>
+    </a>
+    <a href="#" class="portal-card" onclick="event.preventDefault();document.querySelector('.brands-section').scrollIntoView({behavior:'smooth'})">
+      <div class="portal-icon">🏷️</div>
+      <span class="portal-label">All Brands</span>
+      <span class="portal-count">45+ Brands</span>
+    </a>
+    <a href="#" class="portal-card" onclick="event.preventDefault();showAllCars()">
+      <div class="portal-icon">🚗</div>
+      <span class="portal-label">All Cars</span>
+      <span class="portal-count">213+ Vehicles</span>
+    </a>
+  </div>
+</section>
 
 <!-- ══════════════════════ TRENDING ══════════════════════ -->
 <section class="section trending-section fi">
@@ -793,7 +851,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
   <div class="sl-wrap">
     <div class="sl-track">
       <div class="sl-fill" id="slFill" style="width:8%"></div>
-      <input type="range" id="bSlider" min="2" max="100" value="10">
+      <input type="range" id="bSlider" min="3" max="100" value="10">
     </div>
     <div class="sl-minmax"><span>₹2L</span><span>₹25L</span><span>₹50L</span><span>₹1Cr+</span></div>
   </div>
@@ -936,38 +994,28 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 
 <!-- ══════════════════════ COMPARE TOOL ══════════════════════ -->
 <section class="compare-section fi">
-  <div class="sec-eye">Side by Side</div>
-  <h2 class="sec-title" style="margin-bottom:48px">Compare any<br><em>two cars</em></h2>
-  <div class="compare-grid">
-    <div class="compare-col">
-      <div class="compare-car-slot filled" id="cslot1">
-        <div class="slot-label">Car One</div>
-        <div class="slot-name">Hyundai Creta EV</div>
-      </div>
-      <div class="compare-spec-row"><span class="spec-key">Price</span><span class="spec-value better">₹17.99 L</span></div>
-      <div class="compare-spec-row"><span class="spec-key">Range / Mileage</span><span class="spec-value better">473 km</span></div>
-      <div class="compare-spec-row"><span class="spec-key">Power</span><span class="spec-value">134 bhp</span></div>
-      <div class="compare-spec-row"><span class="spec-key">0–100 km/h</span><span class="spec-value better">7.9 sec</span></div>
-      <div class="compare-spec-row"><span class="spec-key">Boot Space</span><span class="spec-value worse">433 L</span></div>
-      <div class="compare-spec-row"><span class="spec-key">ADAS</span><span class="spec-value better">Level 2</span></div>
-      <div class="compare-spec-row"><span class="spec-key">Warranty</span><span class="spec-value">3 yr / 1.5L km</span></div>
-    </div>
-    <div class="compare-col vs-col"><div class="vs-label">vs</div></div>
-    <div class="compare-col">
-      <div class="compare-car-slot filled" id="cslot2">
-        <div class="slot-label">Car Two</div>
-        <div class="slot-name">Tata Nexon EV</div>
-      </div>
-      <div class="compare-spec-row"><span class="spec-key">Price</span><span class="spec-value worse">₹14.49 L</span></div>
-      <div class="compare-spec-row"><span class="spec-key">Range / Mileage</span><span class="spec-value worse">453 km</span></div>
-      <div class="compare-spec-row"><span class="spec-key">Power</span><span class="spec-value better">143 bhp</span></div>
-      <div class="compare-spec-row"><span class="spec-key">0–100 km/h</span><span class="spec-value worse">8.9 sec</span></div>
-      <div class="compare-spec-row"><span class="spec-key">Boot Space</span><span class="spec-value better">382 L</span></div>
-      <div class="compare-spec-row"><span class="spec-key">ADAS</span><span class="spec-value worse">Level 1</span></div>
-      <div class="compare-spec-row"><span class="spec-key">Warranty</span><span class="spec-value">3 yr / unlimited</span></div>
+  <div class="sec-head">
+    <div>
+      <div class="sec-eye">Head-to-Head</div>
+      <h2 class="sec-title">Compare up to<br><em>5 vehicles</em></h2>
     </div>
   </div>
-  <p style="text-align:center;margin-top:28px;font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.12em">Or just ask the AI: <em style="color:var(--gold)">"Compare Creta EV vs Nexon EV in detail"</em></p>
+
+  <div class="compare-picker" id="comparePicker">
+    <div class="compare-slot" id="cs0"><select class="compare-dd" onchange="updateCompareMulti()"><option value="">+ Add Vehicle</option></select></div>
+    <div class="compare-slot" id="cs1"><select class="compare-dd" onchange="updateCompareMulti()"><option value="">+ Add Vehicle</option></select></div>
+    <div class="compare-slot" id="cs2"><select class="compare-dd" onchange="updateCompareMulti()"><option value="">+ Add Vehicle</option></select></div>
+    <div class="compare-slot" id="cs3"><select class="compare-dd" onchange="updateCompareMulti()"><option value="">+ Add Vehicle</option></select></div>
+    <div class="compare-slot" id="cs4"><select class="compare-dd" onchange="updateCompareMulti()"><option value="">+ Add Vehicle</option></select></div>
+  </div>
+
+  <div class="compare-table-wrap" id="compareTableWrap" style="display:none">
+    <table class="compare-table" id="compareTable"></table>
+  </div>
+
+  <div class="compare-empty" id="compareEmpty">
+    <p style="font-family:var(--font-serif);font-style:italic;color:var(--mist);font-size:16px">Select at least 2 vehicles above to compare specs, prices, and features side-by-side</p>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -1431,7 +1479,7 @@ const cars=[
 let activeFilter='all';
 function updateBudget(){
   const v=parseInt(bSlider.value);
-  const pct=(v-2)/98*100;
+  const pct=(v-3)/97*100;
   slFill.style.width=pct+'%';
   if(v>=100){bv.textContent='1';blbl.textContent='Crore+'}
   else{bv.textContent=v;blbl.textContent='Lakh'}
@@ -1456,6 +1504,73 @@ bSlider.addEventListener('input',updateBudget);
 updateBudget();
 
 function setChip(el,cat){document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');activeFilter=cat;updateBudget()}
+
+// ── MULTI COMPARE (5 vehicles) ──
+function initCompareMulti(){
+  const opts = allCarsDB.map(c => `<option value="${c.id}">${c.name||c.n} — ₹${c.price||c.p}L</option>`).join('');
+  for(let i=0;i<5;i++){
+    const sel = document.querySelector('#cs'+i+' select');
+    if(sel) sel.innerHTML = '<option value="">+ Add Vehicle</option>' + opts;
+  }
+}
+
+function updateCompareMulti(){
+  const ids = [];
+  for(let i=0;i<5;i++){
+    const sel = document.querySelector('#cs'+i+' select');
+    if(sel && sel.value) ids.push(sel.value);
+  }
+  const wrap = document.getElementById('compareTableWrap');
+  const empty = document.getElementById('compareEmpty');
+  const table = document.getElementById('compareTable');
+
+  if(ids.length < 2){ wrap.style.display='none'; empty.style.display='block'; return; }
+  wrap.style.display='block'; empty.style.display='none';
+
+  const cars = ids.map(id => allCarsDB.find(c=>c.id===id)).filter(Boolean);
+
+  const specs = [
+    {key:'Price', fn:c=>'₹'+(c.price||c.p)+'L', compare:'lower'},
+    {key:'Type', fn:c=>c.type||c.cat||'—'},
+    {key:'Engine', fn:c=>c.engine||c.eng||'—'},
+    {key:'Power', fn:c=>c.power||'—', compare:'higher'},
+    {key:'Mileage', fn:c=>c.mileage||c.mil||'—', compare:'higher'},
+    {key:'Fuel', fn:c=>c.fuel||'—'},
+    {key:'Transmission', fn:c=>c.transmission||'—'},
+    {key:'Safety', fn:c=>c.safety||c.safe||'—'},
+    {key:'Launched', fn:c=>c.launched||'—'},
+  ];
+
+  // Build header
+  let html = '<thead><tr><th style="text-align:left;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;color:var(--mist)">SPEC</th>';
+  cars.forEach(c => {
+    html += `<th><img src="${c.img||''}" alt="${c.name||c.n}" onerror="this.style.display='none'"><span>${c.name||c.n}</span></th>`;
+  });
+  html += '</tr></thead><tbody>';
+
+  // Build rows with highlighting
+  specs.forEach(s => {
+    const vals = cars.map(c => s.fn(c));
+    // Find best value
+    let bestIdx = -1;
+    if(s.compare){
+      const nums = vals.map(v => parseFloat(v.replace(/[^\d.]/g,'')));
+      if(nums.some(n => !isNaN(n))){
+        if(s.compare === 'lower') bestIdx = nums.indexOf(Math.min(...nums.filter(n=>!isNaN(n)&&n>0)));
+        else bestIdx = nums.indexOf(Math.max(...nums.filter(n=>!isNaN(n))));
+      }
+    }
+    html += `<tr><td>${s.key}</td>`;
+    vals.forEach((v,i) => {
+      const cls = i===bestIdx ? 'best-val' : (bestIdx>=0 && s.compare ? 'worse-val' : '');
+      html += `<td class="${cls}">${v}</td>`;
+    });
+    html += '</tr>';
+  });
+
+  html += '</tbody>';
+  table.innerHTML = html;
+}
 
 // ── EMI CALCULATOR ──
 function calcEMI(){
@@ -1506,6 +1621,7 @@ calcEMI();
 // ── COMPREHENSIVE VEHICLE DATABASE (loaded from vehicles.js) ──
 const allCarsDB = allVehiclesDB; // 213 vehicles — cars + bikes + scooters
 // Old inline 30-car DB removed — now using vehicles.js with full India market coverage
+initCompareMulti(); // Init multi-car compare selector
 
 // ── AI CHATBOT — Smart Knowledge Engine ──
 const msgs=document.getElementById('chatMessages');
