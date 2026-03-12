@@ -516,7 +516,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 <div class="modal-overlay" id="carDetailModal">
   <div class="modal-content car-detail-modal">
     <button class="modal-close" onclick="closeModal('carDetailModal')">✕</button>
-    <img class="car-modal-hero" id="carModalImg" src="" alt="" style="cursor:pointer" onclick="if(this.dataset.gallery) showGalleryFull(0)">
+    <img class="car-modal-hero" id="carModalImg" src="" alt="" style="cursor:pointer" onerror="imgFallback(this)" onclick="if(this.dataset.gallery) showGalleryFull(0)">
     <div id="carGalleryRow" style="display:flex;gap:6px;padding:0 20px;overflow-x:auto;margin-top:-10px;margin-bottom:10px"></div>
     <div class="car-modal-header">
       <div class="car-modal-brand" id="carModalBrand"></div>
@@ -691,7 +691,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 
   <div class="trending-grid">
     <div class="t-card">
-      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="Maruti Swift">
+      <img src="https://az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car/car-detail/dealer-homepage-banners/swift_1366x600_desktop" alt="Maruti Swift" onerror="imgFallback(this)">
       <div class="t-overlay">
         <span class="t-badge pick">● Editor's Pick</span>
         <button class="t-compare">+ Compare</button>
@@ -712,7 +712,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
       </div>
     </div>
     <div class="t-card">
-      <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80" alt="Hyundai Creta EV">
+      <img src="https://www.hyundai.com/content/dam/hyundai/in/en/data/vehicle-thumbnail/creta_thumbnail_pc.png" alt="Hyundai Creta EV" onerror="imgFallback(this)">
       <div class="t-overlay">
         <span class="t-badge launch">● New Launch</span>
         <button class="t-compare">+ Compare</button>
@@ -728,7 +728,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
       </div>
     </div>
     <div class="t-card">
-      <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=600&q=80" alt="Mahindra XEV 9e">
+      <img src="https://auto.mahindra.com/dw/image/v2/BKRC_PRD/on/demandware.static/-/Sites-mahindra-product-catalog/default/dwa25a9899/images/X3XE/large/AX7L_602x339_DeepForest.png" alt="Mahindra XEV 9e" onerror="imgFallback(this)">
       <div class="t-overlay">
         <span class="t-badge launch">● New Launch</span>
         <button class="t-compare">+ Compare</button>
@@ -744,7 +744,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
       </div>
     </div>
     <div class="t-card">
-      <img src="https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=600&q=80" alt="Kia Seltos">
+      <img src="https://www.kia.com/content/dam/kia2/in/en/our-vehicles/new-seltos/seltos_d_1.jpg" alt="Kia Seltos" onerror="imgFallback(this)">
       <div class="t-overlay">
         <span class="t-badge trend">● Trending</span>
         <button class="t-compare">+ Compare</button>
@@ -760,7 +760,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
       </div>
     </div>
     <div class="t-card">
-      <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80" alt="Kia Syros">
+      <img src="https://www.kia.com/content/dam/kia2/in/en/our-vehicles/syros/showroom/section/section_1.jpg" alt="Kia Syros" onerror="imgFallback(this)">
       <div class="t-overlay">
         <span class="t-badge launch">● Jan 2025</span>
         <button class="t-compare">+ Compare</button>
@@ -857,7 +857,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
   </div>
   <div class="launch-scroll">
     <div class="lcard">
-      <img class="lcard-img" src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=640&q=80" alt="XEV 9e">
+      <img class="lcard-img" src="https://auto.mahindra.com/dw/image/v2/BKRC_PRD/on/demandware.static/-/Sites-mahindra-product-catalog/default/dwa25a9899/images/X3XE/large/AX7L_602x339_DeepForest.png" alt="XEV 9e" onerror="imgFallback(this)">
       <div class="lcard-body">
         <div class="lcard-date">Launched · Jan 2025</div>
         <div class="lcard-name">Mahindra XEV 9e</div>
@@ -872,7 +872,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
       </div>
     </div>
     <div class="lcard">
-      <img class="lcard-img" src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=640&q=80" alt="Creta EV">
+      <img class="lcard-img" src="https://www.hyundai.com/content/dam/hyundai/in/en/data/vehicle-thumbnail/creta_thumbnail_pc.png" alt="Creta EV" onerror="imgFallback(this)">
       <div class="lcard-body">
         <div class="lcard-date">Launched · Jan 2025</div>
         <div class="lcard-name">Hyundai Creta EV</div>
@@ -887,7 +887,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
       </div>
     </div>
     <div class="lcard">
-      <img class="lcard-img" src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=640&q=80" alt="Kia Syros">
+      <img class="lcard-img" src="https://www.kia.com/content/dam/kia2/in/en/our-vehicles/syros/showroom/section/section_1.jpg" alt="Kia Syros" onerror="imgFallback(this)">
       <div class="lcard-body">
         <div class="lcard-date">Launched · Jan 2025</div>
         <div class="lcard-name">Kia Syros</div>
@@ -902,7 +902,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
       </div>
     </div>
     <div class="lcard">
-      <img class="lcard-img" src="https://images.unsplash.com/photo-1558980394-4c7c9299fe96?w=640&q=80" alt="Guerrilla 450">
+      <img class="lcard-img" src="https://www.royalenfield.com/content/dam/royal-enfield/motorcycles/guerrilla-450/guerrilla_450_motorcycle.jpg" alt="Guerrilla 450" onerror="imgFallback(this)">
       <div class="lcard-body">
         <div class="lcard-date">Launched · Aug 2024</div>
         <div class="lcard-name">RE Guerrilla 450</div>
@@ -916,7 +916,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
       </div>
     </div>
     <div class="lcard">
-      <img class="lcard-img" src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=640&q=80" alt="BMW M4 CS">
+      <img class="lcard-img" src="" alt="BMW M4 CS" onerror="imgFallback(this)">
       <div class="lcard-body">
         <div class="lcard-date">Upcoming · Q2 2025</div>
         <div class="lcard-name">BMW M4 CS</div>
@@ -1046,7 +1046,7 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
   <!-- FEATURE ARTICLE -->
   <div class="article-feature">
     <div class="article-feature-img">
-      <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=900&q=80" alt="Creta EV">
+      <img src="https://www.hyundai.com/content/dam/hyundai/in/en/data/vehicle-thumbnail/creta_thumbnail_pc.png" alt="Creta EV" onerror="imgFallback(this)">
     </div>
     <div class="article-feature-body">
       <div>
@@ -1357,6 +1357,36 @@ footer{background:#1a1a1a;color:#f5f5f4;padding:72px 48px 36px;border-top:1px so
 <!-- ══════════════════════ JS ══════════════════════ -->
 <script src="vehicles.js"></script>
 <script>
+// ── IMAGE FALLBACK ──
+const brandColors={
+  'Maruti Suzuki':'#1B3C87','Hyundai':'#002C5F','Tata':'#1A5296',
+  'Mahindra':'#D32F2F','Kia':'#05141F','Toyota':'#EB0A1E',
+  'Honda':'#CC0000','MG':'#C2000B','Volkswagen':'#001E50',
+  'Skoda':'#326634','Renault':'#FFCC33','BMW':'#1C69D4',
+  'Mercedes-Benz':'#333','Audi':'#BB0A30','Volvo':'#003057',
+  'Porsche':'#B12B28','Land Rover':'#005A2B','Royal Enfield':'#000',
+  'Hero':'#A50034','Bajaj':'#005EB8','Honda 2W':'#CC0000',
+  'TVS':'#0047AB','Yamaha':'#0046BE','KTM':'#FF6600',
+  'Kawasaki':'#6BBE44','Suzuki':'#002F6C','Harley-Davidson':'#FF6600',
+  'Ather':'#00C853','Ola':'#1D1D1D','Ferrari':'#DC0000',
+  'Lamborghini':'#DDB321','Rolls-Royce':'#45162B','Bentley':'#333',
+  'Maserati':'#0C2340','Jaguar':'#2C4226','Lexus':'#1A1A1A',
+  'MINI':'#000','BMW Motorrad':'#1C69D4','Jawa':'#964B00',
+};
+function imgFallback(el){
+  if(el.dataset.fallbackApplied) return;
+  el.dataset.fallbackApplied='1';
+  const alt=el.alt||'';
+  const brand=Object.keys(brandColors).find(b=>alt.includes(b))||'';
+  const c=brandColors[brand]||'#d4a843';
+  const w=el.clientWidth||600,h=el.clientHeight||420;
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a0a0a"/><stop offset="100%" stop-color="#1a1a2e"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#b)"/><rect y="0" width="${w}" height="3" fill="${c}" opacity=".7"/><text x="${w/2}" y="${h/2-10}" text-anchor="middle" fill="#fafaf9" font-family="Georgia,serif" font-size="${Math.min(w/15,28)}">${alt}</text><text x="${w/2}" y="${h/2+20}" text-anchor="middle" fill="${c}" font-family="system-ui,sans-serif" font-size="11" letter-spacing="2" opacity=".5">DRIVEGURUJI.COM</text></svg>`;
+  el.src='data:image/svg+xml,'+encodeURIComponent(svg);
+}
+// Handle empty src images on load
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('img[src=""]').forEach(el=>imgFallback(el));
+});
 // ── CURSOR ──
 const cur=document.getElementById('cur'),ring=document.getElementById('curRing');
 let mx=0,my=0,rx=0,ry=0;
@@ -1382,20 +1412,20 @@ const slFill=document.getElementById('slFill');
 const bResults=document.getElementById('bResults');
 
 const cars=[
-  {n:'Maruti Alto K10',p:3.99,min:2,max:5,cat:'hatch',eng:'1.0L 67PS',mil:'24 km/l',safe:'2 Airbags',img:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=160&q=50'},
-  {n:'Maruti Swift',p:6.49,min:5,max:10,cat:'hatch',eng:'1.2L 90PS',mil:'24.8 km/l',safe:'6 Airbags',img:'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=160&q=50'},
-  {n:'Tata Punch',p:6.13,min:5,max:10,cat:'suv',eng:'1.2L 86PS',mil:'20 km/l',safe:'5★ GNCAP',img:'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=160&q=50'},
-  {n:'Honda City',p:11.82,min:10,max:18,cat:'sedan',eng:'1.5L 121PS',mil:'18.4 km/l',safe:'6 Airbags',img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=160&q=50'},
-  {n:'Tata Nexon',p:8.10,min:7,max:15,cat:'suv',eng:'1.2T / 1.5D',mil:'17–23 km/l',safe:'5★ GNCAP',img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=160&q=50'},
-  {n:'Hyundai Creta',p:11.11,min:9,max:20,cat:'suv',eng:'1.5L Pet/Die',mil:'16–22 km/l',safe:'ADAS L2',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=160&q=50'},
-  {n:'Kia Seltos',p:10.90,min:9,max:20,cat:'suv',eng:'1.5L / 1.5T',mil:'16–21 km/l',safe:'ADAS',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=160&q=50'},
-  {n:'Hyundai Creta EV',p:17.99,min:16,max:28,cat:'ev',eng:'150kW EV',mil:'473 km',safe:'ADAS L2',img:'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=160&q=50'},
-  {n:'Tata Nexon EV',p:14.49,min:12,max:24,cat:'ev',eng:'EV 143PS',mil:'453 km',safe:'5★ GNCAP',img:'https://images.unsplash.com/photo-1592198084033-aade902d1aae?w=160&q=50'},
-  {n:'RE Classic 350',p:1.93,min:1,max:3,cat:'bike',eng:'349cc 20PS',mil:'35 km/l',safe:'Dual ABS',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=160&q=50'},
-  {n:'Bajaj Pulsar NS200',p:1.48,min:1,max:2,cat:'bike',eng:'200cc 24.5PS',mil:'38 km/l',safe:'ABS',img:'https://images.unsplash.com/photo-1558980394-4c7c9299fe96?w=160&q=50'},
-  {n:'BMW 3 Series',p:48.90,min:40,max:70,cat:'sedan',eng:'2.0T 258PS',mil:'22.7 km/l',safe:'ADAS',img:'https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=160&q=50'},
-  {n:'Kia Syros',p:8.99,min:7,max:20,cat:'suv',eng:'1.0T / 1.5D',mil:'~20 km/l',safe:'6 Airbags',img:'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=160&q=50'},
-  {n:'Toyota Fortuner',p:33.43,min:28,max:55,cat:'suv',eng:'2.8D 204PS',mil:'10 km/l',safe:'7 Airbags',img:'https://images.unsplash.com/photo-1533473359331-f4289cfb7fc0?w=160&q=50'},
+  {n:'Maruti Alto K10',p:3.99,min:2,max:5,cat:'hatch',eng:'1.0L 67PS',mil:'24 km/l',safe:'2 Airbags',img:''},
+  {n:'Maruti Swift',p:6.49,min:5,max:10,cat:'hatch',eng:'1.2L 90PS',mil:'24.8 km/l',safe:'6 Airbags',img:'https://az-ci-afde-prd-arena-01-e7fmh3dxacbgeyh5.z01.azurefd.net/-/media/images/maruti/marutisuzuki/car/car-detail/dealer-homepage-banners/swift_1366x600_desktop'},
+  {n:'Tata Punch',p:6.13,min:5,max:10,cat:'suv',eng:'1.2L 86PS',mil:'20 km/l',safe:'5★ GNCAP',img:'https://s7ap1.scene7.com/is/image/tatamotors/punch-mce-navigation?$PO-750-500-S$&fit=crop&fmt=webp'},
+  {n:'Honda City',p:11.82,min:10,max:18,cat:'sedan',eng:'1.5L 121PS',mil:'18.4 km/l',safe:'6 Airbags',img:'https://www.hondacarindia.com/web-data/models/carModelImage/city5thGeneration/City-Desktop.png'},
+  {n:'Tata Nexon',p:8.10,min:7,max:15,cat:'suv',eng:'1.2T / 1.5D',mil:'17–23 km/l',safe:'5★ GNCAP',img:'https://s7ap1.scene7.com/is/image/tatamotors/navigation-2?$PO-750-500-S$&fit=crop&fmt=webp'},
+  {n:'Hyundai Creta',p:11.11,min:9,max:20,cat:'suv',eng:'1.5L Pet/Die',mil:'16–22 km/l',safe:'ADAS L2',img:'https://www.hyundai.com/content/dam/hyundai/in/en/data/vehicle-thumbnail/Thumbnail/creta-suvpc.png'},
+  {n:'Kia Seltos',p:10.90,min:9,max:20,cat:'suv',eng:'1.5L / 1.5T',mil:'16–21 km/l',safe:'ADAS',img:'https://www.kia.com/content/dam/kia2/in/en/our-vehicles/new-seltos/seltos_d_1.jpg'},
+  {n:'Hyundai Creta EV',p:17.99,min:16,max:28,cat:'ev',eng:'150kW EV',mil:'473 km',safe:'ADAS L2',img:'https://www.hyundai.com/content/dam/hyundai/in/en/data/vehicle-thumbnail/creta_thumbnail_pc.png'},
+  {n:'Tata Nexon EV',p:14.49,min:12,max:24,cat:'ev',eng:'EV 143PS',mil:'453 km',safe:'5★ GNCAP',img:'https://s7ap1.scene7.com/is/image/tatamotors/oxide?$PO-750-500-S$&fit=crop&fmt=webp'},
+  {n:'RE Classic 350',p:1.93,min:1,max:3,cat:'bike',eng:'349cc 20PS',mil:'35 km/l',safe:'Dual ABS',img:'https://www.royalenfield.com/content/dam/royal-enfield/motorcycles/new-classic-350/classic-350-motorcycle-listing.jpg'},
+  {n:'Bajaj Pulsar NS200',p:1.48,min:1,max:2,cat:'bike',eng:'200cc 24.5PS',mil:'38 km/l',safe:'ABS',img:'https://cdn.bajajauto.com/-/media/assets/bajajauto/bikes/web-header-navigator-images/ns200.webp'},
+  {n:'BMW 3 Series',p:48.90,min:40,max:70,cat:'sedan',eng:'2.0T 258PS',mil:'22.7 km/l',safe:'ADAS',img:''},
+  {n:'Kia Syros',p:8.99,min:7,max:20,cat:'suv',eng:'1.0T / 1.5D',mil:'~20 km/l',safe:'6 Airbags',img:'https://www.kia.com/content/dam/kia2/in/en/our-vehicles/syros/showroom/section/section_1.jpg'},
+  {n:'Toyota Fortuner',p:33.43,min:28,max:55,cat:'suv',eng:'2.8D 204PS',mil:'10 km/l',safe:'7 Airbags',img:''},
 ];
 
 let activeFilter='all';
@@ -1819,7 +1849,7 @@ function setupSearch(){
 
     searchResults.innerHTML=results.map(car=>`
       <div class="search-result-item" onclick="openCarDetail('${car.id}'); closeModal('searchOverlay')">
-        <img src="${car.img}" alt="${car.name}" class="search-result-img">
+        <img src="${car.img}" alt="${car.name}" class="search-result-img" onerror="imgFallback(this)">
         <div class="search-result-info">
           <div class="search-result-name">${car.name}</div>
           <div class="search-result-meta">${car.brand} • ${car.priceRange}</div>
@@ -1863,7 +1893,7 @@ function showFilterResults(cars,title){
   document.getElementById('filterTitle').textContent=title;
   document.getElementById('filterGrid').innerHTML=cars.map(car=>`
     <div class="filter-card" onclick="openCarDetail('${car.id}'); closeModal('filterOverlay')">
-      <img src="${car.img}" alt="${car.name}" class="filter-card-img">
+      <img src="${car.img}" alt="${car.name}" class="filter-card-img" onerror="imgFallback(this)">
       <div class="filter-card-body">
         <div class="filter-card-name">${car.name}</div>
         <div class="filter-card-info">${car.brand} • ${car.priceRange}</div>
@@ -2087,7 +2117,7 @@ function filterAndShowCars(){
 
   document.getElementById('carsListingGrid').innerHTML=filtered.map(car=>`
     <div class="filter-card" onclick="openCarDetail('${car.id}')">
-      <img src="${car.img}" alt="${car.name}" class="filter-card-img">
+      <img src="${car.img}" alt="${car.name}" class="filter-card-img" onerror="imgFallback(this)">
       <div class="filter-card-body">
         <div class="filter-card-name">${car.name}</div>
         <div class="filter-card-info">${car.brand} • ${car.priceRange}</div>
