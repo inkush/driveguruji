@@ -1801,13 +1801,15 @@ function searchVehicles(query){
     }
   }
 
-  // 4. Budget extraction
-  const budgetMatch=q.match(/(?:under|below|within|upto|up to|budget|₹|rs\.?|rupees?)\s*(\d+)\s*(lakh|l\b|lac|cr|crore)?/i)
-    ||q.match(/(\d+)\s*(lakh|l\b|lac)\s*(?:ke|ka|ki|mein|me|under|budget|tak)?/i);
+  // 4. Budget extraction — handles 1.5, 2.5, 10, 15, etc.
+  const budgetMatch=q.match(/(?:under|below|within|upto|up to|budget|₹|rs\.?|rupees?)\s*(\d+\.?\d*)\s*(lakh|l\b|lac|cr|crore)?/i)
+    ||q.match(/(\d+\.?\d*)\s*(lakh|l\b|lac|cr|crore)\s*(?:ke|ka|ki|mein|me|under|budget|tak)?/i);
   if(budgetMatch){
     let budget=parseFloat(budgetMatch[1]);
     const unit=(budgetMatch[2]||'lakh').toLowerCase();
     if(unit==='cr'||unit==='crore') budget*=100;
+    // Handle cases like "1.5 lakh" = ₹1.5L, "150000" = ₹1.5L
+    if(budget>1000) budget=budget/100000; // raw rupees to lakhs
     if(budget>0){
       const budgetFiltered=allVehiclesDB.filter(v=>{
         const p=parseFloat(v.price);
@@ -1876,7 +1878,9 @@ RULES:
 - Always give SPECIFIC data — never vague "it depends" without the actual answer
 - When listing brand models, list ALL models from the data provided — don't skip any
 - Prices are ex-showroom Delhi unless stated otherwise
-- For "which launched before/after X" — use the 'launched' dates from data`;
+- For "which launched before/after X" — use the 'launched' dates from data
+- CRITICAL BUDGET RULE: If user says "under ₹X lakh" or "budget X lakh", ONLY show vehicles priced BELOW ₹X lakh from the data. NEVER show vehicles above the stated budget. If no vehicles match, say "Is budget mein hamare database mein options limited hain" and suggest nearest alternatives.
+- For bikes: ₹1-2 lakh = commuter/entry sport segment. ₹2-5 lakh = mid-premium. ₹5L+ = premium/superbike. Don't confuse segments.`;
 
   if(vehicles.length>0){
     prompt+=`\n\n=== RELEVANT VEHICLE DATA (from our database) ===\n${formatVehicleContext(vehicles, 25)}`;
@@ -1933,10 +1937,10 @@ function getOfflineResponse(query){
   }
 
   // Budget recommendations
-  const budgetMatch=q.match(/(\d+)\s*(lakh|l\b|lac)/i);
+  const budgetMatch=q.match(/(\d+\.?\d*)\s*(lakh|l\b|lac)/i);
   if(budgetMatch && vehicles.length>0){
-    const budget=parseInt(budgetMatch[1]);
-    const sorted=vehicles.sort((a,b)=>parseFloat(b.price)-parseFloat(a.price)).slice(0,6);
+    const budget=parseFloat(budgetMatch[1]);
+    const sorted=vehicles.filter(v=>parseFloat(v.price)<=budget).sort((a,b)=>parseFloat(b.price)-parseFloat(a.price)).slice(0,6);
     let resp=`<strong>Best options under ₹${budget}L:</strong>\n\n`;
     sorted.forEach((v,i)=>{
       resp+=`${i+1}. <strong>${v.name}</strong> — ₹${v.price}L | ${v.type||v.category}\n`;
