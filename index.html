@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DriveGuruji — India's #1 AI Car & Bike Advisor</title>
-<meta name="description" content="India's smartest AI car & bike advisor. Ask anything about prices, mileage, comparisons, EMI — in Hindi or English. 264+ vehicles, 62+ brands.">
+<meta name="description" content="India's smartest AI car & bike advisor. Ask anything about prices, mileage, comparisons, EMI — in Hindi or English. 286+ vehicles, 64+ brands.">
 <meta name="keywords" content="car prices India, bike prices India, EMI calculator, car comparison, best SUV India, DriveGuruji">
 <meta property="og:title" content="DriveGuruji — India's #1 AI Car & Bike Advisor">
 <meta property="og:description" content="Ask anything about any car or bike in India. AI-powered answers with real data.">
@@ -55,11 +55,8 @@ button{cursor:pointer;border:none;font-family:var(--font)}
 .nav a{padding:8px 14px;font-size:13.5px;font-weight:500;color:var(--text2);border-radius:8px;transition:all .15s}
 .nav a:hover{background:var(--bg2);color:var(--text)}
 .header-right{display:flex;align-items:center;gap:12px}
-.search-trigger{display:flex;align-items:center;gap:8px;padding:8px 16px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text3);cursor:pointer;transition:all .15s;min-width:220px}
-.search-trigger:hover{border-color:var(--red);background:var(--red-light)}
-.search-trigger kbd{background:var(--bg);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:11px;font-family:var(--mono);color:var(--text3)}
-.ask-btn{background:var(--red);color:#fff;padding:8px 18px;border-radius:8px;font-size:13.5px;font-weight:600;transition:all .2s;display:flex;align-items:center;gap:6px}
-.ask-btn:hover{background:var(--red-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(225,45,57,.3)}
+.header-search-icon{background:var(--bg2);border:1px solid var(--border);width:40px;height:40px;border-radius:10px;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.header-search-icon:hover{border-color:var(--red);background:var(--red-light)}
 
 /* ── HERO ── */
 .hero{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:60px 24px 56px;position:relative;overflow:hidden}
@@ -131,22 +128,24 @@ button{cursor:pointer;border:none;font-family:var(--font)}
 .car-card-footer{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-top:1px solid var(--bg2)}
 .car-card-action{font-size:12px;font-weight:600;color:var(--red);display:flex;align-items:center;gap:4px}
 
+/* ── SECTION TOGGLE (Cars/Bikes) ── */
+.section-toggle{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.section-toggle button{padding:8px 18px;font-size:13px;font-weight:600;background:transparent;color:var(--text2);border:none;transition:all .15s}
+.section-toggle button.active{background:var(--red);color:#fff}
+
 /* ── BUDGET FINDER ── */
-.budget-section{background:var(--bg2);padding:48px 24px}
+.budget-section{background:var(--bg2);padding:32px 24px}
 .budget-inner{max-width:1280px;margin:0 auto}
-.budget-controls{display:flex;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap}
+.budget-controls{display:flex;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap}
 .budget-slider-wrap{flex:1;min-width:300px}
-.budget-slider-wrap label{font-size:13px;font-weight:500;color:var(--text2);display:block;margin-bottom:8px}
-.budget-value{font-family:var(--mono);font-weight:700;color:var(--red);font-size:18px}
-.budget-slider{width:100%;height:6px;-webkit-appearance:none;appearance:none;background:var(--border);border-radius:3px;outline:none}
-.budget-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--red);cursor:pointer;box-shadow:0 2px 6px rgba(225,45,57,.3)}
-.type-toggle{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.type-toggle button{padding:10px 20px;font-size:13px;font-weight:600;background:transparent;color:var(--text2);border:none;transition:all .15s}
-.type-toggle button.active{background:var(--red);color:#fff}
-.budget-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-.budget-chip{padding:6px 14px;border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:500;color:var(--text2);background:var(--bg);cursor:pointer;transition:all .15s}
+.budget-slider-wrap label{font-size:13px;font-weight:500;color:var(--text2);display:block;margin-bottom:6px}
+.budget-value{font-family:var(--mono);font-weight:700;color:var(--red);font-size:16px}
+.budget-slider{width:100%;height:5px;-webkit-appearance:none;appearance:none;background:var(--border);border-radius:3px;outline:none}
+.budget-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--red);cursor:pointer;box-shadow:0 2px 6px rgba(225,45,57,.3)}
+.budget-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.budget-chip{padding:5px 12px;border:1px solid var(--border);border-radius:20px;font-size:11px;font-weight:500;color:var(--text2);background:var(--bg);cursor:pointer;transition:all .15s}
 .budget-chip:hover,.budget-chip.active{background:var(--red);color:#fff;border-color:var(--red)}
-.budget-results{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.budget-results{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 
 /* ── LAUNCHES ── */
 .launches-scroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
@@ -202,9 +201,13 @@ button{cursor:pointer;border:none;font-family:var(--font)}
 .brands-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:12px}
 .brand-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px 8px;text-align:center;cursor:pointer;transition:all .15s}
 .brand-card:hover{border-color:var(--red);background:var(--red-light);transform:translateY(-2px)}
+.brand-card-logo{width:48px;height:48px;object-fit:contain;margin:0 auto 6px;border-radius:8px}
 .brand-card-icon{font-size:24px;margin-bottom:4px}
 .brand-card-name{font-size:12px;font-weight:600;color:var(--text)}
 .brand-card-count{font-size:10px;color:var(--text3);font-family:var(--mono)}
+.brands-expand{display:flex;justify-content:center;margin-top:16px}
+.brands-expand-btn{background:var(--bg);border:1px solid var(--border);padding:10px 24px;border-radius:8px;font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s}
+.brands-expand-btn:hover{border-color:var(--red);color:var(--red);background:var(--red-light)}
 
 /* ── ARTICLES ── */
 .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -321,7 +324,6 @@ button{cursor:pointer;border:none;font-family:var(--font)}
 @media(max-width:768px){
   .header{padding:0 16px;height:56px}
   .nav{display:none}
-  .search-trigger{display:none}
   .hero h1{font-size:28px}
   .cars-grid,.budget-results,.articles-grid,.listing-grid{grid-template-columns:repeat(2,1fr)}
   .compare-grid{grid-template-columns:repeat(2,1fr)}
@@ -363,17 +365,14 @@ button{cursor:pointer;border:none;font-family:var(--font)}
     </nav>
   </div>
   <div class="header-right">
-    <div class="search-trigger" onclick="openSearchOverlay()">
-      <span>🔍</span> Search cars & bikes... <kbd>⌘K</kbd>
-    </div>
-    <button class="ask-btn" onclick="toggleChat()">💬 Ask Guruji</button>
+    <button class="header-search-icon" onclick="openSearchOverlay()" title="Search (⌘K)">🔍</button>
   </div>
 </header>
 
 <!-- ══════ HERO ══════ -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge"><span class="dot"></span> AI-Powered • 264+ Vehicles • 62+ Brands</div>
+    <div class="hero-badge"><span class="dot"></span> AI-Powered • 286+ Vehicles • 64+ Brands</div>
     <h1>Gaadi ka har sawaal,<br><span>Guruji ke paas.</span></h1>
     <p>Ask anything about any car or bike in India — prices, mileage, comparisons, EMI. In Hindi or English.</p>
 
@@ -410,11 +409,17 @@ button{cursor:pointer;border:none;font-family:var(--font)}
   <div class="body-types" id="bodyTypes"></div>
 </section>
 
-<!-- ══════ POPULAR CARS ══════ -->
+<!-- ══════ POPULAR VEHICLES ══════ -->
 <section class="section">
   <div class="section-header">
-    <h2 class="section-title"><span class="icon">🔥</span> Popular Cars</h2>
-    <a href="#" class="see-all" onclick="event.preventDefault();openCarsListing()">View All →</a>
+    <h2 class="section-title"><span class="icon">🔥</span> Popular <span id="popularLabel">Cars</span></h2>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="section-toggle" id="popularToggle">
+        <button class="active" onclick="setPopularType('car')">Cars</button>
+        <button onclick="setPopularType('bike')">Bikes</button>
+      </div>
+      <a href="#" class="see-all" onclick="event.preventDefault();openCarsListing()">View All →</a>
+    </div>
   </div>
   <div class="cars-grid" id="popularCars"></div>
 </section>
@@ -430,7 +435,7 @@ button{cursor:pointer;border:none;font-family:var(--font)}
         <label>Budget: <span class="budget-value" id="budgetLabel">₹10L</span></label>
         <input type="range" class="budget-slider" id="budgetSlider" min="3" max="100" value="10" step="1">
       </div>
-      <div class="type-toggle">
+      <div class="section-toggle">
         <button class="active" id="btnCars" onclick="setBudgetType('car')">Cars</button>
         <button id="btnBikes" onclick="setBudgetType('bike')">Bikes</button>
       </div>
@@ -444,6 +449,10 @@ button{cursor:pointer;border:none;font-family:var(--font)}
 <section class="section">
   <div class="section-header">
     <h2 class="section-title"><span class="icon">🚀</span> New Launches</h2>
+    <div class="section-toggle" id="launchToggle">
+      <button class="active" onclick="setLaunchType('car')">Cars</button>
+      <button onclick="setLaunchType('bike')">Bikes</button>
+    </div>
   </div>
   <div class="launches-scroll" id="launchesScroll"></div>
 </section>
@@ -452,7 +461,11 @@ button{cursor:pointer;border:none;font-family:var(--font)}
 <section class="compare-section">
   <div class="compare-inner">
     <div class="section-header">
-      <h2 class="section-title"><span class="icon">⚖️</span> Compare Cars</h2>
+      <h2 class="section-title"><span class="icon">⚖️</span> Compare <span id="compareLabel">Cars</span></h2>
+      <div class="section-toggle" id="compareToggle">
+        <button class="active" onclick="setCompareType('car')">Cars</button>
+        <button onclick="setCompareType('bike')">Bikes</button>
+      </div>
     </div>
     <div class="compare-grid" id="compareGrid"></div>
     <table class="compare-table" id="compareTable" style="display:none">
@@ -499,11 +512,18 @@ button{cursor:pointer;border:none;font-family:var(--font)}
 </section>
 
 <!-- ══════ BRANDS ══════ -->
-<section class="section">
+<section class="section" id="brandsSection">
   <div class="section-header">
-    <h2 class="section-title"><span class="icon">🏢</span> Popular Brands</h2>
+    <h2 class="section-title"><span class="icon">🏢</span> Popular <span id="brandsLabel">Car</span> Brands</h2>
+    <div class="section-toggle" id="brandsToggle">
+      <button class="active" onclick="setBrandsType('car')">Cars</button>
+      <button onclick="setBrandsType('bike')">Bikes</button>
+    </div>
   </div>
   <div class="brands-grid" id="brandsGrid"></div>
+  <div class="brands-expand">
+    <button class="brands-expand-btn" id="brandsExpandBtn" onclick="toggleAllBrands()">Show All Brands ↓</button>
+  </div>
 </section>
 
 <!-- ══════ ARTICLES ══════ -->
@@ -681,7 +701,7 @@ button{cursor:pointer;border:none;font-family:var(--font)}
 const allCarsDB = allVehiclesDB;
 
 // ── SVG Fallback for broken images ──
-const brandColors={'Maruti Suzuki':'#1a3c6e','Hyundai':'#002c5f','Tata Motors':'#1a237e','Mahindra':'#e31837','Kia':'#05141f','Toyota':'#cc0000','Honda':'#cc0000','MG Motor':'#c8102e','Skoda':'#24572b','Volkswagen':'#001e50','BMW':'#0066b1','Mercedes-Benz':'#333','Audi':'#bb0a30','Volvo':'#003057','Jeep':'#2e5827','Citroen':'#ac1a2f','BYD':'#c10015','Royal Enfield':'#8b4513','Hero MotoCorp':'#ed1c24','Bajaj':'#004b93','TVS':'#0050a0','Yamaha':'#2d1a6e','KTM':'#ff6600','Kawasaki':'#6fbe44','Triumph':'#000','Ducati':'#cc0000','Harley-Davidson':'#f36c21','Ola Electric':'#00bfa5','Ather':'#1d1d1b','Jawa':'#8b4513'};
+const brandColors={'Maruti Suzuki':'#1a3c6e','Hyundai':'#002c5f','Tata Motors':'#1a237e','Mahindra':'#e31837','Kia':'#05141f','Toyota':'#cc0000','Honda':'#cc0000','MG Motor':'#c8102e','Skoda':'#24572b','Volkswagen':'#001e50','BMW':'#0066b1','Mercedes-Benz':'#333','Audi':'#bb0a30','Volvo':'#003057','Jeep':'#2e5827','Citroen':'#ac1a2f','BYD':'#c10015','Renault':'#ffcc00','Royal Enfield':'#8b4513','Hero MotoCorp':'#ed1c24','Bajaj':'#004b93','TVS':'#0050a0','Yamaha':'#2d1a6e','KTM':'#ff6600','Kawasaki':'#6fbe44','Triumph':'#000','Ducati':'#cc0000','Harley-Davidson':'#f36c21','Ola Electric':'#00bfa5','Ather':'#1d1d1b','Jawa':'#8b4513','Ultraviolette':'#6c2bd9','Raptee':'#0a0a0a','Revolt':'#e63946','Vida':'#00a676','Chetak':'#004b93'};
 function imgFallback(el){
   const card=el.closest('[data-brand]')||el.closest('.car-card')||el.closest('.launch-card')||el.parentElement;
   const brand=el.alt||'';
@@ -716,11 +736,26 @@ function initBodyTypes(){
   `).join('');
 }
 
-// Popular Cars
+// Popular Cars/Bikes with toggle
+let popularType='car';
+function setPopularType(type){
+  popularType=type;
+  const btns=document.querySelectorAll('#popularToggle button');
+  btns[0].classList.toggle('active',type==='car');
+  btns[1].classList.toggle('active',type==='bike');
+  document.getElementById('popularLabel').textContent=type==='car'?'Cars':'Bikes';
+  initPopularCars();
+}
 function initPopularCars(){
-  const popular=['creta','nexon','punch','swift','seltos','brezza','fortuner','thar'];
-  const cars=popular.map(id=>allCarsDB.find(c=>c.id===id)).filter(Boolean).slice(0,8);
-  document.getElementById('popularCars').innerHTML=cars.map(c=>`
+  const popularCars=['creta','nexon','punch','swift','seltos','brezza','fortuner','thar'];
+  const popularBikes=['classic-350','splendor-plus','activa-6g','pulsar-ns200','r15-v4','apache-rtr-200','duke-390','himalayan'];
+  const ids=popularType==='car'?popularCars:popularBikes;
+  let cars=ids.map(id=>allCarsDB.find(c=>c.id===id)).filter(Boolean);
+  if(cars.length<4){
+    const catFilter=popularType==='car'?c=>c.category==='car':c=>c.category==='bike'||c.category==='scooter';
+    cars=allCarsDB.filter(catFilter).slice(0,8);
+  }
+  document.getElementById('popularCars').innerHTML=cars.slice(0,8).map(c=>`
     <div class="car-card" onclick="openCarDetail('${c.id}')">
       <img class="car-card-img" src="${c.img}" alt="${c.name}" onerror="imgFallback(this)">
       <div class="car-card-body">
@@ -797,10 +832,19 @@ function filterBudgetChip(min,max){
   showFilterResults(filtered,event.target.textContent+' '+(budgetType==='car'?'Cars':'Bikes'));
 }
 
-// New Launches
+// New Launches with toggle
+let launchType='car';
+function setLaunchType(type){
+  launchType=type;
+  const btns=document.querySelectorAll('#launchToggle button');
+  btns[0].classList.toggle('active',type==='car');
+  btns[1].classList.toggle('active',type==='bike');
+  initLaunches();
+}
 function initLaunches(){
-  const launches=allCarsDB.filter(c=>c.launched>=2025).sort((a,b)=>b.launched-a.launched).slice(0,10);
-  document.getElementById('launchesScroll').innerHTML=launches.map(c=>`
+  const catFilter=launchType==='car'?c=>c.category==='car':c=>c.category==='bike'||c.category==='scooter';
+  const launches=allCarsDB.filter(c=>c.launched>=2024&&catFilter(c)).sort((a,b)=>b.launched-a.launched).slice(0,10);
+  document.getElementById('launchesScroll').innerHTML=launches.length?launches.map(c=>`
     <div class="launch-card" onclick="openCarDetail('${c.id}')">
       <img class="launch-card-img" src="${c.img}" alt="${c.name}" onerror="imgFallback(this)">
       <div class="launch-card-body">
@@ -810,21 +854,35 @@ function initLaunches(){
         <div class="launch-card-spec">${c.engine||''} • ${c.fuel||''}</div>
       </div>
     </div>
-  `).join('');
+  `).join(''):'<p style="padding:40px;text-align:center;color:var(--text3);width:100%">No recent launches in this category.</p>';
 }
 
-// Compare Tool
+// Compare Tool with toggle
 let compareSlots=[null,null,null,null,null];
+let compareType='car';
+function setCompareType(type){
+  compareType=type;
+  const btns=document.querySelectorAll('#compareToggle button');
+  btns[0].classList.toggle('active',type==='car');
+  btns[1].classList.toggle('active',type==='bike');
+  document.getElementById('compareLabel').textContent=type==='car'?'Cars':'Bikes';
+  compareSlots=[null,null,null,null,null];
+  document.getElementById('compareTable').style.display='none';
+  initCompare();
+}
 function initCompare(){
+  const catFilter=compareType==='car'?c=>c.category==='car':c=>c.category==='bike'||c.category==='scooter';
+  const vehicleList=allCarsDB.filter(catFilter);
   const grid=document.getElementById('compareGrid');
+  const label=compareType==='car'?'Car':'Bike';
   grid.innerHTML=compareSlots.map((_,i)=>`
     <div class="compare-slot" id="cSlot${i}">
       <select onchange="setCompareSlot(${i},this.value)" style="display:none">
         <option value="">Select</option>
-        ${allCarsDB.map(c=>`<option value="${c.id}">${c.brand} ${c.name}</option>`).join('')}
+        ${vehicleList.map(c=>`<option value="${c.id}">${c.brand} ${c.name}</option>`).join('')}
       </select>
       <div class="add-icon">+</div>
-      <div class="add-text">Add Car ${i+1}</div>
+      <div class="add-text">Add ${label} ${i+1}</div>
     </div>
   `).join('');
   grid.querySelectorAll('.compare-slot').forEach((slot,i)=>{
@@ -909,22 +967,91 @@ function calcEMI(){
 ['emiPrice','emiDown','emiTenure','emiRate'].forEach(id=>document.getElementById(id).addEventListener('input',calcEMI));
 calcEMI();
 
-// Brands Grid
+// Brands Grid with logos, toggle, and expand
+let brandsType='car';
+let brandsExpanded=false;
+const brandLogos={
+  'Maruti Suzuki':'https://www.carlogos.org/car-logos/suzuki-logo.png',
+  'Hyundai':'https://www.carlogos.org/car-logos/hyundai-logo.png',
+  'Tata Motors':'https://www.carlogos.org/car-logos/tata-logo.png',
+  'Mahindra':'https://www.carlogos.org/car-logos/mahindra-logo.png',
+  'Kia':'https://www.carlogos.org/car-logos/kia-logo.png',
+  'Toyota':'https://www.carlogos.org/car-logos/toyota-logo.png',
+  'Honda':'https://www.carlogos.org/car-logos/honda-logo.png',
+  'MG Motor':'https://www.carlogos.org/car-logos/mg-logo.png',
+  'Skoda':'https://www.carlogos.org/car-logos/skoda-logo.png',
+  'Volkswagen':'https://www.carlogos.org/car-logos/volkswagen-logo.png',
+  'BMW':'https://www.carlogos.org/car-logos/bmw-logo.png',
+  'Mercedes-Benz':'https://www.carlogos.org/car-logos/mercedes-benz-logo.png',
+  'Audi':'https://www.carlogos.org/car-logos/audi-logo.png',
+  'Volvo':'https://www.carlogos.org/car-logos/volvo-logo.png',
+  'Jeep':'https://www.carlogos.org/car-logos/jeep-logo.png',
+  'Citroen':'https://www.carlogos.org/car-logos/citroen-logo.png',
+  'Nissan':'https://www.carlogos.org/car-logos/nissan-logo.png',
+  'Renault':'https://www.carlogos.org/car-logos/renault-logo.png',
+  'Porsche':'https://www.carlogos.org/car-logos/porsche-logo.png',
+  'Lexus':'https://www.carlogos.org/car-logos/lexus-logo.png',
+  'Land Rover':'https://www.carlogos.org/car-logos/land-rover-logo.png',
+  'Jaguar':'https://www.carlogos.org/car-logos/jaguar-logo.png',
+  'Mini':'https://www.carlogos.org/car-logos/mini-logo.png',
+  'Royal Enfield':'https://www.carlogos.org/car-logos/royal-enfield-logo.png',
+  'Hero MotoCorp':'https://www.carlogos.org/car-logos/hero-motocorp-logo.png',
+  'Bajaj':'https://www.carlogos.org/car-logos/bajaj-logo.png',
+  'TVS':'https://www.carlogos.org/car-logos/tvs-logo.png',
+  'Yamaha':'https://www.carlogos.org/car-logos/yamaha-motor-logo.png',
+  'KTM':'https://www.carlogos.org/car-logos/ktm-logo.png',
+  'Kawasaki':'https://www.carlogos.org/car-logos/kawasaki-logo.png',
+  'Suzuki':'https://www.carlogos.org/car-logos/suzuki-logo.png',
+  'Triumph':'https://www.carlogos.org/car-logos/triumph-logo.png',
+  'Ducati':'https://www.carlogos.org/car-logos/ducati-logo.png',
+  'Harley-Davidson':'https://www.carlogos.org/car-logos/harley-davidson-logo.png',
+  'Husqvarna':'https://www.carlogos.org/car-logos/husqvarna-motorcycles-logo.png',
+  'Aprilia':'https://www.carlogos.org/car-logos/aprilia-logo.png',
+  'Ola Electric':'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Ola_Electric_logo.svg/200px-Ola_Electric_logo.svg.png',
+  'Ather':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Ather_Energy_Logo.svg/200px-Ather_Energy_Logo.svg.png',
+  'BYD':'https://www.carlogos.org/car-logos/byd-logo.png',
+  'Jawa':'https://www.carlogos.org/car-logos/jawa-logo.png',
+  'Ultraviolette':'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Ultraviolette_Automotive_Logo.png/200px-Ultraviolette_Automotive_Logo.png',
+  'Revolt':'https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Revolt_Motors_Logo.png/200px-Revolt_Motors_Logo.png',
+};
+function setBrandsType(type){
+  brandsType=type;
+  brandsExpanded=false;
+  const btns=document.querySelectorAll('#brandsToggle button');
+  btns[0].classList.toggle('active',type==='car');
+  btns[1].classList.toggle('active',type==='bike');
+  document.getElementById('brandsLabel').textContent=type==='car'?'Car':'Bike';
+  document.getElementById('brandsExpandBtn').textContent='Show All Brands ↓';
+  initBrands();
+}
+function toggleAllBrands(){
+  brandsExpanded=!brandsExpanded;
+  document.getElementById('brandsExpandBtn').textContent=brandsExpanded?'Show Less ↑':'Show All Brands ↓';
+  initBrands();
+}
+function brandLogoFallback(el,brand){
+  const color=brandColors[brand]||'#666';
+  const initials=brand.replace('Motors','').replace('MotoCorp','').replace('Motor','').trim().split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  el.onerror=null;
+  el.src=`data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><rect fill="${color}" width="96" height="96" rx="12"/><text x="48" y="48" font-family="Inter,sans-serif" font-size="28" font-weight="700" fill="white" text-anchor="middle" dy=".35em">${initials}</text></svg>`)}`;
+}
 function initBrands(){
+  const catFilter=brandsType==='car'?v=>v.category==='car':v=>v.category==='bike'||v.category==='scooter';
   const brandMap={};
-  allCarsDB.forEach(v=>{
+  allCarsDB.filter(catFilter).forEach(v=>{
     if(!brandMap[v.brand])brandMap[v.brand]=0;
     brandMap[v.brand]++;
   });
-  const sorted=Object.entries(brandMap).sort((a,b)=>b[1]-a[1]).slice(0,16);
-  const bIcons={'Maruti Suzuki':'🔵','Hyundai':'🟦','Tata Motors':'🔷','Mahindra':'🔴','Kia':'⬛','Toyota':'🟥','Honda':'🔴','MG Motor':'🟡','BMW':'🔵','Royal Enfield':'🟤','Hero MotoCorp':'🔴','Bajaj':'🔵','TVS':'🔵','Yamaha':'🟣','KTM':'🟧','Kawasaki':'🟢'};
-  document.getElementById('brandsGrid').innerHTML=sorted.map(([brand,count])=>`
+  const sorted=Object.entries(brandMap).sort((a,b)=>b[1]-a[1]);
+  const displayBrands=brandsExpanded?sorted:sorted.slice(0,16);
+  document.getElementById('brandsGrid').innerHTML=displayBrands.map(([brand,count])=>`
     <div class="brand-card" onclick="openBrandFilter('${brand}')">
-      <div class="brand-card-icon">${bIcons[brand]||'🏢'}</div>
+      <img class="brand-card-logo" src="${brandLogos[brand]||''}" alt="${brand}" onerror="brandLogoFallback(this,'${brand.replace(/'/g,"\\'")}')" loading="lazy">
       <div class="brand-card-name">${brand.replace('Motors','').replace('MotoCorp','').replace('Motor','').trim()}</div>
       <div class="brand-card-count">${count} models</div>
     </div>
   `).join('');
+  document.getElementById('brandsExpandBtn').style.display=sorted.length>16?'':'none';
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -1165,8 +1292,9 @@ const brandAliases={
   'jawa':'jawa','yezdi':'yezdi','benelli':'benelli',
   'ola':'ola electric','ola electric':'ola electric','ather':'ather',
   'vida':'vida','revolt':'revolt','tork':'tork','simple':'simple energy',
-  'okinawa':'okinawa','ultraviolette':'ultraviolette',
-  'vespa':'vespa','piaggio':'piaggio','chetak':'bajaj'
+  'okinawa':'okinawa','ultraviolette':'ultraviolette','raptee':'raptee',
+  'vespa':'vespa','piaggio':'piaggio','chetak':'chetak',
+  'renault':'renault','duster':'renault'
 };
 
 // ── Smart vehicle search ──
