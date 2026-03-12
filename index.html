@@ -9,8 +9,8 @@
 <meta property="og:title" content="DriveGuruji — India's Smartest Car & Bike Advisor">
 <meta property="og:description" content="Ask anything about any car or bike in India. Prices, mileage, comparisons, EMI — in plain Hindi or English.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://driveguruji.vercel.app">
-<meta property="og:image" content="https://driveguruji.vercel.app/og-image.png">
+<meta property="og:url" content="https://www.driveguruji.com">
+<meta property="og:image" content="https://www.driveguruji.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="DriveGuruji — India's Smartest Car & Bike Advisor">
 <meta name="twitter:description" content="Ask anything about any car or bike in India. Prices, mileage, comparisons, EMI.">
@@ -1930,9 +1930,26 @@ function setupLaunchCards(){
     if(link){
       link.onclick=(e)=>{
         e.preventDefault();
-        const name=card.querySelector('.lcard-name').textContent;
-        const car=allCarsDB.find(c=>c.name===name);
-        if(car)openCarDetail(car.id);
+        const name=card.querySelector('.lcard-name').textContent.trim().toLowerCase();
+        // Fuzzy match: strip brand prefix, match on model name
+        const car=allCarsDB.find(c=>{
+          const dbName=c.name.toLowerCase();
+          // Exact match
+          if(name===dbName)return true;
+          // Card name contains DB name (e.g. "Mahindra XEV 9e" contains "XEV 9e")
+          if(name.includes(dbName))return true;
+          // DB name contains card name
+          if(dbName.includes(name))return true;
+          // Match last word(s): "RE Guerrilla 450" → "Guerrilla 450" matches "Royal Enfield Guerrilla 450"
+          const nameWords=name.split(' ');
+          for(let i=1;i<nameWords.length;i++){
+            const partial=nameWords.slice(i).join(' ');
+            if(partial.length>3&&dbName.includes(partial))return true;
+          }
+          return false;
+        });
+        if(car){openCarDetail(car.id);}
+        else{showToast('Detailed page coming soon!');}
       };
     }
   });
@@ -1958,42 +1975,37 @@ function setupCompareDropdowns(){
 function updateCompare(){
   const id1=document.getElementById('compare1')?.value;
   const id2=document.getElementById('compare2')?.value;
-  if(!id1||!id2)return;
+  if(!id1||!id2||id1==='Select Car 1'||id2==='Select Car 2')return;
 
   const car1=allCarsDB.find(c=>c.id===id1);
   const car2=allCarsDB.find(c=>c.id===id2);
+  if(!car1||!car2)return;
 
   const compareSection=document.querySelector('.compare-section');
   const cols=compareSection.querySelectorAll('.compare-col');
 
-  // Update car1 slot
-  const car1SlotName=cols[0].querySelector('.slot-name');
-  if(car1SlotName)car1SlotName.textContent=car1.name;
+  // Define specs to compare
+  const specs=[
+    {key:'Price',v1:car1.priceRange,v2:car2.priceRange},
+    {key:'Engine',v1:car1.engine,v2:car2.engine},
+    {key:'Power',v1:car1.power,v2:car2.power},
+    {key:'Mileage',v1:car1.mileage,v2:car2.mileage},
+    {key:'Transmission',v1:car1.transmission,v2:car2.transmission},
+    {key:'Fuel Type',v1:car1.fuel,v2:car2.fuel},
+    {key:'Safety',v1:car1.safety,v2:car2.safety}
+  ];
 
-  // Update car2 slot
-  const car2SlotName=cols[2].querySelector('.slot-name');
-  if(car2SlotName)car2SlotName.textContent=car2.name;
+  // Rebuild spec rows in both columns
+  const specRowHTML=(key,val)=>`<div class="compare-spec-row"><span class="spec-key">${key}</span><span class="spec-value">${val||'N/A'}</span></div>`;
 
-  // Update specs
-  const specRows=compareSection.querySelectorAll('.compare-spec-row');
-  const specs=['Engine','Power','Mileage','Transmission','Fuel Type'];
-  const specValues={
-    'Engine':[car1.engine,car2.engine],
-    'Power':[car1.power,car2.power],
-    'Mileage':[car1.mileage,car2.mileage],
-    'Transmission':[car1.transmission,car2.transmission],
-    'Fuel Type':[car1.fuel,car2.fuel]
-  };
+  // Remove old spec rows
+  cols[0].querySelectorAll('.compare-spec-row').forEach(r=>r.remove());
+  cols[2].querySelectorAll('.compare-spec-row').forEach(r=>r.remove());
 
-  specRows.forEach(row=>{
-    const key=row.querySelector('.spec-key')?.textContent;
-    const values=row.querySelectorAll('.spec-value');
-    if(specValues[key]&&values.length>=2){
-      values[0].textContent=specValues[key][0];
-      values[1].textContent=specValues[key][1];
-      values[0].classList.remove('better','worse');
-      values[1].classList.remove('better','worse');
-    }
+  // Add new spec rows
+  specs.forEach(s=>{
+    cols[0].insertAdjacentHTML('beforeend',specRowHTML(s.key,s.v1));
+    cols[2].insertAdjacentHTML('beforeend',specRowHTML(s.key,s.v2));
   });
 }
 
@@ -2172,6 +2184,16 @@ document.querySelectorAll('.t-compare').forEach(btn=>{
 });
 
 
+// ── TOAST NOTIFICATION ──
+function showToast(msg){
+  let t=document.createElement('div');
+  t.textContent=msg;
+  t.style.cssText='position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--ink3,#18181b);color:var(--paper,#fafaf9);padding:14px 28px;border-radius:12px;font-family:var(--font-body);font-size:14px;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,.25);border:1px solid var(--gold,#b8860b);opacity:0;transition:opacity .3s';
+  document.body.appendChild(t);
+  requestAnimationFrame(()=>t.style.opacity='1');
+  setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.remove(),300)},2500);
+}
+
 // ================= INTERACTIVE ELEMENTS - BUG FIXES =================
 document.addEventListener('DOMContentLoaded', function() {
   
@@ -2180,13 +2202,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const brandTiles = document.querySelectorAll('.brand-tile');
   const brandDBNames = ['Maruti Suzuki', 'Hyundai', 'Tata Motors', 'Mahindra', 'Kia', 'Toyota', 'Honda', 'Volkswagen',
                        'Royal Enfield', 'Hero MotoCorp', 'Bajaj', 'TVS', 'BMW', 'Mercedes', 'Audi', 'Porsche'];
-  const comingSoonBrands = ['Volkswagen', 'Mercedes', 'Audi', 'Porsche'];
+  const comingSoonBrands = ['Volkswagen', 'TVS', 'Mercedes', 'Audi', 'Porsche'];
   brandTiles.forEach((tile, idx) => {
     if (idx < brandDBNames.length) {
       tile.style.cursor = 'pointer';
       tile.onclick = function() {
         if (comingSoonBrands.includes(brandDBNames[idx])) {
-          alert(brandDBNames[idx] + ' models coming soon!');
+          showToast(brandDBNames[idx] + ' models coming soon!');
         } else {
           openBrandFilter(brandDBNames[idx]);
         }
@@ -2194,11 +2216,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
+  // Feature article clickable
+  const featureArt = document.querySelector('.article-feature');
+  if(featureArt){
+    featureArt.style.cursor='pointer';
+    featureArt.addEventListener('click',function(){
+      showToast('Full article coming soon! We are writing sharp, opinionated content.');
+    });
+  }
+
   // BUG 3: Article cards clickable
   document.querySelectorAll('.acard').forEach(card => {
     card.style.cursor = 'pointer';
     card.addEventListener('click', function() {
-      alert('Full article coming soon! We are writing sharp, opinionated content.');
+      showToast('Full article coming soon! We are writing sharp, opinionated content.');
     });
   });
   
@@ -2207,7 +2238,7 @@ document.addEventListener('DOMContentLoaded', function() {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      alert('Full article coming soon! We are writing sharp, opinionated content.');
+      showToast('Full article coming soon! We are writing sharp, opinionated content.');
     });
   });
   
@@ -2218,11 +2249,9 @@ document.addEventListener('DOMContentLoaded', function() {
     'Hyundai Creta': 'creta',
     'Tata Nexon': 'nexon',
     'Kia Seltos': 'seltos',
-    'Mahindra XUV700': 'xuv700',
-    'Hyundai i20': 'i20',
-    'Maruti Brezza': 'brezza',
-    'Tata Nexon EV': 'nexon-ev',
-    'Hyundai Verna': 'verna'
+    'Hyundai Creta EV': 'creta-ev',
+    'Mahindra XEV 9e': 'xev-9e',
+    'Toyota Fortuner': 'fortuner'
   };
   
   document.querySelectorAll('table tbody tr').forEach((tr, idx) => {
@@ -2259,6 +2288,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
   
+  // Footer links wiring
+  document.querySelectorAll('.foot-links a').forEach(link=>{
+    const t=link.textContent.toLowerCase();
+    link.onclick=(e)=>{
+      e.preventDefault();
+      if(t.includes('new cars'))openCarsListing();
+      else if(t.includes('used cars'))showToast('Used cars section coming soon!');
+      else if(t.includes('electric'))showFilterResults(allCarsDB.filter(c=>c.fuel==='Electric'),'Electric Vehicles');
+      else if(t.includes('upcoming')||t.includes('launch'))document.querySelector('.launches-section').scrollIntoView({behavior:'smooth'});
+      else if(t.includes('compare'))document.querySelector('.compare-section').scrollIntoView({behavior:'smooth'});
+      else if(t.includes('emi'))document.querySelector('.emi-section').scrollIntoView({behavior:'smooth'});
+      else if(t.includes('insurance'))showToast('Insurance quotes coming soon!');
+      else if(t.includes('fuel'))showToast('Fuel cost calculator coming soon!');
+      else if(t.includes('royal enfield'))openBrandFilter('Royal Enfield');
+      else if(t.includes('hero'))openBrandFilter('Hero MotoCorp');
+      else if(t.includes('bajaj'))openBrandFilter('Bajaj');
+      else if(t.includes('all bike'))showFilterResults(allCarsDB.filter(c=>['Cruiser Motorcycle','Sport Naked','Scrambler','Commuter'].includes(c.type)),'All Bikes');
+    };
+  });
+
   // BUG 6: Launch cards fully clickable
   document.querySelectorAll('.lcard').forEach(card => {
     const link = card.querySelector('.lcard-link');

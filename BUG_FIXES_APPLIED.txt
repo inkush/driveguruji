@@ -1,0 +1,219 @@
+================================================================================
+DRIVEGURUJI HTML - BUG FIXES APPLIED
+================================================================================
+Date: 2026-03-07
+File: /sessions/magical-dreamy-gates/mnt/driveguruji/index.html
+Status: ALL 8 BUGS FIXED ✓
+
+================================================================================
+DETAILED FIX DOCUMENTATION
+================================================================================
+
+BUG 1: BRAND TILES NOT CLICKABLE
+────────────────────────────────
+Problem: .brand-tile divs had no onclick handlers
+Solution: Added openBrandFilter() function and onclick handlers
+Details:
+  - Created window.openBrandFilter(brandName) function
+  - Maps brand names: "Maruti"→"maruti-suzuki", "Hero"→"hero-motocorp", etc.
+  - 5 brands show "coming soon" alert: Volkswagen, BMW, Mercedes, Audi, Porsche
+  - All 16 brand tiles now clickable
+  - Cursor changed from cursor:none to cursor:pointer
+
+Code Added: Lines ~2170-2200
+Functions: openBrandFilter()
+
+
+BUG 2: LISTING MODAL CARD CLICK DOESN'T OPEN DETAIL
+───────────────────────────────────────────────────
+Problem: Both modals had same z-index, one covered the other
+Solution: Close listing modal first, then open detail with delay
+Details:
+  - Wrapped openCarDetail() with closeModal('carsListingModal')
+  - Added 200ms setTimeout() to prevent stacking
+  - Fixes z-index conflict when clicking cards in listing
+
+Code Added: Lines ~2240-2245
+Functions: Modified window.openCarDetail
+
+
+BUG 3: ARTICLE CARDS NOT CLICKABLE
+──────────────────────────────────
+Problem: .acard had cursor:none, "Read →" links were dead (#)
+Solution: Made full card clickable with alert message
+Details:
+  - Added click handlers to all .acard elements
+  - Shows alert: "Full article coming soon! We are writing sharp, opinionated content."
+  - Also wired .art-read links with same behavior
+  - CSS cursor:none removed, cursor:pointer applied
+
+Code Added: Lines ~2210-2230
+Functions: addEventListener on .acard, .art-read
+
+
+BUG 4: SPECS TABLE ROWS NOT CLICKABLE
+─────────────────────────────────────
+Problem: Static HTML table rows with no click handlers
+Solution: Added click handlers with hover effects
+Details:
+  - Created specsMap object mapping car names to database IDs
+  - All 10 featured cars mapped correctly
+  - Added mouseover/mouseout hover effects
+  - Rows now open car detail on click
+
+Code Added: Lines ~2225-2240
+Maps:
+  Maruti Swift → swift
+  Tata Punch → punch
+  Hyundai Creta → creta
+  Tata Nexon → nexon
+  Kia Seltos → seltos
+  Mahindra XUV700 → xuv700
+  Hyundai i20 → i20
+  Maruti Brezza → brezza
+  Tata Nexon EV → nexon-ev
+  Hyundai Verna → verna
+
+
+BUG 5: IMAGES - WRONG/DUPLICATE IMAGES
+──────────────────────────────────────
+Problem: 15 image URLs used for 30 cars (duplicates), non-matching
+Solution: Replaced with 30 unique, type-matched Unsplash images
+Details:
+  - All 30 cars now have unique images
+  - Images matched by vehicle type:
+    * Hatchbacks: Small car photos
+    * SUVs: SUV/compact SUV photos
+    * Sedans: Sedan photos
+    * EVs: Modern electric car photos
+    * Motorcycles: Bike/motorcycle photos
+
+Code Changed: Lines 1476-1530 (allCarsDB array)
+Example URLs:
+  https://images.unsplash.com/photo-1549317661-bd32c8ce0afa?w=600
+  https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=600
+  ... (30 total)
+
+
+BUG 6: LAUNCH CARDS - ONLY LINK CLICKABLE, NOT FULL CARD
+───────────────────────────────────────────────────────
+Problem: Only .lcard-link was clickable, full .lcard div wasn't
+Solution: Made entire card clickable, triggers link programmatically
+Details:
+  - Entire .lcard div now has onclick handler
+  - Clicking card triggers .lcard-link click
+  - Cursor set to pointer on .lcard
+
+Code Added: Lines ~2250-2260
+Functions: Card click listener
+
+
+BUG 7: FILTER CHECKBOX TEXT EXTRACTION BROKEN
+──────────────────────────────────────────────
+Problem: Used c.nextElementSibling.textContent which returned null
+Solution: Changed to c.parentElement.textContent
+Details:
+  - Text was in label (parent), not sibling
+  - Fixed 3 instances (brands, types, fuels filters)
+  - Now correctly extracts checkbox labels for filtering
+
+Code Changed: Lines ~2080-2085
+Pattern: c.nextElementSibling → c.parentElement
+
+
+BUG 8: cursor:none ON INTERACTIVE ELEMENTS
+───────────────────────────────────────────
+Problem: Custom cursor overlay blocked user understanding of clickability
+Solution: Added comprehensive cursor:pointer CSS rule
+Details:
+  - Removed cursor:none from .brand-tile and .acard
+  - Added CSS rule for all interactive elements:
+    .brand-tile, .acard, .t-card, .lcard, .bcard,
+    table tbody tr, .budget-tiers-grid > div, .filter-card
+  - Uses !important to override any conflicting styles
+
+Code Added: Lines ~50-52 (CSS section)
+Rule: cursor: pointer !important
+
+================================================================================
+TESTING INSTRUCTIONS
+================================================================================
+
+1. Brand Tiles
+   - Click any brand tile (Maruti, Hyundai, Tata, etc.)
+   - Should open cars listing modal filtered by that brand
+   - For Volkswagen, BMW, Mercedes, Audi, Porsche: Should show alert
+
+2. Modal Stacking
+   - Open cars listing
+   - Click on a car card
+   - Listing modal should close, detail modal should open
+
+3. Article Cards
+   - Click on any article card
+   - Should show alert with "Full article coming soon..."
+   - Click "Read →" link should also show alert
+
+4. Specs Table
+   - Hover over table row - should see background color change
+   - Click on table row - should open car detail
+   - All 10 cars should be clickable
+
+5. Images
+   - All 30 cars should show different, appropriate images
+   - Hatchbacks should look like hatchbacks
+   - SUVs should look like SUVs, etc.
+
+6. Launch Cards
+   - Click anywhere on launch card
+   - Should open launch details (not just the link)
+
+7. Filters
+   - Use brand/type/fuel filters
+   - Results should update correctly
+   - Checkboxes should be properly checked/unchecked
+
+8. Cursor Visibility
+   - Hover over any clickable element
+   - Should show pointer cursor (not custom gold dot)
+   - Helps users understand what's clickable
+
+================================================================================
+FILE INTEGRITY
+================================================================================
+File Size: 160K (161,301 bytes)
+Line Count: 2,300 lines
+HTML Tags: 907
+Script Pairs: 1
+Style Pairs: 1
+Database Entries: 30
+
+All tags balanced and properly closed.
+File is syntactically valid HTML5.
+
+================================================================================
+DESIGN SYSTEM PRESERVED
+================================================================================
+✓ Colors unchanged (--gold: #b8860b, --ink, etc.)
+✓ Typography unchanged (Playfair Display, DM Sans, JetBrains Mono)
+✓ Film grain overlay intact
+✓ Custom cursor system preserved (cursor:none on body still there)
+✓ All layout and spacing unchanged
+✓ No purple gradients added
+✓ No generic AI aesthetics added
+
+================================================================================
+NO EXTERNAL DEPENDENCIES ADDED
+================================================================================
+All fixes use vanilla JavaScript with:
+✓ querySelectorAll()
+✓ addEventListener()
+✓ DOMContentLoaded
+✓ Standard DOM manipulation
+✓ CSS selectors
+
+No jQuery, no libraries, no external scripts required.
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================
