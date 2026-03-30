@@ -13,17 +13,17 @@ const categoryColors = {
 } as const;
 
 const articleImages: Record<string, string> = {
-  'ola-electric-10-lakh-sales-means-nothing': '/images/articles/ola-electric.jpg',
-  'hyundai-creta-electric-range-reality-check': '/images/articles/creta-electric.jpg',
-  'amt-vs-cvt-vs-dct-vs-imt-which-automatic-is-best': '/images/articles/amt-vs-cvt.jpg',
-  '2026-car-price-hikes-who-is-ripping-you-off': '/images/articles/price-hikes-2026.jpg',
-  'best-tyres-for-indian-roads-every-scenario': '/images/articles/best-tyres.jpg',
-  'hyundai-creta-5-year-ownership-cost-real-numbers': '/images/articles/creta-ownership.jpg',
-  'indian-cars-that-share-the-same-engine': '/images/articles/shared-engines.jpg',
-  'kia-seltos-5-year-ownership-cost-full-breakdown': '/images/articles/seltos-ownership.jpg',
-  'nexon-vs-venue-5-year-ownership-cost': '/images/articles/nexon-vs-venue.jpg',
-  'renault-duster-2026-comeback-not-what-you-think': '/images/articles/renault-duster.jpg',
-  'what-is-adblue-diesel-cars-india': '/images/articles/adblue-diesel.jpg',
+  'ola-electric-10-lakh-sales-means-nothing': 'https://files.catbox.moe/he8rp4.jpg',
+  'hyundai-creta-electric-range-reality-check': 'https://files.catbox.moe/3e6d5e.jpg',
+  'amt-vs-cvt-vs-dct-vs-imt-which-automatic-is-best': 'https://files.catbox.moe/mqe3ms.jpg',
+  '2026-car-price-hikes-who-is-ripping-you-off': 'https://files.catbox.moe/6atutl.jpg',
+  'best-tyres-for-indian-roads-every-scenario': 'https://files.catbox.moe/v0m03d.jpg',
+  'hyundai-creta-5-year-ownership-cost-real-numbers': 'https://files.catbox.moe/u8p2mz.jpg',
+  'indian-cars-that-share-the-same-engine': 'https://files.catbox.moe/quegzn.jpg',
+  'kia-seltos-5-year-ownership-cost-full-breakdown': 'https://files.catbox.moe/6aw4s5.jpg',
+  'nexon-vs-venue-5-year-ownership-cost': 'https://files.catbox.moe/h3hbgp.jpg',
+  'renault-duster-2026-comeback-not-what-you-think': 'https://files.catbox.moe/tupw06.jpg',
+  'what-is-adblue-diesel-cars-india': 'https://files.catbox.moe/6rud4b.jpg',
 };
 ---
 
@@ -37,6 +37,7 @@ const articleImages: Record<string, string> = {
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{
@@ -83,45 +84,43 @@ const articleImages: Record<string, string> = {
   </style>
 </head>
 <body>
+  <nav class="site-nav">
+    <a href="/" class="nav-brand">Drive<span>Guruji</span></a>
+    <a href="/" class="nav-back">&larr; Home</a>
+  </nav>
 
-<nav class="site-nav">
-  <a href="/" class="nav-brand">Drive<span>Guruji</span></a>
-  <a href="/" class="nav-back">&larr; Home</a>
-</nav>
+  <div class="page-header">
+    <div class="page-eye">Articles</div>
+    <h1 class="page-title">Sharp Takes, Real Numbers</h1>
+    <p class="page-sub">No OEM-pleasing fluff. No "it depends" without the answer. Opinionated automotive journalism backed by data.</p>
+  </div>
 
-<div class="page-header">
-  <div class="page-eye">Articles</div>
-  <h1 class="page-title">Sharp Takes, Real Numbers</h1>
-  <p class="page-sub">No OEM-pleasing fluff. No "it depends" without the answer. Opinionated automotive journalism backed by data.</p>
-</div>
-
-<div class="articles-grid">
-  {sorted.map((article) => {
-    const cat = categoryColors[article.data.category as keyof typeof categoryColors] || categoryColors.opinion;
-    const imgSrc = articleImages[article.id] || '/images/articles/ola-electric.jpg';
-    const formattedDate = new Date(article.data.date).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
-    return (
-      <a href={`/articles/${article.id}`} class="acard">
-        <img class="acard-img" src={imgSrc} alt={article.data.title} loading="lazy" />
-        <div class="acard-body">
-          <div class="acard-cat" style={`background:${cat.bg};border:1px solid ${cat.border};color:${cat.text}`}>
-            {article.data.category}
+  <div class="articles-grid">
+    {sorted.map((article) => {
+      const cat = categoryColors[article.data.category as keyof typeof categoryColors] || categoryColors.opinion;
+      const imgSrc = articleImages[article.id] || 'https://files.catbox.moe/he8rp4.jpg';
+      const formattedDate = new Date(article.data.date).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
+      return (
+        <a href={`/articles/${article.id}`} class="acard">
+          <img class="acard-img" src={imgSrc} alt={article.data.title} loading="lazy" />
+          <div class="acard-body">
+            <div class="acard-cat" style={`background:${cat.bg};border:1px solid ${cat.border};color:${cat.text}`}>
+              {article.data.category}
+            </div>
+            <div class="acard-title">{article.data.title}</div>
+            <p class="acard-excerpt">{article.data.excerpt}</p>
+            <div class="acard-foot">
+              <span>{article.data.readTime} read &middot; {formattedDate}</span>
+              <span class="acard-read">Read &rarr;</span>
+            </div>
           </div>
-          <div class="acard-title">{article.data.title}</div>
-          <p class="acard-excerpt">{article.data.excerpt}</p>
-          <div class="acard-foot">
-            <span>{article.data.readTime} read &middot; {formattedDate}</span>
-            <span class="acard-read">Read &rarr;</span>
-          </div>
-        </div>
-      </a>
-    );
-  })}
-</div>
+        </a>
+      );
+    })}
+  </div>
 
-<div class="footer">
-  &copy; 2026 DriveGuruji by Exif Media. All rights reserved. &middot; All prices ex-showroom Delhi
-</div>
-
+  <div class="footer">
+    &copy; 2026 DriveGuruji by Exif Media. All rights reserved. &middot; All prices ex-showroom Delhi
+  </div>
 </body>
 </html>
