@@ -5,12 +5,26 @@ const articles = await getCollection('articles');
 const sorted = articles.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const categoryColors = {
-  opinion: { bg: 'rgba(232,93,38,.12)', border: 'rgba(232,93,38,.3)', text: '#e85d26', gradient: 'linear-gradient(135deg, #7f1d1d 0%, #991b1b 40%, #450a0a 100%)' },
-  review: { bg: 'rgba(212,168,67,.12)', border: 'rgba(212,168,67,.3)', text: '#d4a843', gradient: 'linear-gradient(135deg, #78350f 0%, #92400e 40%, #451a03 100%)' },
-  news: { bg: 'rgba(56,189,248,.12)', border: 'rgba(56,189,248,.3)', text: '#38bdf8', gradient: 'linear-gradient(135deg, #0c4a6e 0%, #075985 40%, #082f49 100%)' },
-  guide: { bg: 'rgba(168,85,247,.12)', border: 'rgba(168,85,247,.3)', text: '#a855f7', gradient: 'linear-gradient(135deg, #064e3b 0%, #065f46 40%, #022c22 100%)' },
-  data: { bg: 'rgba(34,197,94,.12)', border: 'rgba(34,197,94,.3)', text: '#22c55e', gradient: 'linear-gradient(135deg, #14532d 0%, #166534 40%, #052e16 100%)' },
+  opinion: { bg: '#fff0f0', border: '#e12d39', text: '#c8102e' },
+  review: { bg: '#fdf6e3', border: '#b8860b', text: '#8b6914' },
+  news: { bg: '#e0f2fe', border: '#0284c7', text: '#0369a1' },
+  guide: { bg: '#f3e8ff', border: '#9333ea', text: '#7e22ce' },
+  data: { bg: '#ecfdf5', border: '#059669', text: '#047857' },
 } as const;
+
+const articleImages: Record<string, string> = {
+  'ola-electric-10-lakh-sales-means-nothing': '/images/articles/ola-electric.jpg',
+  'hyundai-creta-electric-range-reality-check': '/images/articles/creta-electric.jpg',
+  'amt-vs-cvt-vs-dct-vs-imt-which-automatic-is-best': '/images/articles/amt-vs-cvt.jpg',
+  '2026-car-price-hikes-who-is-ripping-you-off': '/images/articles/price-hikes-2026.jpg',
+  'best-tyres-for-indian-roads-every-scenario': '/images/articles/best-tyres.jpg',
+  'hyundai-creta-5-year-ownership-cost-real-numbers': '/images/articles/creta-ownership.jpg',
+  'indian-cars-that-share-the-same-engine': '/images/articles/shared-engines.jpg',
+  'kia-seltos-5-year-ownership-cost-full-breakdown': '/images/articles/seltos-ownership.jpg',
+  'nexon-vs-venue-5-year-ownership-cost': '/images/articles/nexon-vs-venue.jpg',
+  'renault-duster-2026-comeback-not-what-you-think': '/images/articles/renault-duster.jpg',
+  'what-is-adblue-diesel-cars-india': '/images/articles/adblue-diesel.jpg',
+};
 ---
 
 <!DOCTYPE html>
@@ -22,99 +36,91 @@ const categoryColors = {
   <meta name="description" content="Sharp, opinionated automotive journalism. No OEM-pleasing fluff. Real numbers, real takes." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{
-      --ink:#09090b;--ink2:#111114;--ink3:#18181b;--ink4:#27272a;
-      --smoke:#a1a1aa;--mist:#52525b;--paper:#fafaf9;--paper2:#f5f5f4;
-      --gold:#d4a843;--gold2:#f0c96a;--ember:#e85d26;--ice:#38bdf8;
-      --font-serif:'Playfair Display',serif;
-      --font-sans:'DM Sans',sans-serif;
-      --font-mono:'JetBrains Mono',monospace;
+      --bg:#ffffff;--bg2:#f7f7f8;--bg3:#f0f0f2;
+      --border:#e5e5e7;
+      --text:#1a1a1a;--text2:#4a4a4a;--text3:#717179;
+      --red:#e12d39;--red-light:#fff0f0;
+      --gold:#b8860b;--gold-light:#fdf6e3;
+      --blue:#0066cc;--green:#059669;--orange:#ea580c;
+      --font:'Inter',sans-serif;
+      --mono:'JetBrains Mono',monospace;
+      --radius:10px;
+      --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+      --shadow-md:0 4px 12px rgba(0,0,0,.08);
+      --shadow-lg:0 10px 40px rgba(0,0,0,.12);
     }
     html{scroll-behavior:smooth}
-    body{background:var(--ink);color:var(--paper);font-family:var(--font-sans);font-weight:300;overflow-x:hidden}
-    body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:8888;opacity:.5}
-
-    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(to bottom,rgba(9,9,11,.96) 0%,transparent 100%);backdrop-filter:blur(12px)}
-    .logo{font-family:var(--font-serif);font-size:22px;font-weight:700;letter-spacing:.04em;color:var(--paper);text-decoration:none}
-    .logo b{color:var(--gold);font-weight:700}
-    .logo sub{font-size:9px;font-family:var(--font-mono);color:var(--smoke);vertical-align:baseline;letter-spacing:.08em;font-weight:300;margin-left:5px;text-transform:uppercase}
-    .nav-back{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);text-decoration:none;transition:color .2s}
-    .nav-back:hover{color:var(--gold)}
-
-    .page-wrap{max-width:1100px;margin:0 auto;padding:130px 24px 80px}
-    .page-eye{font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-    .page-title{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:400;line-height:1.1;margin-bottom:12px}
-    .page-title em{font-style:italic;color:var(--gold)}
-    .page-sub{font-size:16px;color:var(--smoke);font-weight:300;max-width:560px;line-height:1.6;margin-bottom:56px}
-
-    .articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
-
-    .acard{background:var(--ink3);border:1px solid rgba(255,255,255,.04);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;transition:border-color .3s,transform .3s}
-    .acard:hover{border-color:rgba(212,168,67,.18);transform:translateY(-6px)}
-    .acard-img{width:100%;height:180px;display:flex;align-items:center;justify-content:center;font-size:48px}
-    .acard-body{padding:22px}
-    .acard-cat{display:inline-block;font-family:var(--font-mono);font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:16px;margin-bottom:12px}
-    .acard-title{font-family:var(--font-serif);font-size:20px;font-weight:400;line-height:1.2;margin-bottom:10px}
-    .acard-excerpt{font-size:13px;color:var(--smoke);line-height:1.6;font-weight:300;margin-bottom:18px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-    .acard-foot{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid rgba(255,255,255,.05);font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.06em}
-    .acard-read{color:var(--gold);text-transform:uppercase;letter-spacing:.12em}
-
-    .footer{text-align:center;padding:40px 24px 60px;font-family:var(--font-mono);font-size:10px;color:var(--mist);letter-spacing:.08em}
-
+    body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:400;line-height:1.5;overflow-x:hidden}
+    .site-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+    .nav-brand{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--text);text-decoration:none}
+    .nav-brand span{color:var(--red)}
+    .nav-back{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .2s}
+    .nav-back:hover{color:var(--red)}
+    .page-header{max-width:1100px;margin:0 auto;padding:110px 24px 0}
+    .page-eye{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--red);font-weight:500;margin-bottom:10px}
+    .page-title{font-size:clamp(28px,4vw,42px);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:10px;color:var(--text)}
+    .page-sub{font-size:15px;color:var(--text3);font-weight:400;max-width:520px;line-height:1.6;margin-bottom:48px}
+    .articles-grid{max-width:1100px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
+    .acard{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;text-decoration:none;color:inherit;transition:box-shadow .3s,transform .3s}
+    .acard:hover{box-shadow:var(--shadow-md);transform:translateY(-4px)}
+    .acard-img{width:100%;height:200px;object-fit:cover;display:block}
+    .acard-body{padding:20px}
+    .acard-cat{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;padding:3px 10px;border-radius:4px;margin-bottom:10px}
+    .acard-title{font-size:17px;font-weight:700;line-height:1.3;letter-spacing:-.02em;margin-bottom:8px;color:var(--text)}
+    .acard-excerpt{font-size:13px;color:var(--text3);line-height:1.55;font-weight:400;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+    .acard-foot{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:.04em}
+    .acard-read{color:var(--red);font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+    .footer{text-align:center;padding:40px 24px 60px;font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:.04em;border-top:1px solid var(--border)}
     @media(max-width:640px){
-      nav{padding:16px 20px}
-      .page-wrap{padding:110px 16px 60px}
-      .articles-grid{grid-template-columns:1fr}
+      .site-nav{padding:12px 18px}
+      .page-header{padding:100px 18px 0}
+      .articles-grid{padding:0 18px 60px;grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="logo">Drive<b>Guruji</b><sub>beta</sub></a>
-  <a href="/" class="nav-back">← Home</a>
+<nav class="site-nav">
+  <a href="/" class="nav-brand">Drive<span>Guruji</span></a>
+  <a href="/" class="nav-back">&larr; Home</a>
 </nav>
 
-<div class="page-wrap">
+<div class="page-header">
   <div class="page-eye">Articles</div>
-  <h1 class="page-title">Sharp <em>Takes</em>, Real Numbers</h1>
+  <h1 class="page-title">Sharp Takes, Real Numbers</h1>
   <p class="page-sub">No OEM-pleasing fluff. No "it depends" without the answer. Opinionated automotive journalism backed by data.</p>
+</div>
 
-  <div class="articles-grid">
-    {sorted.map((article) => {
-      const cat = categoryColors[article.data.category as keyof typeof categoryColors] || categoryColors.opinion;
-      const emojis = {
-        opinion: '\u{1F525}', review: '\u26A1', news: '\u{1F4F0}', guide: '\u{1F4CA}', data: '\u{1F4C8}'
-      } as const;
-      const emoji = emojis[article.data.category as keyof typeof emojis] || '\u{1F4DD}';
-      const formattedDate = new Date(article.data.date).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
-      return (
-        <a href={`/articles/${article.id}`} class="acard">
-          <div class="acard-img" style={`background:${cat.gradient}`}>
-            {emoji}
+<div class="articles-grid">
+  {sorted.map((article) => {
+    const cat = categoryColors[article.data.category as keyof typeof categoryColors] || categoryColors.opinion;
+    const imgSrc = articleImages[article.id] || '/images/articles/ola-electric.jpg';
+    const formattedDate = new Date(article.data.date).toLocaleDateString('en-IN', { month: 'short', day: 'numeric', year: 'numeric' });
+    return (
+      <a href={`/articles/${article.id}`} class="acard">
+        <img class="acard-img" src={imgSrc} alt={article.data.title} loading="lazy" />
+        <div class="acard-body">
+          <div class="acard-cat" style={`background:${cat.bg};border:1px solid ${cat.border};color:${cat.text}`}>
+            {article.data.category}
           </div>
-          <div class="acard-body">
-            <div class="acard-cat" style={`background:${cat.bg};border:1px solid ${cat.border};color:${cat.text}`}>
-              {article.data.category}
-            </div>
-            <div class="acard-title">{article.data.title}</div>
-            <p class="acard-excerpt">{article.data.excerpt}</p>
-            <div class="acard-foot">
-              <span>{article.data.readTime} read · {formattedDate}</span>
-              <span class="acard-read">Read →</span>
-            </div>
+          <div class="acard-title">{article.data.title}</div>
+          <p class="acard-excerpt">{article.data.excerpt}</p>
+          <div class="acard-foot">
+            <span>{article.data.readTime} read &middot; {formattedDate}</span>
+            <span class="acard-read">Read &rarr;</span>
           </div>
-        </a>
-      );
-    })}
-  </div>
+        </div>
+      </a>
+    );
+  })}
 </div>
 
 <div class="footer">
-  © 2026 DriveGuruji. All rights reserved. · All prices ex-showroom Delhi
+  &copy; 2026 DriveGuruji by Exif Media. All rights reserved. &middot; All prices ex-showroom Delhi
 </div>
 
 </body>
